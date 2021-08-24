@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>智升的博客</title>
+  
+  <subtitle>dipcheese</subtitle>
+  <link href="https://dipcheese.com/atom.xml" rel="self"/>
+  
+  <link href="https://dipcheese.com/"/>
+  <updated>2021-08-23T06:19:59.196Z</updated>
+  <id>https://dipcheese.com/</id>
+  
+  <author>
+    <name>陈智升</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>new article</title>
+    <link href="https://dipcheese.com/2021/08/23/new-article/"/>
+    <id>https://dipcheese.com/2021/08/23/new-article/</id>
+    <published>2021-08-23T06:19:59.000Z</published>
+    <updated>2021-08-23T06:19:59.196Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://dipcheese.com/2021/08/23/hello-world/"/>
+    <id>https://dipcheese.com/2021/08/23/hello-world/</id>
+    <published>2021-08-23T06:15:41.737Z</published>
+    <updated>2021-08-23T06:15:41.737Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
