@@ -6,7 +6,7 @@
   <link href="https://dipcheese.com/atom.xml" rel="self"/>
   
   <link href="https://dipcheese.com/"/>
-  <updated>2021-08-23T06:19:59.196Z</updated>
+  <updated>2021-08-23T06:15:41.737Z</updated>
   <id>https://dipcheese.com/</id>
   
   <author>
@@ -15,19 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>new article</title>
-    <link href="https://dipcheese.com/2021/08/23/new-article/"/>
-    <id>https://dipcheese.com/2021/08/23/new-article/</id>
-    <published>2021-08-23T06:19:59.000Z</published>
-    <updated>2021-08-23T06:19:59.196Z</updated>
-    
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>Hello World</title>
