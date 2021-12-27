@@ -6,7 +6,7 @@
   <link href="https://dipcheese.com/atom.xml" rel="self"/>
   
   <link href="https://dipcheese.com/"/>
-  <updated>2021-12-27T08:25:44.374Z</updated>
+  <updated>2021-12-27T08:40:08.941Z</updated>
   <id>https://dipcheese.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://dipcheese.com/2021/12/27/after-postgraduate-entrance-exam/"/>
     <id>https://dipcheese.com/2021/12/27/after-postgraduate-entrance-exam/</id>
     <published>2021-12-27T06:51:22.000Z</published>
-    <updated>2021-12-27T08:25:44.374Z</updated>
+    <updated>2021-12-27T08:40:08.941Z</updated>
     
     
       
@@ -34,6 +34,10 @@
     
     
     
+    <category term="日常" scheme="https://dipcheese.com/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="diary" scheme="https://dipcheese.com/tags/diary/"/>
     
   </entry>
   
