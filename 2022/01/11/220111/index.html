@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="域名由来, 智升的博客">
+    <meta name="keywords" content="手写Promise, 智升的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>域名由来 | 智升的博客</title>
+    <title>手写Promise | 智升的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">域名由来</h1>
+                    <h1 class="description center-align post-title">手写Promise</h1>
                 </div>
             </div>
         </div>
@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -457,28 +470,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-27
+                    2022-01-11
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-27
+                    2022-01-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    128
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -501,7 +514,64 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>为何要取这个域名:dipcheese.com呢？<br>dipcheese其实就是“dip cheese”，cheese就是芝士，谐音梗：“知识”。而dip有蘸，浸，沉，泡等的意思，意味着要常在知识里的海洋里泡一泡，这也是我想要写这个博客的目的之一————分享知识。当然偶尔额外吐槽生活，侃侃大山，摆摆龙门阵，分享一些生活趣事和自己个人的所思所想。<br>另外：cheese和智升的读音是不是也有点像？</p>
+                <h4 id="then-方法链式调用识别-Promise-对象自返回"><a href="#then-方法链式调用识别-Promise-对象自返回" class="headerlink" title="then 方法链式调用识别 Promise 对象自返回"></a>then 方法链式调用识别 Promise 对象自返回</h4><p>then中不能返回自身，不然会循环调用。因判断返回的Promise是否与自身相等时Promise还没有new出来，所以要用异步代码来处理（定时器）。</p>
+<h4 id="捕获错误及-then-链式调用其他状态代码补充"><a href="#捕获错误及-then-链式调用其他状态代码补充" class="headerlink" title="捕获错误及 then 链式调用其他状态代码补充"></a>捕获错误及 then 链式调用其他状态代码补充</h4><p>当执行器中的代码发生错误时，需要捕获到错误（在构造函数中用try，catch捕获错误）。当then中出现错误，也需要捕获（在返回的新Promise中用try，catch进行捕获，包括成功，失败和异步情况）。</p>
+<h4 id="将-then-方法的参数变成可选参数"><a href="#将-then-方法的参数变成可选参数" class="headerlink" title="将 then 方法的参数变成可选参数"></a>将 then 方法的参数变成可选参数</h4><p>若then中没有参数，则将状态传递下去（resolve中直接返回，reject中throw原因）。</p>
+<h4 id="Promise-all-方法的实现"><a href="#Promise-all-方法的实现" class="headerlink" title="Promise.all 方法的实现"></a>Promise.all 方法的实现</h4><p>Promise.all是解决异步并发问题的，它允许我们按照异步代码掉用的顺序得到异步代码执行的结果且返回一个promise，且返回的promise中若没有reject则resolve对应的数组，有reject则reject那个原因。其中要注意异步操作，可用index与传入数组的长度来判断是否resolve。</p>
+<h4 id="Promise-resolve-方法的实现"><a href="#Promise-resolve-方法的实现" class="headerlink" title="Promise.resolve 方法的实现"></a>Promise.resolve 方法的实现</h4><p>Promise.resolve的作用就是将给定的值转换为promise对象，若传入promise对象直接返回，若为普通值则返回promise，将对应的值传入resolve。</p>
+<h4 id="finally-方法的实现"><a href="#finally-方法的实现" class="headerlink" title="finally 方法的实现"></a>finally 方法的实现</h4><p>finally中的回调不管promise是reject还是resolve都会被执行，并返回一个promise且后面的then链式调用需要等待finally中代码执行完成才能执行，可用Promise.resolve来实现（返回）。</p>
+<h4 id="catch-方法的实现"><a href="#catch-方法的实现" class="headerlink" title="catch 方法的实现"></a>catch 方法的实现</h4><p>调用then方法时可以不传递失败回调，而可用catch来捕获执行catch中的回调函数。可以在catch中返回then后的promise，其中then的第一个参数没用，可为undefined，第二个参数为对应的失败回调。</p>
+<p>手写 Promise 源码</p>
+<p>共5道，答对5题</p>
+<p>100<img src="data:image/png;base64,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" alt="img"></p>
+<p>总分100分</p>
+<ul>
+<li><p><strong>1.</strong> <strong>单选题</strong><strong>[单选题]关于 then 方法, 以下选项中说法不正确的是</strong><strong>(20分)</strong></p>
+<ul>
+<li>AA: 判断 promise 对象状态, 注册并执行成功状态和失败状态的回调函数</li>
+<li>BB: then 方法可以链式调用</li>
+<li>CC: then 方法的成功回调函数可以继续返回 Promise 对象, 失败回调函数中不可以</li>
+<li>DD: 同一个 Promise 对象中的 then 方法可以被多次调用</li>
+</ul>
+<p><img src="data:image/png;base64,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" alt="img">回答正确 +20分</p>
+</li>
+<li><p><strong>2.</strong> <strong>单选题</strong><strong>[单选题]执行器函数的 resolve 参数的作用是什么</strong><strong>(20分)</strong></p>
+<ul>
+<li>AA: 重置 Promise 对象状态</li>
+<li>BB: 创建 Promise 对象</li>
+<li>CC: 将 promise 状态更改为成功</li>
+<li>DD: 将 promise 状态更改为失败</li>
+</ul>
+<p><img src="data:image/png;base64,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" alt="img">回答正确 +20分</p>
+</li>
+<li><p><strong>3.</strong> <strong>单选题</strong><strong>[单选题]关于 Promise.all 方法以下说法不正确的是</strong><strong>(20分)</strong></p>
+<ul>
+<li>AA: 返回值是 Promise 对象</li>
+<li>BB: 参数为数组, 数组中只能传递返回 promise 对象的异步API</li>
+<li>CC: 参数为数组, 数组中可以传递普通值和 promise 对象</li>
+<li>DD: 解决异步并发、允许按照异步API调用顺序得到异步API的执行结果</li>
+</ul>
+<p><img src="data:image/png;base64,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" alt="img">回答正确 +20分</p>
+</li>
+<li><p><strong>4.</strong> <strong>单选题</strong><strong>[单选题]以下选项中关于 Promise 状态说法不正确的是</strong><strong>(20分)</strong></p>
+<ul>
+<li>AA: 在 Promise 中有三种状态, 分别为等待, 成功, 失败</li>
+<li>BB: 状态只能从等待变成成功, 等待变成失败</li>
+<li>CC: 在 Promise 中状态确定后, 可以再次更改</li>
+<li>DD: Promise 执行器中的 resolve 参数和 reject 参数可以更改 Promise 状态</li>
+</ul>
+<p><img src="data:image/png;base64,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" alt="img">回答正确 +20分</p>
+</li>
+<li><p><strong>5.</strong> <strong>单选题</strong><strong>[单选题]以下关于 finally 方法说法不正确的是</strong><strong>(20分)</strong></p>
+<ul>
+<li>AA: 在 finally 方法中, 可以获取到 promise 对象的执行结果</li>
+<li>BB: 无论当前的 Promise 对象状态是成功的还是失败的, finally 方法中传入的回调函数都会得到执行</li>
+<li>CC: finally 方法的返回值是 Promise 对象, 所以在调用方法后还可以链式调用 then 方法</li>
+<li>DD: 在 finally 方法的回调函数中可以继续返回 Promise 对象</li>
+</ul>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAGTklEQVR4Xu2ce2xTdRTHv6cdHdDJIDPTEBDmM+EhrxmUEMxEUKQoESEaEIOPhIBghG6JJPqX8bF2EkEIiRET0MRgIC7rmBBkMI0vQBmIiArlFZBHExir2zp6j/n1pqVsffxu7+1ta+5N+s92z+N+7u/+fuec34Ng5sVsQ2PdOIDGgPg+sPihAsQDwLgFiPzEdQ2Ea2BqA8EPomNgOgZwK2au/BVEilluU9YN7Vw7GKGOOQBNBeNhgAfqs0lXQNgL8Ddw9NuK6cvO6dOXWjo7gJo/7Yv2wByAFwL8KABblh5CAWgXQJtQUrYVVYs6jbZjLKDmdSUIBhcDtBLMtxvtbEp9RP8AXAencwOqlrYbZdsYQM3NRfh3/3IovApAmVHOZagnABu9g/6Va1BVdT1DHTEx/YCavJMRVtaDMVqvM4bKEw7DbluCGe7v9OjNHNCRLQ74T3sBfhXMmevR4306WSIG6CNU3OHGyHmhdLcn+n9mD+ZbfSdwfQuYJ2Ri1HQZogNA0Ty4Xj+h1bZ2QNs9j0DhbWCUajWW0/sJV2Gjp/FE9W4tfmgD5KudC8ZnABxajOTRvSEQFsBV86WsT/KAGjyvALwhizGNrM967xOx02LMqv5YRpEcILXlfPE/gBNlooDwrExLSg9I9DlhbirgzypZQwnBTjPS9UmpAUVGq+5fCq5Dlvl2xD2i40af8alGt+SAInHOqe8LZiiXhdLzPhECVAyblCxOSg7I510DVpZlareg5Mi2Fi73cvlAMZI+cEveRshG0xcRt52mJEpLercgkXgG94l+J79yK6Oh9PrUcBjOB8b3THB7A2r0rIDCddn2Jy/122glZlZ/EO/bzYBEPac9eDIPSha54hdAiXN4fD3pZkC+WjcYnlx5lxd2CdVw1XijvtwAJMqkwct+0yuBeUElzglRmXTeWhEt394A1OCdDygiEbUu2BZglvtzNZaMXg2eHQBPt+hEsOzErOrHbgASUzNdHWcKNRkdUVKGsQPKcaEriB+vnEcw3K33PSso7jdUTCmpLajRIwruH+rVarb8gCIH1o+ahvlDRsRMn+lowwsHt6M5IN63jouwHK6atSogX209GE/qUGe6aGmRAzsmzsXEQYN72b7a3YVRezfibKeO2R+ieriqZxPEdLDPG9A/42keo1Rwol68/dcPePOYngkNugKXu4zg804AK/vNezx9lmTgCAvbzv+JOQfq9RkjWyXBV/ciOPyJPk3mSMvCEd7UHd8H99E9+hwj+0uERu/7UJQafZqyL60FTrcSRuW3m3Ho2iV9jtlstQSf5yswP6VPU2/psj59Mb70NrRdD6G17SI6lXDGJrTAEUZWHNmN1f4DGduLCRLVExo8rQDfr1+bqkEMi6vufhBv3TsJDps98rdzne14ufVrNF3yazajFc4bR1vw3vGfNNtJLECHCL5aPxjDDdKIJcPGYt3oab3UKcxY1NqETWePSJvSCmfVHy1492+j4ETe9klCQ+1lI8sbF6YtQXmxMyEELZC0wjG25cTcDwhAXUZN6ZQ7+uPC9KUpW4gMpDyBI54jZCggu1hYOOM19LP3yRhSHsGJATL0E9s45nEsGpq+nJ2oJeUZHAEoYHgnPbCoGD9Pfh73lAxK2xnHQ8pDONFO2thhXlAZXOzEnoeek4a07LddWDhkZMLEMxHlLHXICUxFhvnsBIpaIKVtanE3mAdHDPMiUMxiqmE0JFPhiJeiphrZTVaNgmQ6nEhaIJJVE8odeiHlBE4EkCh3mFQwyxRSzuAgWjATpEwquWqFlDs4agetllzFZWLRXhZSTuGoZYm4or3J0z7pIOUcDtBj2kcQM3niUEDaVjn7puCwI9wN9+97sP7UQS2hURbu7TlxGAFk/tSz+L5d5XdhXGk5AqFObL94Av6Oq1l4YK0qE009W4sXVIpJFy+oo5m1/CXp8hcByFpAlWYBlTrkW0vw4rosaxFnFIbYgCe1iFMIWMuAY23IWkiuJqUaF5ILIWsrgjrqpwyhrM0saQAJetZ2KIkw3NpQJwHJ2pIpAcna1CsBydoWLgHJOlhAApJ1NIUEpFhaYh1ukpqWdTyOZGuyDliSBWUd0SVJCoCYUurufAbMU8E0Rf+WB3HIG7cA2FW4h7wlw8db7Gg8PbaQjgn8D3wVByqacZ9sAAAAAElFTkSuQmCC" alt="img">回答正确 +20分</p>
+</li>
+</ul>
 
                 
             </div>
@@ -528,7 +598,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dipcheese.com/2021/08/27/why/">https://dipcheese.com/2021/08/27/why/</a>
+                    <a href="https://dipcheese.com/2022/01/11/220111/">https://dipcheese.com/2022/01/11/220111/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,7 +635,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -734,7 +808,7 @@
         repo: 'georgesmith215.github.io',
         owner: 'GeorgeSmith215',
         admin: ["GeorgeSmith215"],
-        id: '2021-08-27T17-20-37',
+        id: '2022-01-11T19-57-41',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -766,13 +840,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/12/27/after-postgraduate-entrance-exam/">
+                <a href="/2022/01/17/220117/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="2022研究生考试二战失败心得、经验总结（发牢骚）">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="函数式编程-学习总结">
                         
-                        <span class="card-title">2022研究生考试二战失败心得、经验总结（发牢骚）</span>
+                        <span class="card-title">函数式编程-学习总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -783,14 +857,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-27
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-17
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%97%A5%E5%B8%B8/" class="post-category">
-                                    日常
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
                             
                             
@@ -800,8 +874,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/diary/">
-                        <span class="chip bg-color">diary</span>
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
                     </a>
                     
                 </div>
@@ -812,16 +886,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/27/why/">
+                <a href="/2022/01/10/220110/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="域名由来">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="手写Promise-核心逻辑">
                         
-                        <span class="card-title">域名由来</span>
+                        <span class="card-title">手写Promise-核心逻辑</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -832,17 +906,28 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-10
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            智升
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -970,6 +1055,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 

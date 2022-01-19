@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="域名由来, 智升的博客">
+    <meta name="keywords" content="异步编程-学习总结, 智升的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>域名由来 | 智升的博客</title>
+    <title>异步编程-学习总结 | 智升的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">域名由来</h1>
+                    <h1 class="description center-align post-title">异步编程-学习总结</h1>
                 </div>
             </div>
         </div>
@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -457,28 +470,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-27
+                    2022-01-18
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-27
+                    2022-01-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    128
+                    3.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    12 分
                 </div>
                 
 
@@ -501,7 +514,217 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>为何要取这个域名:dipcheese.com呢？<br>dipcheese其实就是“dip cheese”，cheese就是芝士，谐音梗：“知识”。而dip有蘸，浸，沉，泡等的意思，意味着要常在知识里的海洋里泡一泡，这也是我想要写这个博客的目的之一————分享知识。当然偶尔额外吐槽生活，侃侃大山，摆摆龙门阵，分享一些生活趣事和自己个人的所思所想。<br>另外：cheese和智升的读音是不是也有点像？</p>
+                <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>最早js语言就是运行在浏览器端的语言，目的是为了实现页面上的动态交互。实现页面交互的核心就是DOM操作，这就决定了它必须使用单线程模型，否则就会出现很复杂的线程同步问题。</p>
+<p>这种模式最大的优势就是<strong>更安全，更简单</strong>，缺点也很明确，就是如果中间有一个特别耗时的任务，其他的任务就要等待很长的时间，出现假死的情况。</p>
+<p>为了解决这种问题，js有两种任务的执行模式：<strong>同步模式（Synchronous）和异步模式（Asynchronous）</strong>。</p>
+<h3 id="同步模式"><a href="#同步模式" class="headerlink" title="同步模式"></a>同步模式</h3><p><strong>同步模式</strong> ：指的是代码的任务依次执行，后一个任务必须等待前一个任务结束才能开始执行。程序的执行顺序和代码的编写顺序是完全一致的。在单线程模式下，大多数任务都会以同步模式执行。同时，为了避免耗时函数让页面卡顿和假死，所以还有异步模式。</p>
+<h3 id="异步模式"><a href="#异步模式" class="headerlink" title="异步模式"></a>异步模式</h3><p><strong>异步模式</strong> 不会去等待这个任务的结束才开始下一个任务，都是开启过后就立即往后执行下一个任务。耗时函数的后续逻辑会通过回调函数的方式定义。在内部，耗时任务完成过后就会自动执行传入的回调函数。<strong>对开发者而言，单线程下面的异步最大的难点就是代码执行的顺序混乱。</strong></p>
+<p>宏任务、微任务及EventLoop：</p>
+<p><img src="220118/image-20220115152020663.png" alt="image-20220115152020663"></p>
+<p>js线程某个时刻发起了一个异步调用，它紧接着继续执行其他的任务，此时异步线程会单独执行异步任务，执行过后会将回调放到消息队列中，js主线程执行完任务过后会依次执行消息队列中的任务。<strong>这里要强调，js是单线程的，浏览器不是单线程的，有一些API是有单独的线程去做的。</strong></p>
+<h4 id="补充：浏览器内核多线程包含："><a href="#补充：浏览器内核多线程包含：" class="headerlink" title="补充：浏览器内核多线程包含："></a>补充：浏览器内核多线程包含：</h4><p><strong>1.GUI 渲染线程：</strong></p>
+<ul>
+<li>（1）负责浏览器界面的渲染，解析 HTML、CSS，构建 DOM 树和 RenderObject 树，布局和绘制等；</li>
+<li>（2） 当界面需要重绘（Repaint）或由于某种操作引发回流（reflow）时该线程会执行；</li>
+<li><strong>注意：GUI 渲染线程和 JS 引擎线程是互斥的</strong>，当 JS 引擎执行时 GUI 线程会被挂起，GUI 更新会保存在一个队列中等 JS 引擎空闲时立即执行。</li>
+</ul>
+<p><strong>2.JS 引擎线程：</strong></p>
+<ul>
+<li>JS 内核，负责处理 JavaScript 脚本程序（V8 引擎）</li>
+<li>负责解析 JavaScript 脚本，运行代码；</li>
+<li>JS 引擎一直等待着任务队列中的任务到来，然后加以处理，一个 tab 页面（renderer 进程）中无论什么时候都只有一个 JS 线程在运行 JS 程序；</li>
+<li><strong>注意：由于 GUI 渲染线程和 JS 引擎线程是互斥的</strong>，所以如果 JS 程序运行时间过长，这样会导致页面渲染不连贯，导致页面渲染加载阻塞；</li>
+</ul>
+<p><strong>3. 事件触发线程：</strong></p>
+<ul>
+<li>归属于浏览器，而不是 JS 引擎，用来控制事件循环；</li>
+<li>当 JS 引擎执行代码块如 setTimeOut 时（也可以来自浏览器内核的其他线程，如鼠标单击事件、AJAX 异步请求等），会将对应的任务添加到事件线程中；</li>
+<li>当对应的事件符合触发条件被触发时，该线程就会把事件添加到 JS 的待处理队列的队尾，等待 JS 引擎的处理；</li>
+<li><strong>注意：由于 JS 的单线程的关系</strong>所以这些待处理队列中的事件都得排队等待 JS 引擎处理（当 JS 引擎空闲时才会去执行）。</li>
+</ul>
+<p><strong>4. 定时触发器线程：</strong></p>
+<ul>
+<li>setTimeOut 与 setInterval 所在的线程；</li>
+<li>浏览器的定时计数器并不是由 JavaScript 引擎计数的，（因为 JavaScript 是单线程，如果处于阻塞状态就会影响计时的准确）因此通过单独的线程来计时并触发定时（计时完毕后，添加到事件队列，等待 JS 引擎空闲时执行）</li>
+</ul>
+<p><strong>5. 异步 http 请求线程：</strong></p>
+<ul>
+<li>在 XMLHttpRequest 在连接后是通过浏览器新开一个线程请求的</li>
+<li>将检测到状态变更时，如果设置有回调函数，异步线程就将产生状态变更事件，将这个回调在放到事件队列中，再由 JavaScript 引擎执行。</li>
+</ul>
+<h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>回调函数是所有异步编程的根基。回调函数是由调用者定义，交给执行者执行的函数。</p>
+<h3 id="Promise概述"><a href="#Promise概述" class="headerlink" title="Promise概述"></a>Promise概述</h3><p>虽然回调函数是所有异步编程方案的根基。但是如果直接使用传统回调方式去完成复杂的异步流程，就会无法避免大量的回调函数嵌套。导致回调地狱的问题。为了避免这个问题。CommonJS社区提出了Promise的规范，ES6中称为语言规范。</p>
+<p>Promise是一个对象，用来表述一个异步任务执行之后是成功还是失败。</p>
+<h3 id="Promise基本用法"><a href="#Promise基本用法" class="headerlink" title="Promise基本用法"></a>Promise基本用法</h3><p>返回resolve</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> promise <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+promise<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'resolved'</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token comment">// resolve 100</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'rejected'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>返回reject</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> promise <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token function">reject</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'promise rejected'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+promise<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'resolved'</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'rejected'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>即便promise中没有任何的异步操作，then方法的回调函数仍然会进入到事件队列中排队。</p>
+<h3 id="Promise使用案例"><a href="#Promise使用案例" class="headerlink" title="Promise使用案例"></a>Promise使用案例</h3><p>使用Promise去封装一个ajax的案例</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">ajax</span> <span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> rejects</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 创建一个XMLHttpRequest对象去发送一个请求</span>
+    <span class="token keyword">const</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">// 先设置一下xhr对象的请求方式是GET，请求的地址就是参数传递的url</span>
+    xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'GET'</span><span class="token punctuation">,</span> url<span class="token punctuation">)</span>
+    <span class="token comment">// 设置返回的类型是json，是HTML5的新特性</span>
+    <span class="token comment">// 我们在请求之后拿到的是json对象，而不是字符串</span>
+    xhr<span class="token punctuation">.</span>responseType <span class="token operator">=</span> <span class="token string">'json'</span>
+    <span class="token comment">// html5中提供的新事件,请求完成之后（readyState为4）才会执行</span>
+    xhr<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 请求成功将请求结果返回</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>response<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 请求失败，创建一个错误对象，返回错误文本</span>
+        <span class="token function">rejects</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>statusText<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 开始执行异步请求</span>
+    xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">ajax</span><span class="token punctuation">(</span><span class="token string">'/api/user.json'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Promise本质上也是使用回调函数的方式去定义异步任务结束后所需要执行的任务。这里的回调函数是通过then方法传递过去的</p>
+<h3 id="Promise常见误区"><a href="#Promise常见误区" class="headerlink" title="Promise常见误区"></a>Promise常见误区</h3><p>嵌套使用的方式是使用Promise最常见的误区。要使用promise的链式调用的方法尽可能保证异步任务的扁平化。（最佳解决方案是用async和await。）</p>
+<h3 id="Promise链式调用"><a href="#Promise链式调用" class="headerlink" title="Promise链式调用"></a>Promise链式调用</h3><ul>
+<li>promise对象的then方法，返回了全新的promise对象。可以再继续调用then方法，<strong>如果return的不是promise对象，而是一个值，那么这个值会作为resolve的值传递，如果没有值，默认是undefined</strong>。</li>
+<li>后面的then方法就是在为上一个then返回的Promise注册回调。</li>
+<li>前面then方法中回调函数的返回值会作为后面then方法回调的参数。</li>
+<li>如果回调中返回的是Promise，那<strong>后面then方法的回调会等待它的结束</strong>。</li>
+</ul>
+<h3 id="Promise异常处理"><a href="#Promise异常处理" class="headerlink" title="Promise异常处理"></a>Promise异常处理</h3><p>promise中如果有异常，都会调用reject方法，还可以使用.catch()，而使用.catch方法更为常见，<strong>因为.catch是给整个promise链条注册的一个失败回调。更推荐使用！</strong> </p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token string">'/api/user.json'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">onFulfilled</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onFulfilled'</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">onRejected</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onRejected'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+<span class="token comment">// 相当于</span>
+<span class="token function">ajax</span><span class="token punctuation">(</span><span class="token string">'/api/user.json'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">onFulfilled</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onFulfilled'</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token function">onRejected</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onRejected'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>.catch形式和前面then里面的第二个参数的形式，两者异常捕获的区别：</p>
+<ul>
+<li>.catch()是对上一个.then()返回的promise进行处理，不过第一个promise的报错也顺延到了catch中，而then的第二个参数形式，只能捕获第一个promise的报错，如果当前then的resolve函数处理中有报错是捕获不到的。</li>
+</ul>
+<h3 id="Promise静态方法"><a href="#Promise静态方法" class="headerlink" title="Promise静态方法"></a>Promise静态方法</h3><p>Promise.resolve()：传入一个对象，其中有then属性以及对应的回调函数并且可被.then调用（thenable）。可用来将第三方的Promise对象转成原生的Promise。</p>
+<p>Promise.reject()：无论传入什么参数，在.catch调用后其参数就是其失败的原因。</p>
+<h3 id="Promise并行执行"><a href="#Promise并行执行" class="headerlink" title="Promise并行执行"></a>Promise并行执行</h3><p>Promise.all()：传入一个Promise数组，该promise数组中若没有reject则resolve对应的Promise数组中的所有Promise并返回结果数组，有reject则reject那个原因。（等待所有任务结束）</p>
+<p>Promise.race()：同样传入一个Promise数组，只会等待第一个结束的任务并返回结果。</p>
+<h3 id="Promise执行时序"><a href="#Promise执行时序" class="headerlink" title="Promise执行时序"></a>Promise执行时序</h3><p>Promise的回调是作为微任务执行的，会在本轮宏任务结束后执行。</p>
+<p>常见的宏任务有： script(整体代码)，setTimeout，setInterval，I/O，UI交互事件，postMessage，MessageChannel，setImmediate(Node.js 环境) 。</p>
+<p>常见的微任务有： Promise.then，Object.observe，MutaionObserver，process.nextTick(Node.js 环境)。</p>
+<h3 id="Generator异步方案"><a href="#Generator异步方案" class="headerlink" title="Generator异步方案"></a>Generator异步方案</h3><p>Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。</p>
+<h4 id="基本用法："><a href="#基本用法：" class="headerlink" title="基本用法："></a>基本用法：</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span><span class="token operator">*</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">yield</span> <span class="token string">'吃饭'</span>
+    <span class="token keyword">return</span> <span class="token string">'睡觉'</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> newDoSomething <span class="token operator">=</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 自己执行不了，需要指向一个状态机</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newDoSomething<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// {value: "吃饭", done: false}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newDoSomething<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// {value: "睡觉", done: true}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从上面的例子可以看出来，Generator 函数有四个特点：</p>
+<p>1、function 后面有个小 *，这个地方有两种写法，没啥太大区别；</p>
+<p><strong>function</strong>* <strong>doSomething</strong>(){}</p>
+<p><strong>function</strong> *<strong>doSomething</strong>(){}</p>
+<p>2、函数里面会有一个 yield，把函数截成不同的状态；</p>
+<p>一个<strong>yield</strong>可以截成两个状态，也就需要两个<strong>next</strong>()触发；</p>
+<p>3、Generator 函数自己不会执行，而是会返回一个生成器对象；</p>
+<p>4、生成器对象会通过. next() 方法依次调用各个状态。</p>
+<h4 id="消息传递："><a href="#消息传递：" class="headerlink" title="消息传递："></a>消息传递：</h4><p>Generator 函数除了能控制函数分状态的执行，还有一个非常重要的作用就是消息传递。</p>
+<p>举个简单栗子：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token operator">*</span><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token string">'hhh'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> newDoSomething <span class="token operator">=</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newDoSomething<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">//{value: "hhh", done: false}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newDoSomething<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">//{value: 4, done: true}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>分析打印内容：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//{value: "hhh", done: false}</span>
+<span class="token function">第一个next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>是Generator函数的启动器
+这个时候打印的是<span class="token keyword">yield</span>后面的值
+注意<span class="token operator">:</span><span class="token keyword">yield</span>后面的值并不会赋值给x
+
+ <span class="token comment">//{value: 4, done: true}</span>
+暂停执行的时候，<span class="token keyword">yield</span><span class="token function">表达式处可以接收下一个启动它的next</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span>传进来的值
+可以理解为：这时第二个next传入的参数会把第一个<span class="token keyword">yield</span>的值替换掉
+这个时候，x被赋值<span class="token number">2</span>，所以打印<span class="token number">2</span><span class="token operator">*</span><span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意几个问题：</p>
+<p>第一个 next() 是用来启动 Generator 函数的，传值会被忽略，没用</p>
+<p>yield 的用法和 return 比较像，你可以当做 return 来用，如果 yield 后没值，return undefined</p>
+<p>最后一个 next() 函数，得到的是函数 return 的值，如果没有，也是 undefined。</p>
+<p>看个特殊情况：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token operator">*</span><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token string">'hhh'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> y <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token number">3</span><span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> z <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token punctuation">(</span>y <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> newDoSomething <span class="token operator">=</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newDoSomething<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newDoSomething<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newDoSomething<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newDoSomething<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出打印结果：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token string">"hhh"</span><span class="token punctuation">,</span> done<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span> done<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span>
+<span class="token keyword">undefined</span>
+<span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token number">NaN</span><span class="token punctuation">,</span> done<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span> done<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>为什么打印 undefined？分析：</p>
+<p>1、第一个<strong>next</strong>(1)传进去的1，没有起任何意义，打印的{value: “hhh”, done: false}；</p>
+<p>2、第二个<strong>next</strong>(2)传进去的2，所以x会打印2，第二个<strong>next</strong>(2)打印2+3=5； </p>
+<p>3、第三个<strong>next</strong>()传进去的是空，那么y打印的就是<strong>undefined</strong>，undefined*3那肯定就是NaN；</p>
+<p>4、第四个<strong>next</strong>()传进去的是空，但是<strong>return</strong>的是x，刚才说了x是2，那打印的是2*2=4。</p>
+<h3 id="async、await函数"><a href="#async、await函数" class="headerlink" title="async、await函数"></a>async、await函数</h3><p>async、await 是 Generator 函数的语法糖，原理是通过 Generator 函数加自动执行器来实现的，这就使得 async、await 跟普通函数一样了，不用再一直 next 执行了。</p>
+<p>他吸收了 Generator 函数的优点，可以通过 await 来把函数分状态执行，但是又不用一直 next，可以自动执行。</p>
+<p>函数前加async修饰符，代表这个函数是一个异步函数。async函数返回的是一个promise对象，函数内部return返回的值，会成为then方法回调函数的参数。</p>
+<p>await是一个运算符，用于组成表达式，它会阻塞后面的代码，且await只能写在async函数内。await如果等到的是Promise对象，则得到其resolve值。await如果等到的不是promise对象，就得到一个表达式的运算结果。</p>
 
                 
             </div>
@@ -528,7 +751,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dipcheese.com/2021/08/27/why/">https://dipcheese.com/2021/08/27/why/</a>
+                    <a href="https://dipcheese.com/2022/01/18/220118/">https://dipcheese.com/2022/01/18/220118/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,7 +788,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -734,7 +961,7 @@
         repo: 'georgesmith215.github.io',
         owner: 'GeorgeSmith215',
         admin: ["GeorgeSmith215"],
-        id: '2021-08-27T17-20-37',
+        id: '2022-01-18T14-05-25',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -762,66 +989,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/12/27/after-postgraduate-entrance-exam/">
+                <a href="/2022/01/18/220118/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="2022研究生考试二战失败心得、经验总结（发牢骚）">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="异步编程-学习总结">
                         
-                        <span class="card-title">2022研究生考试二战失败心得、经验总结（发牢骚）</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-27
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%97%A5%E5%B8%B8/" class="post-category">
-                                    日常
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/diary/">
-                        <span class="chip bg-color">diary</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/08/27/why/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="域名由来">
-                        
-                        <span class="card-title">域名由来</span>
+                        <span class="card-title">异步编程-学习总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -832,17 +1011,78 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-18
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            智升
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/01/17/220117/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="函数式编程-学习总结">
+                        
+                        <span class="card-title">函数式编程-学习总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -970,6 +1210,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 

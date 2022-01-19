@@ -6,7 +6,7 @@
   <link href="https://dipcheese.com/atom.xml" rel="self"/>
   
   <link href="https://dipcheese.com/"/>
-  <updated>2021-12-27T08:46:18.237Z</updated>
+  <updated>2022-01-19T08:03:34.718Z</updated>
   <id>https://dipcheese.com/</id>
   
   <author>
@@ -15,6 +15,181 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>异步编程-学习总结</title>
+    <link href="https://dipcheese.com/2022/01/18/220118/"/>
+    <id>https://dipcheese.com/2022/01/18/220118/</id>
+    <published>2022-01-18T06:05:25.000Z</published>
+    <updated>2022-01-19T08:03:34.718Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>函数式编程-学习总结</title>
+    <link href="https://dipcheese.com/2022/01/17/220117/"/>
+    <id>https://dipcheese.com/2022/01/17/220117/</id>
+    <published>2022-01-17T02:36:49.000Z</published>
+    <updated>2022-01-19T08:02:32.619Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;函数式编程&quot;&gt;&lt;a href=&quot;#函数式编程&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>手写Promise</title>
+    <link href="https://dipcheese.com/2022/01/11/220111/"/>
+    <id>https://dipcheese.com/2022/01/11/220111/</id>
+    <published>2022-01-11T11:57:41.000Z</published>
+    <updated>2022-01-19T08:01:46.643Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;then-方法链式调用识别-Promise-对象自返回&quot;&gt;&lt;a href=&quot;#then-方法链式调用识别-Promise-对象自返回&quot; class=&quot;headerlink&quot; title=&quot;then 方法链式调用识别 Promise 对象自返回&quot;&gt;&lt;/a&gt;then</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>手写Promise-核心逻辑</title>
+    <link href="https://dipcheese.com/2022/01/10/220110/"/>
+    <id>https://dipcheese.com/2022/01/10/220110/</id>
+    <published>2022-01-10T14:08:12.000Z</published>
+    <updated>2022-01-19T08:01:13.742Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;Promise类核心逻辑实现&quot;&gt;&lt;a href=&quot;#Promise类核心逻辑实现&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>函数同步与异步模式</title>
+    <link href="https://dipcheese.com/2022/01/09/220109/"/>
+    <id>https://dipcheese.com/2022/01/09/220109/</id>
+    <published>2022-01-09T13:03:56.000Z</published>
+    <updated>2022-01-19T07:58:48.052Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;函数同步模式&quot;&gt;&lt;a href=&quot;#函数同步模式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>函数式编程-函数组合</title>
+    <link href="https://dipcheese.com/2022/01/08/220108/"/>
+    <id>https://dipcheese.com/2022/01/08/220108/</id>
+    <published>2022-01-08T11:47:28.000Z</published>
+    <updated>2022-01-19T07:58:55.339Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;函数组合&quot;&gt;&lt;a href=&quot;#函数组合&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git的简单使用,纯函数</title>
+    <link href="https://dipcheese.com/2022/01/07/220107/"/>
+    <id>https://dipcheese.com/2022/01/07/220107/</id>
+    <published>2022-01-07T02:56:43.000Z</published>
+    <updated>2022-01-19T07:46:24.410Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;markdown文件编辑器Typora的图像相关配置（图片保存到指定文件）：&quot;&gt;&lt;a href=&quot;#markdown文件编辑器Typora的图像相关配置（图片保存到指定文件）：&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
   
   <entry>
     <title>2022研究生考试二战失败心得、经验总结（发牢骚）</title>
@@ -54,27 +229,6 @@
         
         
     <summary type="html">&lt;p&gt;为何要取这个域名:dipcheese.com呢？&lt;br&gt;dipcheese其实就是“dip</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://dipcheese.com/2021/08/23/hello-world/"/>
-    <id>https://dipcheese.com/2021/08/23/hello-world/</id>
-    <published>2021-08-23T06:15:41.737Z</published>
-    <updated>2021-08-23T06:15:41.737Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
         
       
     

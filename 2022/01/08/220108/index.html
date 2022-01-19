@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="域名由来, 智升的博客">
+    <meta name="keywords" content="函数式编程-函数组合, 智升的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>域名由来 | 智升的博客</title>
+    <title>函数式编程-函数组合 | 智升的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">域名由来</h1>
+                    <h1 class="description center-align post-title">函数式编程-函数组合</h1>
                 </div>
             </div>
         </div>
@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -457,28 +470,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-27
+                    2022-01-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-27
+                    2022-01-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    128
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -501,7 +514,81 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>为何要取这个域名:dipcheese.com呢？<br>dipcheese其实就是“dip cheese”，cheese就是芝士，谐音梗：“知识”。而dip有蘸，浸，沉，泡等的意思，意味着要常在知识里的海洋里泡一泡，这也是我想要写这个博客的目的之一————分享知识。当然偶尔额外吐槽生活，侃侃大山，摆摆龙门阵，分享一些生活趣事和自己个人的所思所想。<br>另外：cheese和智升的读音是不是也有点像？</p>
+                <h4 id="函数组合"><a href="#函数组合" class="headerlink" title="函数组合"></a>函数组合</h4><p>函数组合可以让我们把多个函数组合形成一个新的函数，在执行时可以把参数输入给第一个执行的函数（从右到左去执行），当此函数执行完成后会返回一个中间结果，并把中间结果给下一个函数来处理，当最后一个函数执行完成时会返回最终的结果。</p>
+<p>函数组合要满足结合律（两两加括号不改变结果）。</p>
+<p>可以在组合时加入trace函数来跟踪结果，打印数据。</p>
+<p>多参数函数组合需要用函数的柯里化：函数优先，数据随后。</p>
+<p>pointfree风格：一个参数为函数的函数返回各参数函数的组合从而返回能解决特定复杂问题的函数。</p>
+<p>函子：可以把函子想象成一个盒子，盒子里保存一个值，然后通过调用盒子里的map方法，可以传入一个函数，通过这个函数可以对盒子里的值进行处理。    </p>
+<hr>
+<p>函数式编程随堂测试</p>
+<p>共6道，答对5题</p>
+<p>100<img src="data:image/png;base64,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" alt="img"></p>
+<p>总分120分</p>
+<ul>
+<li><p><strong>1.</strong> <strong>多选题</strong><strong>[多选题]下面关于函数式编程的说法错误的是</strong><strong>(20分)</strong></p>
+<ul>
+<li>A函数式编程是一种编程范式，跟面向对象编程是并列关系</li>
+<li>B函数式编程可以很大程度上让代码可以重用</li>
+<li>C函数式编程可以很大程度上提高程序的性能</li>
+<li>D函数式编程中的函数是程序中的函数或者方法</li>
+</ul>
+<p><img src="data:image/png;base64,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" alt="img">回答正确 +20分</p>
+<p>答案解析</p>
+<p>解析：C 选项函数式编程不能提高程序的性能，因为大量使用闭包在某种程度上会降低性能(占用内存)D 函数式编程中的函数不是程序中的函数或者方法，而是数学中的函数</p>
+</li>
+<li><p><strong>2.</strong> <strong>多选题</strong><strong>[多选题]函数是一等公民包含</strong><strong>(20分)</strong></p>
+<ul>
+<li>A函数可以存储在变量中</li>
+<li>B函数可以作为参数</li>
+<li>C函数可以作为返回值</li>
+<li>D函数可以递归调用</li>
+</ul>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAGTklEQVR4Xu2ce2xTdRTHv6cdHdDJIDPTEBDmM+EhrxmUEMxEUKQoESEaEIOPhIBghG6JJPqX8bF2EkEIiRET0MRgIC7rmBBkMI0vQBmIiArlFZBHExir2zp6j/n1pqVsffxu7+1ta+5N+s92z+N+7u/+fuec34Ng5sVsQ2PdOIDGgPg+sPihAsQDwLgFiPzEdQ2Ea2BqA8EPomNgOgZwK2au/BVEilluU9YN7Vw7GKGOOQBNBeNhgAfqs0lXQNgL8Ddw9NuK6cvO6dOXWjo7gJo/7Yv2wByAFwL8KABblh5CAWgXQJtQUrYVVYs6jbZjLKDmdSUIBhcDtBLMtxvtbEp9RP8AXAencwOqlrYbZdsYQM3NRfh3/3IovApAmVHOZagnABu9g/6Va1BVdT1DHTEx/YCavJMRVtaDMVqvM4bKEw7DbluCGe7v9OjNHNCRLQ74T3sBfhXMmevR4306WSIG6CNU3OHGyHmhdLcn+n9mD+ZbfSdwfQuYJ2Ri1HQZogNA0Ty4Xj+h1bZ2QNs9j0DhbWCUajWW0/sJV2Gjp/FE9W4tfmgD5KudC8ZnABxajOTRvSEQFsBV86WsT/KAGjyvALwhizGNrM967xOx02LMqv5YRpEcILXlfPE/gBNlooDwrExLSg9I9DlhbirgzypZQwnBTjPS9UmpAUVGq+5fCq5Dlvl2xD2i40af8alGt+SAInHOqe8LZiiXhdLzPhECVAyblCxOSg7I510DVpZlareg5Mi2Fi73cvlAMZI+cEveRshG0xcRt52mJEpLercgkXgG94l+J79yK6Oh9PrUcBjOB8b3THB7A2r0rIDCddn2Jy/122glZlZ/EO/bzYBEPac9eDIPSha54hdAiXN4fD3pZkC+WjcYnlx5lxd2CdVw1XijvtwAJMqkwct+0yuBeUElzglRmXTeWhEt394A1OCdDygiEbUu2BZglvtzNZaMXg2eHQBPt+hEsOzErOrHbgASUzNdHWcKNRkdUVKGsQPKcaEriB+vnEcw3K33PSso7jdUTCmpLajRIwruH+rVarb8gCIH1o+ahvlDRsRMn+lowwsHt6M5IN63jouwHK6atSogX209GE/qUGe6aGmRAzsmzsXEQYN72b7a3YVRezfibKeO2R+ieriqZxPEdLDPG9A/42keo1Rwol68/dcPePOYngkNugKXu4zg804AK/vNezx9lmTgCAvbzv+JOQfq9RkjWyXBV/ciOPyJPk3mSMvCEd7UHd8H99E9+hwj+0uERu/7UJQafZqyL60FTrcSRuW3m3Ho2iV9jtlstQSf5yswP6VPU2/psj59Mb70NrRdD6G17SI6lXDGJrTAEUZWHNmN1f4DGduLCRLVExo8rQDfr1+bqkEMi6vufhBv3TsJDps98rdzne14ufVrNF3yazajFc4bR1vw3vGfNNtJLECHCL5aPxjDDdKIJcPGYt3oab3UKcxY1NqETWePSJvSCmfVHy1492+j4ETe9klCQ+1lI8sbF6YtQXmxMyEELZC0wjG25cTcDwhAXUZN6ZQ7+uPC9KUpW4gMpDyBI54jZCggu1hYOOM19LP3yRhSHsGJATL0E9s45nEsGpq+nJ2oJeUZHAEoYHgnPbCoGD9Pfh73lAxK2xnHQ8pDONFO2thhXlAZXOzEnoeek4a07LddWDhkZMLEMxHlLHXICUxFhvnsBIpaIKVtanE3mAdHDPMiUMxiqmE0JFPhiJeiphrZTVaNgmQ6nEhaIJJVE8odeiHlBE4EkCh3mFQwyxRSzuAgWjATpEwquWqFlDs4agetllzFZWLRXhZSTuGoZYm4or3J0z7pIOUcDtBj2kcQM3niUEDaVjn7puCwI9wN9+97sP7UQS2hURbu7TlxGAFk/tSz+L5d5XdhXGk5AqFObL94Av6Oq1l4YK0qE009W4sXVIpJFy+oo5m1/CXp8hcByFpAlWYBlTrkW0vw4rosaxFnFIbYgCe1iFMIWMuAY23IWkiuJqUaF5ILIWsrgjrqpwyhrM0saQAJetZ2KIkw3NpQJwHJ2pIpAcna1CsBydoWLgHJOlhAApJ1NIUEpFhaYh1ukpqWdTyOZGuyDliSBWUd0SVJCoCYUurufAbMU8E0Rf+WB3HIG7cA2FW4h7wlw8db7Gg8PbaQjgn8D3wVByqacZ9sAAAAAElFTkSuQmCC" alt="img">回答正确 +20分</p>
+<p>答案解析</p>
+<p>MDN 中关于头等函数(函数是一等公民)的解释只包含前三点</p>
+</li>
+<li><p><strong>3.</strong> <strong>单选题</strong><strong>[单选题]下面关于纯函数的说法错误的是</strong><strong>(20分)</strong></p>
+<ul>
+<li>A纯函数对于相同的输入永远会得到相同的输出</li>
+<li>B纯函数中的函数指的是数学中的函数</li>
+<li>C副作用会让一个函数变的不纯</li>
+<li>D可以通过某种方式避免副作用的发生</li>
+</ul>
+<p><img src="data:image/png;base64,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" alt="img">回答正确 +20分</p>
+<p>答案解析</p>
+<p>副作用会让一个函数变的不纯，副作用不可能避免，因为代码难免会依赖外部的配置文件、数据库等，只能最大程度上控制副作用在可控的范围内发生</p>
+</li>
+<li><p><strong>4.</strong> <strong>多选题</strong><strong>[多选题]于柯里化的描述正确的是</strong><strong>(20分)</strong></p>
+<ul>
+<li>A柯里化函数 curry，也是高阶函数</li>
+<li>B柯里化函数 curry 内部用到了闭包，对函数的参数做了“缓存”</li>
+<li>C柯里化可以把多个参数的函数转换成只有一个参数的函数，通过组合产生功能更强大的函数</li>
+<li>D柯里化让函数变的更灵活，让函数的粒度更小</li>
+</ul>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAGTklEQVR4Xu2ce2xTdRTHv6cdHdDJIDPTEBDmM+EhrxmUEMxEUKQoESEaEIOPhIBghG6JJPqX8bF2EkEIiRET0MRgIC7rmBBkMI0vQBmIiArlFZBHExir2zp6j/n1pqVsffxu7+1ta+5N+s92z+N+7u/+fuec34Ng5sVsQ2PdOIDGgPg+sPihAsQDwLgFiPzEdQ2Ea2BqA8EPomNgOgZwK2au/BVEilluU9YN7Vw7GKGOOQBNBeNhgAfqs0lXQNgL8Ddw9NuK6cvO6dOXWjo7gJo/7Yv2wByAFwL8KABblh5CAWgXQJtQUrYVVYs6jbZjLKDmdSUIBhcDtBLMtxvtbEp9RP8AXAencwOqlrYbZdsYQM3NRfh3/3IovApAmVHOZagnABu9g/6Va1BVdT1DHTEx/YCavJMRVtaDMVqvM4bKEw7DbluCGe7v9OjNHNCRLQ74T3sBfhXMmevR4306WSIG6CNU3OHGyHmhdLcn+n9mD+ZbfSdwfQuYJ2Ri1HQZogNA0Ty4Xj+h1bZ2QNs9j0DhbWCUajWW0/sJV2Gjp/FE9W4tfmgD5KudC8ZnABxajOTRvSEQFsBV86WsT/KAGjyvALwhizGNrM967xOx02LMqv5YRpEcILXlfPE/gBNlooDwrExLSg9I9DlhbirgzypZQwnBTjPS9UmpAUVGq+5fCq5Dlvl2xD2i40af8alGt+SAInHOqe8LZiiXhdLzPhECVAyblCxOSg7I510DVpZlareg5Mi2Fi73cvlAMZI+cEveRshG0xcRt52mJEpLercgkXgG94l+J79yK6Oh9PrUcBjOB8b3THB7A2r0rIDCddn2Jy/122glZlZ/EO/bzYBEPac9eDIPSha54hdAiXN4fD3pZkC+WjcYnlx5lxd2CdVw1XijvtwAJMqkwct+0yuBeUElzglRmXTeWhEt394A1OCdDygiEbUu2BZglvtzNZaMXg2eHQBPt+hEsOzErOrHbgASUzNdHWcKNRkdUVKGsQPKcaEriB+vnEcw3K33PSso7jdUTCmpLajRIwruH+rVarb8gCIH1o+ahvlDRsRMn+lowwsHt6M5IN63jouwHK6atSogX209GE/qUGe6aGmRAzsmzsXEQYN72b7a3YVRezfibKeO2R+ieriqZxPEdLDPG9A/42keo1Rwol68/dcPePOYngkNugKXu4zg804AK/vNezx9lmTgCAvbzv+JOQfq9RkjWyXBV/ciOPyJPk3mSMvCEd7UHd8H99E9+hwj+0uERu/7UJQafZqyL60FTrcSRuW3m3Ho2iV9jtlstQSf5yswP6VPU2/psj59Mb70NrRdD6G17SI6lXDGJrTAEUZWHNmN1f4DGduLCRLVExo8rQDfr1+bqkEMi6vufhBv3TsJDps98rdzne14ufVrNF3yazajFc4bR1vw3vGfNNtJLECHCL5aPxjDDdKIJcPGYt3oab3UKcxY1NqETWePSJvSCmfVHy1492+j4ETe9klCQ+1lI8sbF6YtQXmxMyEELZC0wjG25cTcDwhAXUZN6ZQ7+uPC9KUpW4gMpDyBI54jZCggu1hYOOM19LP3yRhSHsGJATL0E9s45nEsGpq+nJ2oJeUZHAEoYHgnPbCoGD9Pfh73lAxK2xnHQ8pDONFO2thhXlAZXOzEnoeek4a07LddWDhkZMLEMxHlLHXICUxFhvnsBIpaIKVtanE3mAdHDPMiUMxiqmE0JFPhiJeiphrZTVaNgmQ6nEhaIJJVE8odeiHlBE4EkCh3mFQwyxRSzuAgWjATpEwquWqFlDs4agetllzFZWLRXhZSTuGoZYm4or3J0z7pIOUcDtBj2kcQM3niUEDaVjn7puCwI9wN9+97sP7UQS2hURbu7TlxGAFk/tSz+L5d5XdhXGk5AqFObL94Av6Oq1l4YK0qE009W4sXVIpJFy+oo5m1/CXp8hcByFpAlWYBlTrkW0vw4rosaxFnFIbYgCe1iFMIWMuAY23IWkiuJqUaF5ILIWsrgjrqpwyhrM0saQAJetZ2KIkw3NpQJwHJ2pIpAcna1CsBydoWLgHJOlhAApJ1NIUEpFhaYh1ukpqWdTyOZGuyDliSBWUd0SVJCoCYUurufAbMU8E0Rf+WB3HIG7cA2FW4h7wlw8db7Gg8PbaQjgn8D3wVByqacZ9sAAAAAElFTkSuQmCC" alt="img">回答正确 +20分</p>
+</li>
+<li><p><strong>5.</strong> <strong>多选题</strong><strong>[多选题]关于函数组合说法正确的是</strong><strong>(20分)</strong></p>
+<ul>
+<li>A函数可以看做一个处理数据的管道，管道中输入参数 x，在管道中对数据处理后得到结果 y</li>
+<li>B通过函数组合可以把多个一元函数组合成一个功能更强大的函数</li>
+<li>C函数组合需要满足结合律</li>
+<li>D函数组合默认的执行顺序是从右到左</li>
+</ul>
+<p><img src="data:image/png;base64,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" alt="img">回答正确 +20分</p>
+</li>
+<li><p><strong>6.</strong> <strong>多选题</strong><strong>[多选题]关于函子的说法正确的是</strong><strong>(20分)</strong></p>
+<ul>
+<li>A函子是一个特殊的容器(对象)，这个容器内部封装一个值，通过 map 传递一个函数对值进行处理</li>
+<li>BMayBe 函子的作用是处理外部的空值情况，防止空值的异常</li>
+<li>CIO 函子内部封装的值是一个函数，把不纯的操作封装到这个函数，不纯的操作交给调用者处理</li>
+<li>DMonad 函子内部封装的值是一个函数(这个函数返回函子)，目的是通过 join 方法避免函子嵌套</li>
+</ul>
+<p><img src="data:image/png;base64,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" alt="img">D 选项 回答错误， 正确答案为 ABC</p>
+<p>答案解析</p>
+<p>Monad 函子是解决函子嵌套的问题，并不是避免函子嵌套</p>
+</li>
+</ul>
 
                 
             </div>
@@ -528,7 +615,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dipcheese.com/2021/08/27/why/">https://dipcheese.com/2021/08/27/why/</a>
+                    <a href="https://dipcheese.com/2022/01/08/220108/">https://dipcheese.com/2022/01/08/220108/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,7 +652,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -734,7 +825,7 @@
         repo: 'georgesmith215.github.io',
         owner: 'GeorgeSmith215',
         admin: ["GeorgeSmith215"],
-        id: '2021-08-27T17-20-37',
+        id: '2022-01-08T19-47-28',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -766,13 +857,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/12/27/after-postgraduate-entrance-exam/">
+                <a href="/2022/01/09/220109/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="2022研究生考试二战失败心得、经验总结（发牢骚）">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="函数同步与异步模式">
                         
-                        <span class="card-title">2022研究生考试二战失败心得、经验总结（发牢骚）</span>
+                        <span class="card-title">函数同步与异步模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -783,14 +874,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-27
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-09
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%97%A5%E5%B8%B8/" class="post-category">
-                                    日常
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
                             
                             
@@ -800,8 +891,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/diary/">
-                        <span class="chip bg-color">diary</span>
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
                     </a>
                     
                 </div>
@@ -812,16 +903,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/27/why/">
+                <a href="/2022/01/07/220107/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="域名由来">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="git的简单使用,纯函数">
                         
-                        <span class="card-title">域名由来</span>
+                        <span class="card-title">git的简单使用,纯函数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -832,17 +923,28 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-07
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            智升
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -970,6 +1072,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 

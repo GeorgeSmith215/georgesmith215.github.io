@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="域名由来, 智升的博客">
+    <meta name="keywords" content="git的简单使用,纯函数, 智升的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>域名由来 | 智升的博客</title>
+    <title>git的简单使用,纯函数 | 智升的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">域名由来</h1>
+                    <h1 class="description center-align post-title">git的简单使用,纯函数</h1>
                 </div>
             </div>
         </div>
@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -457,28 +470,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-27
+                    2022-01-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-27
+                    2022-01-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    128
+                    566
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -501,7 +514,43 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>为何要取这个域名:dipcheese.com呢？<br>dipcheese其实就是“dip cheese”，cheese就是芝士，谐音梗：“知识”。而dip有蘸，浸，沉，泡等的意思，意味着要常在知识里的海洋里泡一泡，这也是我想要写这个博客的目的之一————分享知识。当然偶尔额外吐槽生活，侃侃大山，摆摆龙门阵，分享一些生活趣事和自己个人的所思所想。<br>另外：cheese和智升的读音是不是也有点像？</p>
+                <h4 id="markdown文件编辑器Typora的图像相关配置（图片保存到指定文件）："><a href="#markdown文件编辑器Typora的图像相关配置（图片保存到指定文件）：" class="headerlink" title="markdown文件编辑器Typora的图像相关配置（图片保存到指定文件）："></a>markdown文件编辑器Typora的图像相关配置（图片保存到指定文件）：</h4><p><img src="220107/image-20220107110736182.png" alt="image-20220107110736182"></p>
+<h4 id="git的简单使用（clone别人的代码并上传到自己的仓库中）："><a href="#git的简单使用（clone别人的代码并上传到自己的仓库中）：" class="headerlink" title="git的简单使用（clone别人的代码并上传到自己的仓库中）："></a>git的简单使用（clone别人的代码并上传到自己的仓库中）：</h4><ol>
+<li><p>下载安装git，记得勾选Add a Git Bash Profile to Windows Terminal,以及添加Git到环境变量中</p>
+</li>
+<li><p>下载完成后进行相关配置（git bash中）：</p>
+<ul>
+<li>查看配置：git config –global –list</li>
+<li>修改（添加）配置信息：git config –global user.name XXX(添加自己的姓名)</li>
+<li>修改（添加）配置信息：git config –global user.email XXX(添加自己的邮箱)</li>
+<li>添加配置信息的目的是为了提交代码时有相关的信息</li>
+</ul>
+</li>
+<li><p>clone代码仓库：在需要clone代码的文件夹下打开git bash，输入git clone XX(代码仓库地址)</p>
+<p>获取代码仓库地址（gitee）：</p>
+<p><img src="220107/image-20220107113105510.png" alt="image-20220107113105510"></p>
+</li>
+<li><p>代码仓库下载到本地后先删除<strong>隐藏的.git文件夹</strong>（勾选上下图选项框显示隐藏文件及文件扩展名）</p>
+<p><img src="220107/image-20220107112739338.png" alt="image-20220107112739338"></p>
+</li>
+<li><p>在git相关的网站中新建自己的远程代码仓库（记得复制代码仓库地址，下面还要用）</p>
+</li>
+<li><p>进入clone到本地的对应文件夹内，输入git init初始化仓库（可以随时用git status查看仓库状态）</p>
+</li>
+<li><p>输入git add .（添加当前目录下的所有文件到暂存区）</p>
+</li>
+<li><p>输入git commit -m “XXX” （将暂存区内容添加到本地仓库中，“XXX”是一些备注信息）</p>
+</li>
+<li><p>输入git remote add origin XXX （建立本地与远程仓库关联 ，XXX为在5.中自己新建的远程代码仓库的地址）</p>
+</li>
+<li><p>输入git push origin master （将本地的代码推送到origin远程仓库的master分支中，即9.中设置的仓库的master分支）。若push时需要账号密码，输入注册git账户时的账号密码。</p>
+</li>
+<li><p>之后进入自己的远程代码仓库中即可看到自己push的所有文件。</p>
+</li>
+<li><p>今后如果在本地对仓库中文件修改、增删后需要再提交则重复7.8.10.步骤即可提交文件到远程仓库。</p>
+</li>
+</ol>
+<h4 id="纯函数与不纯函数的区别"><a href="#纯函数与不纯函数的区别" class="headerlink" title="纯函数与不纯函数的区别"></a>纯函数与不纯函数的区别</h4><p>纯函数若有相同的输入则始终有相同的输出（不会改变传入的参数），不纯函数则可能会不同。</p>
 
                 
             </div>
@@ -528,7 +577,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dipcheese.com/2021/08/27/why/">https://dipcheese.com/2021/08/27/why/</a>
+                    <a href="https://dipcheese.com/2022/01/07/220107/">https://dipcheese.com/2022/01/07/220107/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,7 +614,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -734,7 +787,7 @@
         repo: 'georgesmith215.github.io',
         owner: 'GeorgeSmith215',
         admin: ["GeorgeSmith215"],
-        id: '2021-08-27T17-20-37',
+        id: '2022-01-07T10-56-43',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -766,6 +819,55 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2022/01/08/220108/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="函数式编程-函数组合">
+                        
+                        <span class="card-title">函数式编程-函数组合</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2021/12/27/after-postgraduate-entrance-exam/">
                     <div class="card-image">
                         
@@ -782,9 +884,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -805,44 +907,6 @@
                     </a>
                     
                 </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/08/27/why/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="域名由来">
-                        
-                        <span class="card-title">域名由来</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-27
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            智升
-                            
-                        </span>
-                    </div>
-                </div>
-
                 
             </div>
         </div>
@@ -970,6 +1034,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="域名由来, 智升的博客">
+    <meta name="keywords" content="函数式编程-学习总结, 智升的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>域名由来 | 智升的博客</title>
+    <title>函数式编程-学习总结 | 智升的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">域名由来</h1>
+                    <h1 class="description center-align post-title">函数式编程-学习总结</h1>
                 </div>
             </div>
         </div>
@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -457,28 +470,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-27
+                    2022-01-17
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-27
+                    2022-01-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    128
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -501,7 +514,144 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>为何要取这个域名:dipcheese.com呢？<br>dipcheese其实就是“dip cheese”，cheese就是芝士，谐音梗：“知识”。而dip有蘸，浸，沉，泡等的意思，意味着要常在知识里的海洋里泡一泡，这也是我想要写这个博客的目的之一————分享知识。当然偶尔额外吐槽生活，侃侃大山，摆摆龙门阵，分享一些生活趣事和自己个人的所思所想。<br>另外：cheese和智升的读音是不是也有点像？</p>
+                <h3 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h3><ul>
+<li>函数式编程（FP）与面向对象编程（OOP）：面向对象编程是对事物的抽象，而函数式编程是对运算过程的抽象。</li>
+<li>抽象的意义：抽象可以帮我们屏蔽细节，我们只需要知道我们的目标和解决这类问题的函数，我们不需要关心实现的细节。</li>
+<li>高阶函数（Higher-order function）：把函数作为参数，作为返回值的函数。</li>
+<li>常用的高阶函数：forEach、map、filter、every、some、find/findIndex、reduce、sort。</li>
+<li>闭包：常见情况就是高阶函数返回一个函数，而在返回的函数中引用了高阶函数周围词法环境的变量从而使得他们捆绑在一起进而使高阶函数内部成员的作用范围及时间延长。即：函数和其周围的状态（词法环境）的引用捆绑在一起形成闭包。</li>
+<li>纯函数：相同的输入永远会得到相同的输出（不会改变传入参数）。没有副作用（不依赖外部状态，如：配置文件，数据库，用户输入等）。</li>
+<li>纯函数的优点：可缓存（因相同输入始终有相同输出，可用来优化递归）、可测试、可并行（纯函数不需要访问共享的内存数据）。ES6中有Web Worker，可以开启一个新线程。</li>
+<li>函数的柯里化：当函数有多个参数时，可以调用此函数但只传递部分的参数（这部分参数以后永远不变），然后让这个函数返回一个新的函数。新的函数传递剩余的参数，并且返回相应的结果。（使用了闭包对函数部分参数进行缓存）能让函数的粒度更小从而进行相应函数组合。</li>
+<li>Lodash：一个纯函数的功能库（安装：npm i lodash）。官方文档：<a target="_blank" rel="noopener" href="https://www.lodashjs.com/">https://www.lodashjs.com/</a></li>
+<li>Lodash中的柯里化：curry(func)<ul>
+<li>功能：创建一个函数，该函数接收一个或多个 func的参数，如果 func 所需要的参数都被提供则执行 func 并返回执行的结果。否则继续返回该函数并等待接收剩余的参数。</li>
+<li>参数：需要柯里化的函数</li>
+<li>返回值：柯里化后的函数</li>
+</ul>
+</li>
+<li>函数组合(compose)：若一个函数要经过多个函数处理才能得到最终值，则可通过函数组合把细粒度的中间过程的函数重新组合生成一个新的函数，避免写出“洋葱代码”。注：函数组合默认是<strong>从右到左</strong>执行的。</li>
+<li>Lodash中的组合函数：flow() 、flowRight()。其中：flow() 是从左到右运行的，而flowRight() 是从右到左运行的，使用的更多一些。</li>
+<li>函数组合之结合律（associativity）：compose(compose(f, g), h) == compose(f, compose(g, h)) 。</li>
+<li>函数组合之调试：可在各函数组合之间调用输出函数从而输出部分函数组合后的结果。</li>
+<li>Lodash中的FP模块提供了实用的对函数式编程友好的方法（函数、规则置先，数据置后）。</li>
+<li>Point Free风格：把数据处理的过程定义成与数据无关的合成运算，不需要用到代表数据的那个参数，只要把简单的运算步骤合成到一起的编程风格。（需要定义一些辅助的基本运算函数）</li>
+<li>函子（Functor）：函子是一个特殊的容器（容器：包含值以及值的变形关系），通过一个普通的对象来实现，该对象具有 map 方法，map方法可以运行一个函数对值进行处理(变形关系)。</li>
+<li>函子的作用：为了尽可能的将副作用控制在可控的范围内，可以通过函子去处理副作用，处理异常，异步操作等。</li>
+<li>Maybe函子：可以对外部的空值情况做处理（控制副作用在允许的范围）。</li>
+<li>Either函子：Either（两者中的任何一个），类似于 if…else…的处理（用try{返回正确函子}catch(e){返回错误函子并有错误提示}）。异常会让函数变的不纯，Either 函子可以用来做异常处理。当出现问题时，Either函子可以给出提示的有效信息。（因为是二选一，所以要定义left和right两个函子）</li>
+<li>IO函子：IO就是输入输出，IO 函子中的值是一个函数，即把函数作为值来处理。IO函子可以把不纯的动作存储到值中，延迟执行这个不纯的操作(惰性执行)，包装当前的操作从而把不纯的操作交给调用者来处理。（用组合函数来返回对应函数）</li>
+<li>Task函子：可以处理异步任务，实现复杂，可用folktale库中提供的task函子。在需要完成某功能的函数中返回task函子（在版本2中task为函数，返回task函子对象，1中为类，以版本2为例），参数为一个函数，参数函数有resolve和reject方法，功能与Promise类似。调用对应函数时需要用run方法（在run之前可先调用map方法，在map方法中会处理函数的返回结果），再用listen方法传入一个对象，有onResolved和onRejected属性，值为函数，参数为函子的参数函数中resolve和reject方法传入的值。</li>
+<li>Pointed函子：作用是把值放到一个新的函子里面返回，返回的函子就是一个上下文，之后在上下文中处理数据（用一个静态的of方法实现，传入一个值，返回用传入值构造的函子对象）。</li>
+<li>Monad函子（单子）：Monad函子是可以“变扁”的 Pointed 函子，用来解决IO函子嵌套问题。一个函子如果具有 join（返回IO函子值的调用，在IO函子中其保存的值为函数）和静态IO方法（静态of方法返回IO函子）并遵守一些定律就是一个 Monad。</li>
+<li>何时用Monad：当一个函数返回一个函子时。且假如我们想进行相关处理时，若想要返回一个函数，而这个函数返回一个值，可以调用<strong>map</strong>方法；若我们想要去合并一个函数，但是这个函数返回一个函子，这个时候要用<strong>flatMap</strong>方法。</li>
+</ul>
+<p>部分函子实现：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// Maybe函子</span>
+<span class="token keyword">class</span> <span class="token class-name">Maybe</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">of</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Maybe</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_value <span class="token operator">=</span> value
+    <span class="token punctuation">}</span>
+    <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isNull</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> Maybe<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isUndefined</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> Maybe<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token operator">:</span> Maybe<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">isNull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_value <span class="token operator">===</span> <span class="token keyword">null</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">isUndefined</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_value <span class="token operator">===</span> <span class="token keyword">undefined</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Pointed函子</span>
+<span class="token keyword">class</span> <span class="token class-name">Container</span><span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">of</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Container</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_value <span class="token operator">=</span> value
+    <span class="token punctuation">}</span>
+    <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> Container<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Either函子之Left</span>
+<span class="token keyword">class</span> <span class="token class-name">Left</span><span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">of</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Left</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_value <span class="token operator">=</span> value
+    <span class="token punctuation">}</span>
+    <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> Left
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">// Either函子之Right</span>
+<span class="token keyword">class</span> <span class="token class-name">Right</span><span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">of</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Right</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_value <span class="token operator">=</span> value
+    <span class="token punctuation">}</span>
+    <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> Right<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// IO函子，需要先定义函数组合</span>
+<span class="token keyword">function</span> <span class="token function">compose</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">// 从右往左，所以需要先reverse</span>
+        <span class="token keyword">return</span> args<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">acc<span class="token punctuation">,</span> fn</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span>acc<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">IO</span><span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">of</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">IO</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_value <span class="token operator">=</span> fn<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">// 这里用new而非of的目的是传入fn与原_value进行组合返回新函数，只因_value是函数（虽然功能只是返回值）所以需要这么做</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">IO</span><span class="token punctuation">(</span><span class="token function">compose</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>_value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// TODO: Task函子</span>
+
+
+<span class="token comment">// Monad函子,具有静态的IO方法（静态of方法的行为与IO的静态of类似）和join方法的函子</span>
+<span class="token keyword">class</span> <span class="token class-name">Monad</span><span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">of</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Monad</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_value <span class="token operator">=</span> fn
+    <span class="token punctuation">}</span>
+    <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Monad</span><span class="token punctuation">(</span><span class="token function">compose</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>_value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_value</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// flatMap：同时调用map和join方法</span>
+    <span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -528,7 +678,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dipcheese.com/2021/08/27/why/">https://dipcheese.com/2021/08/27/why/</a>
+                    <a href="https://dipcheese.com/2022/01/17/220117/">https://dipcheese.com/2022/01/17/220117/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,7 +715,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -734,7 +888,7 @@
         repo: 'georgesmith215.github.io',
         owner: 'GeorgeSmith215',
         admin: ["GeorgeSmith215"],
-        id: '2021-08-27T17-20-37',
+        id: '2022-01-17T10-36-49',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -766,13 +920,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/12/27/after-postgraduate-entrance-exam/">
+                <a href="/2022/01/18/220118/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="2022研究生考试二战失败心得、经验总结（发牢骚）">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="异步编程-学习总结">
                         
-                        <span class="card-title">2022研究生考试二战失败心得、经验总结（发牢骚）</span>
+                        <span class="card-title">异步编程-学习总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -783,14 +937,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-27
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-18
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%97%A5%E5%B8%B8/" class="post-category">
-                                    日常
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
                             
                             
@@ -800,8 +954,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/diary/">
-                        <span class="chip bg-color">diary</span>
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
                     </a>
                     
                 </div>
@@ -812,16 +966,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/27/why/">
+                <a href="/2022/01/11/220111/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="域名由来">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="手写Promise">
                         
-                        <span class="card-title">域名由来</span>
+                        <span class="card-title">手写Promise</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -832,17 +986,28 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-11
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            智升
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -970,6 +1135,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
