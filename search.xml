@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>解决“ssh connect to host github.com port 22 Connection timed out”问题</title>
+      <link href="/2022/01/19/handle-git-connect/"/>
+      <url>/2022/01/19/handle-git-connect/</url>
+      
+        <content type="html"><![CDATA[<h3 id="错误记录"><a href="#错误记录" class="headerlink" title="错误记录"></a>错误记录</h3><p>在向github上传文件时出现了错误:    </p><pre class="line-numbers language-none"><code class="language-none">ssh: connect to host github.com port 22: Connection timed outfatal: Could not read from remote repository.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>之后测试下连接github,执行:”ssh -T <a href="mailto:git@github.com">git@github.com</a>“命令时出现:</p><pre class="line-numbers language-none"><code class="language-none">$ ssh -T git@github.comssh: connect to host github.com port 22: Connection timed out<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>在存放公钥和私钥 (id_rsa 和 id_rsa.pub) 的同级文件夹(一般在C盘的用户文件夹里的”.shh”文件夹里,我的就在”C:\Users\Administrator.ssh”下)中新建config文本,内容如下:</p><pre class="line-numbers language-none"><code class="language-none">Host github.comUser georgesmith0215@outlook.comHostname ssh.github.comPreferredAuthentications publickeyIdentityFile ~/.ssh/id_rsaPort 443<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>其中User后的内容替换为:你在登录github时的邮箱(例如我的邮箱为:<a href="mailto:georgesmith0215@outlook.com">georgesmith0215@outlook.com</a>).<br>再次执行”ssh -T <a href="mailto:git@github.com">git@github.com</a>“时，这时验证就可以通过。    </p><pre class="line-numbers language-none"><code class="language-none">$ ssh -T git@github.comHi GeorgeSmith215! You've successfully authenticated, but GitHub does not provide shell access.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>问题解决!!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 错误记录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> error log </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>异步编程-学习总结</title>
       <link href="/2022/01/18/220118/"/>
       <url>/2022/01/18/220118/</url>
