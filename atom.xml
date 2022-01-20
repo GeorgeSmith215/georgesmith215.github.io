@@ -6,7 +6,7 @@
   <link href="https://dipcheese.com/atom.xml" rel="self"/>
   
   <link href="https://dipcheese.com/"/>
-  <updated>2022-01-19T08:59:06.168Z</updated>
+  <updated>2022-01-20T03:48:59.562Z</updated>
   <id>https://dipcheese.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>键盘突然不能打字</title>
+    <link href="https://dipcheese.com/2022/01/20/jian-pan-tu-ran-bu-neng-da-zi/"/>
+    <id>https://dipcheese.com/2022/01/20/jian-pan-tu-ran-bu-neng-da-zi/</id>
+    <published>2022-01-20T01:41:10.000Z</published>
+    <updated>2022-01-20T03:48:59.562Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今天刚打开电脑时不知为何键盘失灵了，就调出屏幕键盘惨兮兮地找找解决方案，解决方案（重建桌面窗口）记录如下：&lt;br&gt;1、调出“任务管理器”。(任务栏右键后点“任务管理器”或者“crtl+alt+del”)&lt;br&gt;2、找到进程“桌面窗口管理器”，右键选择“结束任务”。&lt;br&gt;3</summary>
+        
+      
+    
+    
+    
+    <category term="日常问题记录" scheme="https://dipcheese.com/categories/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="daily log" scheme="https://dipcheese.com/tags/daily-log/"/>
+    
+  </entry>
   
   <entry>
     <title>解决“ssh connect to host github.com port 22 Connection timed out”问题</title>

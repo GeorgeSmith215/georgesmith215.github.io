@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>键盘突然不能打字</title>
+      <link href="/2022/01/20/jian-pan-tu-ran-bu-neng-da-zi/"/>
+      <url>/2022/01/20/jian-pan-tu-ran-bu-neng-da-zi/</url>
+      
+        <content type="html"><![CDATA[<p>今天刚打开电脑时不知为何键盘失灵了，就调出屏幕键盘惨兮兮地找找解决方案，解决方案（重建桌面窗口）记录如下：<br>1、调出“任务管理器”。(任务栏右键后点“任务管理器”或者“crtl+alt+del”)<br>2、找到进程“桌面窗口管理器”，右键选择“结束任务”。<br>3、弹出窗口：‘你希望结束系统进程“桌面窗口管理器”吗？’中勾选“放弃未保存的数据并关闭”。<br>4、此时“关闭”按钮由灰色变成正常，点击“关闭”，此时系统桌面突然变黑，稍后系统将会自动重新加载之前的桌面。<br>5、之后键盘就可以正常使用了！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日常问题记录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> daily log </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>解决“ssh connect to host github.com port 22 Connection timed out”问题</title>
       <link href="/2022/01/19/handle-git-connect/"/>
       <url>/2022/01/19/handle-git-connect/</url>
