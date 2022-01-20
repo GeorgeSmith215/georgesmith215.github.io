@@ -6,7 +6,7 @@
   <link href="https://dipcheese.com/atom.xml" rel="self"/>
   
   <link href="https://dipcheese.com/"/>
-  <updated>2022-01-20T03:48:59.562Z</updated>
+  <updated>2022-01-20T11:38:56.819Z</updated>
   <id>https://dipcheese.com/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>五笔打字学习</title>
+    <link href="https://dipcheese.com/2022/01/20/wubistudy/"/>
+    <id>https://dipcheese.com/2022/01/20/wubistudy/</id>
+    <published>2022-01-20T06:46:42.000Z</published>
+    <updated>2022-01-20T11:38:56.819Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;为什么要学五笔打字法：对拼音不熟练，而且五笔最多只要四下就可唯一确定一个字，又快又准。&lt;/p&gt;
+&lt;p&gt;五笔就是将一个字拆成字根的形式故若再输入对应字根即可打出相应的字。&lt;/p&gt;
+&lt;h4 id=&quot;字根表：&quot;&gt;&lt;a href=&quot;#字根表：&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
     <title>键盘突然不能打字</title>
-    <link href="https://dipcheese.com/2022/01/20/jian-pan-tu-ran-bu-neng-da-zi/"/>
-    <id>https://dipcheese.com/2022/01/20/jian-pan-tu-ran-bu-neng-da-zi/</id>
+    <link href="https://dipcheese.com/2022/01/20/keyboardinvalid/"/>
+    <id>https://dipcheese.com/2022/01/20/keyboardinvalid/</id>
     <published>2022-01-20T01:41:10.000Z</published>
-    <updated>2022-01-20T03:48:59.562Z</updated>
+    <updated>2022-01-20T11:39:51.018Z</updated>
     
     
       
@@ -46,7 +73,7 @@
     <link href="https://dipcheese.com/2022/01/19/handle-git-connect/"/>
     <id>https://dipcheese.com/2022/01/19/handle-git-connect/</id>
     <published>2022-01-19T08:45:03.000Z</published>
-    <updated>2022-01-19T08:59:06.168Z</updated>
+    <updated>2022-01-20T11:39:48.961Z</updated>
     
     
       
@@ -72,7 +99,7 @@
     <link href="https://dipcheese.com/2022/01/18/220118/"/>
     <id>https://dipcheese.com/2022/01/18/220118/</id>
     <published>2022-01-18T06:05:25.000Z</published>
-    <updated>2022-01-19T08:03:34.718Z</updated>
+    <updated>2022-01-20T11:39:45.431Z</updated>
     
     
       
@@ -97,7 +124,7 @@
     <link href="https://dipcheese.com/2022/01/17/220117/"/>
     <id>https://dipcheese.com/2022/01/17/220117/</id>
     <published>2022-01-17T02:36:49.000Z</published>
-    <updated>2022-01-19T08:02:32.619Z</updated>
+    <updated>2022-01-20T11:39:39.111Z</updated>
     
     
       
@@ -122,7 +149,7 @@
     <link href="https://dipcheese.com/2022/01/11/220111/"/>
     <id>https://dipcheese.com/2022/01/11/220111/</id>
     <published>2022-01-11T11:57:41.000Z</published>
-    <updated>2022-01-19T08:01:46.643Z</updated>
+    <updated>2022-01-20T11:39:44.555Z</updated>
     
     
       
@@ -147,7 +174,7 @@
     <link href="https://dipcheese.com/2022/01/10/220110/"/>
     <id>https://dipcheese.com/2022/01/10/220110/</id>
     <published>2022-01-10T14:08:12.000Z</published>
-    <updated>2022-01-19T08:01:13.742Z</updated>
+    <updated>2022-01-20T11:39:43.158Z</updated>
     
     
       
@@ -172,7 +199,7 @@
     <link href="https://dipcheese.com/2022/01/09/220109/"/>
     <id>https://dipcheese.com/2022/01/09/220109/</id>
     <published>2022-01-09T13:03:56.000Z</published>
-    <updated>2022-01-19T07:58:48.052Z</updated>
+    <updated>2022-01-20T11:39:41.833Z</updated>
     
     
       
@@ -197,7 +224,7 @@
     <link href="https://dipcheese.com/2022/01/08/220108/"/>
     <id>https://dipcheese.com/2022/01/08/220108/</id>
     <published>2022-01-08T11:47:28.000Z</published>
-    <updated>2022-01-19T07:58:55.339Z</updated>
+    <updated>2022-01-20T11:39:36.294Z</updated>
     
     
       
@@ -222,7 +249,7 @@
     <link href="https://dipcheese.com/2022/01/07/220107/"/>
     <id>https://dipcheese.com/2022/01/07/220107/</id>
     <published>2022-01-07T02:56:43.000Z</published>
-    <updated>2022-01-19T07:46:24.410Z</updated>
+    <updated>2022-01-20T11:39:34.954Z</updated>
     
     
       
@@ -247,7 +274,7 @@
     <link href="https://dipcheese.com/2021/12/27/after-postgraduate-entrance-exam/"/>
     <id>https://dipcheese.com/2021/12/27/after-postgraduate-entrance-exam/</id>
     <published>2021-12-27T06:51:22.000Z</published>
-    <updated>2021-12-27T08:46:18.237Z</updated>
+    <updated>2022-01-20T11:39:47.156Z</updated>
     
     
       
