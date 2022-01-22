@@ -6,7 +6,7 @@
   <link href="https://dipcheese.com/atom.xml" rel="self"/>
   
   <link href="https://dipcheese.com/"/>
-  <updated>2022-01-22T02:48:30.373Z</updated>
+  <updated>2022-01-22T04:05:08.850Z</updated>
   <id>https://dipcheese.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Hexo博客图片引入指北</title>
+    <link href="https://dipcheese.com/2022/01/21/fiximgpost/"/>
+    <id>https://dipcheese.com/2022/01/21/fiximgpost/</id>
+    <published>2022-01-21T11:01:49.000Z</published>
+    <updated>2022-01-22T04:05:08.850Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;突然发现博客的图片不能正常显示，于是去查查看是什么原因。在Google一番后，发现官方文档里就有现成的解决方案：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="日常问题记录" scheme="https://dipcheese.com/categories/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="daily log" scheme="https://dipcheese.com/tags/daily-log/"/>
+    
+  </entry>
+  
+  <entry>
     <title>五笔打字学习</title>
     <link href="https://dipcheese.com/2022/01/20/wubistudy/"/>
     <id>https://dipcheese.com/2022/01/20/wubistudy/</id>
     <published>2022-01-20T06:46:42.000Z</published>
-    <updated>2022-01-22T02:48:30.373Z</updated>
+    <updated>2022-01-22T03:00:33.333Z</updated>
     
     
       
@@ -274,7 +299,7 @@
     <link href="https://dipcheese.com/2021/12/27/after-postgraduate-entrance-exam/"/>
     <id>https://dipcheese.com/2021/12/27/after-postgraduate-entrance-exam/</id>
     <published>2021-12-27T06:51:22.000Z</published>
-    <updated>2022-01-20T11:39:47.156Z</updated>
+    <updated>2022-01-22T04:03:38.889Z</updated>
     
     
       
@@ -287,7 +312,7 @@
     
     
     
-    <category term="日常" scheme="https://dipcheese.com/categories/%E6%97%A5%E5%B8%B8/"/>
+    <category term="日记" scheme="https://dipcheese.com/categories/%E6%97%A5%E8%AE%B0/"/>
     
     
     <category term="diary" scheme="https://dipcheese.com/tags/diary/"/>

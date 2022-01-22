@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>Hexo博客图片引入指北</title>
+      <link href="/2022/01/21/fiximgpost/"/>
+      <url>/2022/01/21/fiximgpost/</url>
+      
+        <content type="html"><![CDATA[<p>突然发现博客的图片不能正常显示，于是去查查看是什么原因。在Google一番后，发现官方文档里就有现成的解决方案：<a href="https://hexo.io/zh-cn/docs/asset-folders.html">查看官方文档</a><br>在此也记录一下我的实现经过：<br>官方给了三种可供选择的方案，第一种就是给不怎么使用图片等资源的用户的：  </p><pre class="line-numbers language-none"><code class="language-none">最简单的方法就是将图片等资源文件放在 source/images 文件夹中。然后通过类似于 ![](/images/image.jpg) 的方法访问它们。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>但博客里怎么能没有花花绿绿（sao）的图片呢？特别是对于我这样的图片使用重度患者来说这显然是不现实的。所以接下来还有第二种方法：<br>首先，可以将根目录下的 config.yml 文件中的 post_asset_folder 选项设为 true 来打开：  </p><pre class="line-numbers language-none"><code class="language-none">//_config.ymlpost_asset_folder: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>当资源文件管理功能打开(也就是设置post_asset_folder: true)后，Hexo将会在你每一次通过 <code>hexo new [layout] &lt;title&gt;</code> 命令创建新文章时就会自动创建一个文件夹。这个资源文件夹将会有与这个文章文件一样的名字。将所有与你的文章有关的资源放在这个关联文件夹中之后，你可以通过相对路径来引用它们，这样你就得到了一个更简单而且方便得多的工作流。那又如何进行相对路径引用呢，官方也介绍了方法：  </p><h3 id="相对路径引用的标签插件"><a href="#相对路径引用的标签插件" class="headerlink" title="相对路径引用的标签插件"></a>相对路径引用的标签插件</h3><p>随着Hexo 3 的发布，许多新的标签插件被加入到了核心代码中。这使得你可以更简单地在文章中引用你的资源：  </p><pre class="line-numbers language-none"><code class="language-none">{% asset_path slug %}{% asset_img slug [title] %}{% asset_link slug [title] %}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>其他的都不重要，关键就是<strong>图片的引入</strong>。注意：当打开文章资源文件夹功能后，若我们把一个 example.jpg 图片放在了我们对应的资源文件夹中，然后通过使用相对路径的常规 markdown 语法 <code>![](example.jpg) </code>，它将 <strong>不会</strong> 出现在首页上。<br>正确的引用图片方式是使用下列的标签插件而不是 markdown ：  </p><pre class="line-numbers language-none"><code class="language-none">{% asset_img example.jpg This is an example image %}/*    上面的引入方式类似于：![This is an example image](example.jpg)*/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>通过这种方式，图片将会同时出现在文章和主页以及归档页中。<br>上面的方法可行且也挺方便的，但就是不美观，毕竟Markdown不会解析<code>{% asset_img example.jpg This is an example image %}</code>为图片形式而是直接解析为文字，所以官方也提供了第三种方案，就是：</p><h3 id="利用插件来实现用markdown图片引入的形式引入图片："><a href="#利用插件来实现用markdown图片引入的形式引入图片：" class="headerlink" title="利用插件来实现用markdown图片引入的形式引入图片："></a>利用插件来实现用markdown图片引入的形式引入图片：</h3><p>该插件的github链接：<a href="https://github.com/hexojs/hexo-renderer-marked">hexo-renderer-marked</a>。<br>使用起来也挺方便的，首先先去安装一下该插件：<br>可用npm安装：</p><pre class="line-numbers language-none"><code class="language-none">npm install hexo-renderer-marked --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>或者用yarn：</p><pre class="line-numbers language-none"><code class="language-none">yarn add hexo-renderer-marked<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>安装完成之后在根目录下的 config.yml 文件中进行相关配置：</p><pre class="line-numbers language-none"><code class="language-none">//_config.ymlpost_asset_folder: truemarked:  prependRoot: true  postAsset: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>之后就可以用<code>![This is an example image](example.jpg)</code>的形式来愉快地引入图片了。<br>不过还是要注意，通过这种方式引入的图片在编写markdown文件时是不会显示的，但我们可以在编写时通过：<code>![This is an example image](./资源文件夹/example.jpg)</code>，先加入资源文件夹目录让图片正确显示，等编写完后再用替换将<code>./资源文件夹/</code>替换为空字符串’’。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日常问题记录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> daily log </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>五笔打字学习</title>
       <link href="/2022/01/20/wubistudy/"/>
       <url>/2022/01/20/wubistudy/</url>
       
-        <content type="html"><![CDATA[<p>为什么要学五笔打字法：对拼音不熟练，而且五笔最多只要四下就可唯一确定一个字，又快又准。</p><p>五笔就是将一个字拆成字根的形式故若再输入对应字根即可打出相应的字。</p><h4 id="字根表："><a href="#字根表：" class="headerlink" title="字根表："></a>字根表：</h4><img src="/2022/01/20/wubistudy/Snipaste_2022-01-20_13-37-05.png" class="" title="五笔字根表"><ol><li>字根拆分：字根拆分后按字根首笔的对应分区进行字根查询，并依此输入。如：“朋”（EE）和“友”（DC）。    </li></ol><p><img src="/wubistudy/Snipaste_2022-01-20_13-37-05.png" alt="字根表"></p><ol start="2"><li>识别码：是对字根再次验证的作用，以汉字末笔区+书写结构确定。如：“困”（LSI）和“町”（LSH）。</li><li>末笔码：主要针对大于4个字根的情况，前3码按字根顺序依此输入，第4码使用最后一个字根。如：“缩”（XPWJ）。</li><li>键面汉字：需要的完整汉字已经在字母里，不用再去拆分，输入字根键后再依次按笔画填写（最后用末笔码）即可。如：“文”（YYGY）。</li><li>键名汉字：是字根左上角的字，输入该字母4下。如：“王”（GGGG）。</li><li>一级简码：是字根右下角的字，输入该字母1下。如：“是”（J）。</li><li>两字词组：按顺序打出每个字的前两个字根。如：“你好”（WQVB）。</li><li>三字词组：前两字的第1个字根+第3字的前两个字根。如：“自行车”（TTLG）。</li><li> 四字成语：依此打出每个字的第1个字根。如：吞吞吐吐（GGKK）。</li></ol><h4 id="字根口诀表："><a href="#字根口诀表：" class="headerlink" title="字根口诀表："></a>字根口诀表：</h4><img src="/2022/01/20/wubistudy/image-20220120143520109.png" class="" title="五笔字根口诀表"><p>（来自金山打字通）</p>]]></content>
+        <content type="html"><![CDATA[<p>为什么要学五笔打字法：对拼音不熟练，而且五笔最多只要四下就可唯一确定一个字，又快又准。</p><p>五笔就是将一个字拆成字根的形式故若再输入对应字根即可打出相应的字。</p><h4 id="字根表："><a href="#字根表：" class="headerlink" title="字根表："></a>字根表：</h4><p><img src="/2022/01/20/wubistudy/Snipaste_2022-01-20_13-37-05.png" alt="五笔字根表"></p><ol><li><p>字根拆分：字根拆分后按字根首笔的对应分区进行字根查询，并依此输入。如：“朋”（EE）和“友”（DC）。    </p></li><li><p>识别码：是对字根再次验证的作用，以汉字末笔区+书写结构确定。如：“困”（LSI）和“町”（LSH）。</p></li><li><p>末笔码：主要针对大于4个字根的情况，前3码按字根顺序依此输入，第4码使用最后一个字根。如：“缩”（XPWJ）。</p></li><li><p>键面汉字：需要的完整汉字已经在字母里，不用再去拆分，输入字根键后再依次按笔画填写（最后用末笔码）即可。如：“文”（YYGY）。</p></li><li><p>键名汉字：是字根左上角的字，输入该字母4下。如：“王”（GGGG）。</p></li><li><p>一级简码：是字根右下角的字，输入该字母1下。如：“是”（J）。</p></li><li><p>两字词组：按顺序打出每个字的前两个字根。如：“你好”（WQVB）。</p></li><li><p>三字词组：前两字的第1个字根+第3字的前两个字根。如：“自行车”（TTLG）。</p></li><li><p> 四字成语：依此打出每个字的第1个字根。如：吞吞吐吐（GGKK）。</p></li></ol><h4 id="字根口诀表："><a href="#字根口诀表：" class="headerlink" title="字根口诀表："></a>字根口诀表：</h4><p><img src="/2022/01/20/wubistudy/image-20220120143520109.png" alt="五笔字根口诀表"></p><p>（来自金山打字通）</p>]]></content>
       
       
       <categories>
@@ -263,7 +288,7 @@
       
       <categories>
           
-          <category> 日常 </category>
+          <category> 日记 </category>
           
       </categories>
       
