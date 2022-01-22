@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>安装程序员友好的字体——Fira Code</title>
+      <link href="/2022/01/22/fira-code-install/"/>
+      <url>/2022/01/22/fira-code-install/</url>
+      
+        <content type="html"><![CDATA[<p>今天上课看到老师推荐了一个对代码展示友好的字体——Fira Code，看着挺酷的，就上网搜了一下安装的攻略，记录一下，附上：<a href="https://github.com/tonsky/FiraCode">官方地址链接</a>。  </p><h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p>先来看一看效果，左边是安装字体并开启连体的效果，右边是没有开连体的效果：</p><p><img src="/2022/01/22/fira-code-install/ligatures.png" alt="效果展示"></p><p>挺酷的，在系统上安装挺简单，但不同代码平台的配置不一样，本文只介绍在VS Code以及Chrome中进行相关的配置，具体其他平台参看<a href="https://github.com/tonsky/FiraCode">官方文档</a>。</p><h4 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h4><p>首先，需要在系统中进行安装，先下载具体的字体文件：</p><p>右边链接是6.2版本的下载链接：<a href="https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip">点此下载</a>。</p><p>或可进入<a href="https://github.com/tonsky/FiraCode">官方地址</a>后，点击类似下图的图标进行下载：</p><p><img src="/2022/01/22/fira-code-install/download.png" alt="下载图标"></p><p>下载完成后进行解压缩，进入解压缩后的文件夹，之后再进入ttf文件夹，ctrl+A全选文件，鼠标右键，选择“安装”：</p><p><img src="/2022/01/22/fira-code-install/image-20220122175706002.png" alt="系统安装"></p><h4 id="VS-Code中设置"><a href="#VS-Code中设置" class="headerlink" title="VS Code中设置"></a>VS Code中设置</h4><p>在系统上安装了字体文件后，还得在相关的代码编辑器中进行相关的配置，本文用的是VS Code：</p><p>打开VS Code后先点击“文件”，光标移到首选项，在选项中点“设置”</p><p><img src="/2022/01/22/fira-code-install/image-20220122180043472.png" alt="打开VSCode设置"></p><p>打开设置窗口之后，点击“文本编辑器”，再选择“字体”，在字体对应的选项中点击“在 settings.json 中编辑”：</p><p><img src="/2022/01/22/fira-code-install/image-20220122180609707.png" alt="打开settings.json"></p><p>打开settings.json后在最后一个选项末加逗号“,”后回车另起一行，输入：</p><pre class="line-numbers language-none"><code class="language-none">"editor.fontFamily": "Fira Code","editor.fontLigatures": true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="/2022/01/22/fira-code-install/image-20220122181102215.png" alt="编辑settings.json"></p><p>之后保存，重启VSCode即可体验Fira Code了！</p><h4 id="Chrome中设置"><a href="#Chrome中设置" class="headerlink" title="Chrome中设置"></a>Chrome中设置</h4><p>还可以将Fira Code设置为Chrome的等宽字体：</p><p>打开Chrome，在地址处输入：<code>chrome://settings/</code>进入设置页面，再搜索“字体”，选择“自定义字体”选项：</p><p><img src="/2022/01/22/fira-code-install/image-20220122181725962.png" alt="自定义字体选项"></p><p>在宽度固定的字体选项中选择Fira Code即可：</p><p><img src="/2022/01/22/fira-code-install/image-20220122181858864.png" alt="选择Fira Code"></p><p>OK，大功告成，可以好好体验Fira Code了，更多配置还请移步<a href="https://github.com/tonsky/FiraCode">官方文档</a>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日常记录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> daily log </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo博客图片引入指北</title>
       <link href="/2022/01/21/fiximgpost/"/>
       <url>/2022/01/21/fiximgpost/</url>
