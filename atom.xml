@@ -6,7 +6,7 @@
   <link href="https://dipcheese.com/atom.xml" rel="self"/>
   
   <link href="https://dipcheese.com/"/>
-  <updated>2022-02-12T12:09:12.232Z</updated>
+  <updated>2022-02-27T07:00:45.721Z</updated>
   <id>https://dipcheese.com/</id>
   
   <author>
@@ -17,18 +17,43 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>TypeScript语言</title>
+    <link href="https://dipcheese.com/2022/02/26/typescript/"/>
+    <id>https://dipcheese.com/2022/02/26/typescript/</id>
+    <published>2022-02-26T13:51:40.000Z</published>
+    <updated>2022-02-27T07:00:45.721Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;TypeScript语言&quot;&gt;&lt;a href=&quot;#TypeScript语言&quot; class=&quot;headerlink&quot; title=&quot;TypeScript语言&quot;&gt;&lt;/a&gt;TypeScript语言&lt;/h1&gt;&lt;h3 id=&quot;PART-1&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
     <title>万字长文吐血总结ES新特性</title>
     <link href="https://dipcheese.com/2022/02/12/esnew/"/>
     <id>https://dipcheese.com/2022/02/12/esnew/</id>
     <published>2022-02-12T11:31:01.000Z</published>
-    <updated>2022-02-12T12:09:12.232Z</updated>
+    <updated>2022-02-27T07:03:18.470Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h3 id=&quot;ECMAScript新特性&quot;&gt;&lt;a href=&quot;#ECMAScript新特性&quot; class=&quot;headerlink&quot; title=&quot;ECMAScript新特性&quot;&gt;&lt;/a&gt;ECMAScript新特性&lt;/h3&gt;&lt;h4 id=&quot;1、ECMAScript概述&quot;&gt;&lt;a</summary>
+    <summary type="html">&lt;h3 id=&quot;ECMAScript新特性&quot;&gt;&lt;a href=&quot;#ECMAScript新特性&quot; class=&quot;headerlink&quot; title=&quot;ECMAScript新特性&quot;&gt;&lt;/a&gt;ECMAScript新特性&lt;/h3&gt;&lt;h3 id=&quot;PART-1&quot;&gt;&lt;a</summary>
         
       
     

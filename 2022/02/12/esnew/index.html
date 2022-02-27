@@ -477,7 +477,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-12
+                    2022-02-27
                 </div>
                 
 
@@ -491,7 +491,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    80 分
+                    81 分
                 </div>
                 
 
@@ -514,7 +514,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="ECMAScript新特性"><a href="#ECMAScript新特性" class="headerlink" title="ECMAScript新特性"></a>ECMAScript新特性</h3><h4 id="1、ECMAScript概述"><a href="#1、ECMAScript概述" class="headerlink" title="1、ECMAScript概述"></a>1、ECMAScript概述</h4><p>ECMAScript（缩写为ES）也是一门脚本语言，通常看做JavaScript的标准化规范。</p>
+                <h3 id="ECMAScript新特性"><a href="#ECMAScript新特性" class="headerlink" title="ECMAScript新特性"></a>ECMAScript新特性</h3><h3 id="PART-1"><a href="#PART-1" class="headerlink" title="PART 1"></a>PART 1</h3><h4 id="1、ECMAScript概述"><a href="#1、ECMAScript概述" class="headerlink" title="1、ECMAScript概述"></a>1、ECMAScript概述</h4><p>ECMAScript（缩写为ES）也是一门脚本语言，通常看做JavaScript的标准化规范。</p>
 <p>实际上JavaScript是ECMAScript的扩展语言，ECMAScript只提供了最基本的语法而JavaScript实现了ECMAScript这种标准并在此基础上进行了一些扩展，让我们可以在浏览器中操作DOM和BOM，在NODE环境中可以去做读写文件之类的操作。</p>
 <p><strong>JavaScript语言本身指的就是ECMAScript</strong>。在2015年开始ES保持每年一个版本的迭代，并且在ES2015开始按照年份命名，不过很多人都习惯把ES2015称为ES6（之前一个版本为2011年的ES5.1）。</p>
 <h4 id="2、ES2015概述"><a href="#2、ES2015概述" class="headerlink" title="2、ES2015概述"></a>2、ES2015概述</h4><p>ES2015（ES6）是最新ECMAScript标准的代表版本，相比于ES5.1的变化较大并且标准命名规则也发生改变。注：<strong>目前有些开发者喜欢使用ES6来泛指ES2015之后的所有新标准</strong>。（async、await函数是在ES2017中制定的标准）本文旨在重点介绍在ES5.1基础之上的变化。</p>
@@ -829,7 +829,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>相比于我们使用indexof或正则来判断，这样的一组方法会让我们的字符串查找便捷很多。</p>
-<h4 id="10、ES2015-参数默认值"><a href="#10、ES2015-参数默认值" class="headerlink" title="10、ES2015 参数默认值"></a>10、ES2015 参数默认值</h4><p><strong>ES2015中为函数的形参列表扩展了一些有用的新方法，首先就是参数的默认值。</strong>ES2015以前若想要为函数中的参数定义默认值，需要在函数体中通过逻辑代码来实现：</p>
+<h3 id="PART-2"><a href="#PART-2" class="headerlink" title="PART 2"></a>PART 2</h3><h4 id="10、ES2015-参数默认值"><a href="#10、ES2015-参数默认值" class="headerlink" title="10、ES2015 参数默认值"></a>10、ES2015 参数默认值</h4><p><strong>ES2015中为函数的形参列表扩展了一些有用的新方法，首先就是参数的默认值。</strong>ES2015以前若想要为函数中的参数定义默认值，需要在函数体中通过逻辑代码来实现：</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token parameter">enable</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment">//若调用时没有传递参数（或传递undefined），则该参数为undefined，从而赋默认值。</span>
     enable <span class="token operator">=</span> enable <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token boolean">true</span> <span class="token operator">:</span> enable<span class="token punctuation">;</span>
@@ -1385,7 +1385,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 <p>需要注意的是，目前，以前的对象操作方式依然可以使用，但ECMAScript官方希望经过一段时间的过渡之后，以后的标准中能把之前的方法废弃掉。所以现在就应该去了解这13个方法以及他们各自所取代的用法，详细可以参看MDN中的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect">Reflect相关内容</a>。</p>
 <h4 id="21、ES2015-Promise"><a href="#21、ES2015-Promise" class="headerlink" title="21、ES2015 Promise"></a>21、ES2015 Promise</h4><p>Promise也是ECMAScript2015中提供的一个内置对象，他提供了一种全新的异步编程解决方案，通过链式调用的方式，解决了在传统JS编程中回调函数嵌套过深的问题。不过关于Promise的细节有很多的内容，所以在本文中先不做详细介绍，而在“JS异步编程”中进行详细分析。在这里提及的目的是为了对ES2015新增的所有特性有一个系统化的认识。</p>
-<h4 id="22、ES2015-class类"><a href="#22、ES2015-class类" class="headerlink" title="22、ES2015 class类"></a>22、ES2015 class类</h4><p>在ES2015之前，我们都是定义函数以及函数的原型对象来实现的类：</p>
+<h3 id="PART-3"><a href="#PART-3" class="headerlink" title="PART 3"></a>PART 3</h3><h4 id="22、ES2015-class类"><a href="#22、ES2015-class类" class="headerlink" title="22、ES2015 class类"></a>22、ES2015 class类</h4><p>在ES2015之前，我们都是定义函数以及函数的原型对象来实现的类：</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">//Peoson函数为Person类的构造函数</span>
 <span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment">//在构造函数中可以通过this去访问当前实例中的实例对象</span>
@@ -1743,7 +1743,7 @@ map<span class="token punctuation">.</span><span class="token function">set</spa
 <span class="token comment">//Uncaught TypeError: obj is not iterable</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>我们可以看到控制台中报了一个错误：obj is not iterable。意思是我们的obj对象是不可迭代的，而在之前我们曾说过<strong>for…of循环可以作为遍历所有数据结构的统一方式</strong>，但我们通过实验发现他连最基本的普通对象都没有办法遍历（这不是啪啪打脸吗(￣ε(#￣)☆╰╮(￣▽￣///)），这又究竟是为什么呢，到底是道德的沦丧，还是人性的缺失，还请看下一节。</p>
-<h4 id="30、ES2015-可迭代接口"><a href="#30、ES2015-可迭代接口" class="headerlink" title="30、ES2015 可迭代接口"></a>30、ES2015 可迭代接口</h4><p>上节说到for…of循环是ES2015中最新推出一种循环语法，是一种遍历所有数据结构的统一方式。但经过我们的实际尝试发现他只能够遍历数组之类的数据结构，对于普通对象如果直接去遍历就会报错。这究竟是什么原因呢？其实真相是这样的，因ES中能够表示有结构的数据类型越来越多，从最早的数组到对象，到现在又新增了set和map，而且开发者还可以组合使用这些类型去定义一些符合自己业务需求的数据结构。而为了提供一种统一的遍历方式，ES2015就提出了一个叫做Iterable的接口，意思就是“可迭代的”。如果不太理解编程中接口的概念，可以把他近似为一种规格标准，例如在ES中任意一种数据类型都有toString方法，这就是因为他们都实现了统一的规格标准。而在编程语言中，更专业的说法就是他们都实现了统一的接口。再来看<strong>可迭代接口，他就是一种可以被for…of循环统一遍历访问的规格标准</strong>，换句话说，<strong>只要这个数据结构实现了可迭代接口，那他就能够被for…of循环遍历</strong>。这也表明了我们之前尝试的那些能够被for…of循环遍历的数据类型都已经在内部实现了这个接口。</p>
+<h3 id="PART-4"><a href="#PART-4" class="headerlink" title="PART 4"></a>PART 4</h3><h4 id="30、ES2015-可迭代接口"><a href="#30、ES2015-可迭代接口" class="headerlink" title="30、ES2015 可迭代接口"></a>30、ES2015 可迭代接口</h4><p>上节说到for…of循环是ES2015中最新推出一种循环语法，是一种遍历所有数据结构的统一方式。但经过我们的实际尝试发现他只能够遍历数组之类的数据结构，对于普通对象如果直接去遍历就会报错。这究竟是什么原因呢？其实真相是这样的，因ES中能够表示有结构的数据类型越来越多，从最早的数组到对象，到现在又新增了set和map，而且开发者还可以组合使用这些类型去定义一些符合自己业务需求的数据结构。而为了提供一种统一的遍历方式，ES2015就提出了一个叫做Iterable的接口，意思就是“可迭代的”。如果不太理解编程中接口的概念，可以把他近似为一种规格标准，例如在ES中任意一种数据类型都有toString方法，这就是因为他们都实现了统一的规格标准。而在编程语言中，更专业的说法就是他们都实现了统一的接口。再来看<strong>可迭代接口，他就是一种可以被for…of循环统一遍历访问的规格标准</strong>，换句话说，<strong>只要这个数据结构实现了可迭代接口，那他就能够被for…of循环遍历</strong>。这也表明了我们之前尝试的那些能够被for…of循环遍历的数据类型都已经在内部实现了这个接口。</p>
 <p>这里我们脱离for…of循环的表象来看看这个叫做Iterable的接口：</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">//..........</span>
@@ -2383,18 +2383,17 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/02/12/esnew/">
+                <a href="/2022/02/26/typescript/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="万字长文吐血总结ES新特性">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="TypeScript语言">
                         
-                        <span class="card-title">万字长文吐血总结ES新特性</span>
+                        <span class="card-title">TypeScript语言</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -2404,9 +2403,9 @@ console<span class="token punctuation">.</span><span class="token function">log<
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-12
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-26
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -2419,7 +2418,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
