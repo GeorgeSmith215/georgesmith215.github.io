@@ -6,7 +6,7 @@
   <link href="https://dipcheese.com/atom.xml" rel="self"/>
   
   <link href="https://dipcheese.com/"/>
-  <updated>2022-02-27T07:00:45.721Z</updated>
+  <updated>2022-02-28T12:17:00.837Z</updated>
   <id>https://dipcheese.com/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>干法笔记</title>
+    <link href="https://dipcheese.com/2022/02/28/howtowork/"/>
+    <id>https://dipcheese.com/2022/02/28/howtowork/</id>
+    <published>2022-02-28T12:16:54.000Z</published>
+    <updated>2022-02-28T12:17:00.837Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://dipcheese.com/2022/02/27/jsperformanceopt/"/>
+    <id>https://dipcheese.com/2022/02/27/jsperformanceopt/</id>
+    <published>2022-02-27T07:13:53.683Z</published>
+    <updated>2022-02-27T13:40:30.411Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;JavaScript性能优化&quot;&gt;&lt;a href=&quot;#JavaScript性能优化&quot; class=&quot;headerlink&quot; title=&quot;JavaScript性能优化&quot;&gt;&lt;/a&gt;JavaScript性能优化&lt;/h1&gt;&lt;h4 id=&quot;1、概述&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>TypeScript语言</title>

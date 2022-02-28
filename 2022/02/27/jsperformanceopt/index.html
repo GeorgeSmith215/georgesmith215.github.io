@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签: study, 智升的博客">
+    <meta name="keywords" content="智升的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>标签: study | 智升的博客</title>
+    <title>智升的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,498 +320,701 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                dipcheese
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "从来没有真正的绝境, 只有心灵的迷途",
-                            
-                                "Never really desperate, only the lost of the soul",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title"></h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
-</script>
 
 
-    </div>
-</div>
-
-<main class="content">
+<main class="post-container content">
 
     
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
 
-<div id="tags" class="container chip-container">
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
     <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
             </div>
-            <div class="tag-chips">
+
+            <div class="post-info">
                 
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-02-27
+                </div>
                 
-                <a href="/tags/study/" title="study: 12">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="study" style="background-color: #F9EBEA;">study
-                        <span class="tag-length">12</span>
-                    </span>
-                </a>
+
                 
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-02-27
+                </div>
                 
-                <a href="/tags/diary/" title="diary: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="diary" style="background-color: #F5EEF8;">diary
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
+
                 
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.7k
+                </div>
                 
-                <a href="/tags/daily-log/" title="daily log: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="daily log" style="background-color: #D5F5E3;">daily log
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
+
                 
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    5 分
+                </div>
                 
-                <a href="/tags/error-log/" title="error log: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="error log" style="background-color: #E8F8F5;">error log
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
+
                 
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
             </div>
         </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="JavaScript性能优化"><a href="#JavaScript性能优化" class="headerlink" title="JavaScript性能优化"></a>JavaScript性能优化</h1><h4 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h4><h4 id="2、内存管理"><a href="#2、内存管理" class="headerlink" title="2、内存管理"></a>2、内存管理</h4><h4 id="3、JavaScript中的垃圾回收"><a href="#3、JavaScript中的垃圾回收" class="headerlink" title="3、JavaScript中的垃圾回收"></a>3、JavaScript中的垃圾回收</h4><h4 id="4、GC算法介绍"><a href="#4、GC算法介绍" class="headerlink" title="4、GC算法介绍"></a>4、GC算法介绍</h4><h4 id="5、引用计数算法实现原理"><a href="#5、引用计数算法实现原理" class="headerlink" title="5、引用计数算法实现原理"></a>5、引用计数算法实现原理</h4><h4 id="6、引用计数算法优缺点"><a href="#6、引用计数算法优缺点" class="headerlink" title="6、引用计数算法优缺点"></a>6、引用计数算法优缺点</h4><h4 id="7、标记清除算法实现原理"><a href="#7、标记清除算法实现原理" class="headerlink" title="7、标记清除算法实现原理"></a>7、标记清除算法实现原理</h4><h4 id="8、标记清除算法优缺点"><a href="#8、标记清除算法优缺点" class="headerlink" title="8、标记清除算法优缺点"></a>8、标记清除算法优缺点</h4><h4 id="9、标记整理算法实现原理"><a href="#9、标记整理算法实现原理" class="headerlink" title="9、标记整理算法实现原理"></a>9、标记整理算法实现原理</h4><h4 id="10、常见GC算法总结"><a href="#10、常见GC算法总结" class="headerlink" title="10、常见GC算法总结"></a>10、常见GC算法总结</h4><h4 id="11、认识V8"><a href="#11、认识V8" class="headerlink" title="11、认识V8"></a>11、认识V8</h4><h4 id="12、V8垃圾回收策略"><a href="#12、V8垃圾回收策略" class="headerlink" title="12、V8垃圾回收策略"></a>12、V8垃圾回收策略</h4><h4 id="13、V8如何回收新生代对象"><a href="#13、V8如何回收新生代对象" class="headerlink" title="13、V8如何回收新生代对象"></a>13、V8如何回收新生代对象</h4><h4 id="14、V8如何回收老生代对象"><a href="#14、V8如何回收老生代对象" class="headerlink" title="14、V8如何回收老生代对象"></a>14、V8如何回收老生代对象</h4><p>老生代对象就是指存活时间较长的对象（全局对象或闭包中的一些数据等），存放在右侧的老生代区，在64位操作系统中大小约为1.4G，32位操作系统中约为700M。</p>
+<p>老生代对象的回收主要采用标记清除、标记整理、增量标记算法，在触发GC时首先使用标记清除完成垃圾空间的回收，若在新生代晋升时老生代空间不足，则采用标记整理进行空间优化。除此外还采用增量标记进行优化。</p>
+<p>为什么不沿用新生代的算法呢，因为与新生代区垃圾回收算法对比，新生代空间较小，可以使用复制算法来进行空间换时间，但老生代空间较大，已经不适合复制算法了。</p>
+<p>另外，老生代还使用了增量标记的方法来进行优化：</p>
+<p><img src="/JSPerformanceOpt/image-20220227155839775.png" alt="增量标记"></p>
+<p>在上图中，上面部分是程序的执行，下面部分是垃圾的回收，垃圾回收与程序的执行是互相阻塞的，而从图中可以看出，程序执行与垃圾回收都不是一次性连续完成的，而是间断地渐进式完成的。这是因为老生代空间较大，若一次性连续完成则可能会发生较长停顿，影响用户体验，而采用这种增量标记的方式可以提升程序执行的连贯性（不会长时间阻塞），保持良好的用户体验。就像DMA与CPU交替访问内存一样，可以在完成各自的功能下不会太过影响体验。</p>
+<h4 id="15、V8垃圾回收总结"><a href="#15、V8垃圾回收总结" class="headerlink" title="15、V8垃圾回收总结"></a>15、V8垃圾回收总结</h4><ul>
+<li>V8是一款主流的JavaScript执行引擎</li>
+<li>V8内存设置上限（64位：1.5G，32位：800M。原因：浏览器足够使用，垃圾回收机制所花时间不能太长。）</li>
+<li>V8内存分为新生代和老生代，用基于分代回收思想实现垃圾回收</li>
+<li>新生代使用复制、标记整理算法。老生代使用标记清除、标记整理、增量标记算法</li>
+</ul>
+<h4 id="16、Performance工具介绍"><a href="#16、Performance工具介绍" class="headerlink" title="16、Performance工具介绍"></a>16、Performance工具介绍</h4><p>GC的目的就是为了实现内存空间的良性循环，而良性循环的基石就是合理使用，Performance就提供了多种监控方式，让我们对内存的变化有实时的监控。</p>
+<p>使用Performance也很简单，只需要打开浏览器并输入目标网址，再进入开发人员工具面板（浏览器下按F12），选择性能（Performance）进入Performance工具。然后开启录制（Record）功能，再访问具体的页面并执行用户行为，一段时间后停止（Stop）录制，就可以得到一份报告，最后再来分析报告界面中记录的相关内存信息（记得需要勾选上内存（Memory）选项才能看到内存相关信息）。</p>
+<h4 id="17、内存问题的体现"><a href="#17、内存问题的体现" class="headerlink" title="17、内存问题的体现"></a>17、内存问题的体现</h4><ul>
+<li>页面出现延迟加载或经常性暂停（GC频繁进行垃圾回收）</li>
+<li>页面持续性出现糟糕的性能（存在内存膨胀，即申请的内存空间超过了设备本身能提供的大小）</li>
+<li>页面的性能随时间延长越来越差（存在内存泄漏）</li>
+</ul>
+<h4 id="18、监控内存的几种方式"><a href="#18、监控内存的几种方式" class="headerlink" title="18、监控内存的几种方式"></a>18、监控内存的几种方式</h4><p><strong>界定内存问题的标准：</strong></p>
+<ul>
+<li>内存泄漏：内存使用持续升高，没有下降趋势</li>
+<li>内存膨胀：当前应用程序为了达到最优的效果，可能需要很大内存空间而设备不能提供。若在多数设备上运行时都存在糟糕的性能体验，则说明程序本身是有问题的。</li>
+<li>频繁垃圾回收：通过内存变化图进行分析</li>
+</ul>
+<p><strong>监控内存的几种方式：</strong></p>
+<ul>
+<li>浏览器任务管理器</li>
+<li>Timeline时序图记录</li>
+<li>堆快照查找分离DOM，分离DOM的存在也就是一种内存上的泄漏</li>
+<li>判断是否存在频繁的垃圾回收</li>
+</ul>
+<h4 id="19、任务管理器监控内存"><a href="#19、任务管理器监控内存" class="headerlink" title="19、任务管理器监控内存"></a>19、任务管理器监控内存</h4><p>首先，进入浏览器后通过Shift+Esc来打开任务管理器（也可在浏览器右上角下拉选项中找到更多工具，从其中找到任务管理器）：</p>
+<p><img src="/JSPerformanceOpt/image-20220227171843809.png" alt="浏览器任务管理器界面"></p>
+<p>打开任务管理器后找到具体的web页面，先来关注<strong>“内存占用空间”列，此列表示的是原生内存，即DOM节点所占的内存</strong>，一般此列都是不变的，若发生频繁变化，说明当前页面存在频繁的DOM操作。之后查看“JavaScript使用的内存”列（若没有相关列，在任务管理器界面右键，点击“JavaScript使用的内存”打开相关列即可），<strong>该列表示JS中的堆，而其中小括号中的数值表示的是所有可达对象正在使用的内存大小</strong>，若小括号中的数值增大则表示在该页面中正在创建新对象或已有对象在不断增长。该列中我们需要关注小括号里的数值，若小括号里的数值一直增加，而没有变小的趋势，就意味着内存是一直增大而没有GC消耗。</p>
+<h4 id="20、Timeline记录内存"><a href="#20、Timeline记录内存" class="headerlink" title="20、Timeline记录内存"></a>20、Timeline记录内存</h4><p>之前我们介绍了任务管理器，他可以监控当前脚本中内存的变化，但更多的只是判断当前脚本中的内存是否存在问题，而不能定位到具体产生问题的地方。而Timeline则可以记录内存的变化，从而更加精确定位到当前内存中的问题与代码中哪里有关。</p>
+<p>首先，先按照之前<strong>”16、Performance工具介绍“</strong>里描述的打开Performance工具，并点击进行录制，再触发想要测试的相关代码，之后停止录制，查看分析报告，勾选“内存”查看内存信息，选中”JS堆“查看相关堆内的使用情况，拉动对应的Timeline到出现问题的位置，从而定位内存出现问题时所运行的代码。</p>
+<h4 id="21、堆快照查找分离DOM"><a href="#21、堆快照查找分离DOM" class="headerlink" title="21、堆快照查找分离DOM"></a>21、堆快照查找分离DOM</h4>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">智升</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://dipcheese.com/2022/02/27/jsperformanceopt/">https://dipcheese.com/2022/02/27/jsperformanceopt/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">智升</a>
+                    !
+                </span>
+            </div>
+        
     </div>
-</div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
 
     
 
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/02/28/howtowork/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="干法笔记">
-                            
-                            <span class="card-title">干法笔记</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-28
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
+</div>
+
                 </div>
             </div>
             
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
             
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/02/26/typescript/">
-                        <div class="card-image tag-image">
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'd5bf45b19fa279c7e54c',
+        clientSecret: 'f6a4f9f107cd87350ea6ab378fb4721bdcd43879',
+        repo: 'georgesmith215.github.io',
+        owner: 'GeorgeSmith215',
+        admin: ["GeorgeSmith215"],
+        id: '2022-02-27T15-13-53',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/02/28/howtowork/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="干法笔记">
+                        
+                        <span class="card-title">干法笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
                             
                             
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="TypeScript语言">
-                            
-                            <span class="card-title">TypeScript语言</span>
-                        </div>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
                     </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/26/typescript/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="TypeScript语言">
+                        
+                        <span class="card-title">TypeScript语言</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2022-02-26
                             </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
                                 </a>
-                                
-                                
-                            </span>
-                        </div>
+                            
+                            
+                        </span>
                     </div>
                 </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/02/12/esnew/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="万字长文吐血总结ES新特性">
-                            
-                            <span class="card-title">万字长文吐血总结ES新特性</span>
-                        </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
                     </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-12
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
+                    
                 </div>
+                
             </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/02/07/15mentalmodel/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="十五种思维模型">
-                            
-                            <span class="card-title">十五种思维模型</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-07
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/01/20/wubistudy/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="五笔打字学习">
-                            
-                            <span class="card-title">五笔打字学习</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/01/18/220118/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="异步编程-学习总结">
-                            
-                            <span class="card-title">异步编程-学习总结</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-18
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/01/17/220117/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="函数式编程-学习总结">
-                            
-                            <span class="card-title">函数式编程-学习总结</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-17
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/01/11/220111/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="手写Promise">
-                            
-                            <span class="card-title">手写Promise</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-11
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/01/10/220110/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="手写Promise-核心逻辑">
-                            
-                            <span class="card-title">手写Promise-核心逻辑</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-10
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/01/09/220109/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="函数同步与异步模式">
-                            
-                            <span class="card-title">函数同步与异步模式</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/01/08/220108/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="函数式编程-函数组合">
-                            
-                            <span class="card-title">函数式编程-函数组合</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-08
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="study" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/01/07/220107/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="git的简单使用,纯函数">
-                            
-                            <span class="card-title">git的简单使用,纯函数</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-07
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
         </div>
-    </article>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
 </main>
 
 
