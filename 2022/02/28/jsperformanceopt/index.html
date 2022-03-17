@@ -1,0 +1,1738 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="JS内存管理及性能优化, 智升的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=283945685"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '283945685');
+</script>
+
+
+    <title>JS内存管理及性能优化 | 智升的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="智升的博客" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">智升的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">智升的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/georgesmith215" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/georgesmith215" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">JS内存管理及性能优化</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-02-28
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-03-17
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    10.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    38 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="JavaScript性能优化"><a href="#JavaScript性能优化" class="headerlink" title="JavaScript性能优化"></a>JavaScript性能优化</h1><h4 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h4><h4 id="2、内存管理"><a href="#2、内存管理" class="headerlink" title="2、内存管理"></a>2、内存管理</h4><h4 id="3、JavaScript中的垃圾回收"><a href="#3、JavaScript中的垃圾回收" class="headerlink" title="3、JavaScript中的垃圾回收"></a>3、JavaScript中的垃圾回收</h4><h4 id="4、GC算法介绍"><a href="#4、GC算法介绍" class="headerlink" title="4、GC算法介绍"></a>4、GC算法介绍</h4><h4 id="5、引用计数算法实现原理"><a href="#5、引用计数算法实现原理" class="headerlink" title="5、引用计数算法实现原理"></a>5、引用计数算法实现原理</h4><h4 id="6、引用计数算法优缺点"><a href="#6、引用计数算法优缺点" class="headerlink" title="6、引用计数算法优缺点"></a>6、引用计数算法优缺点</h4><h4 id="7、标记清除算法实现原理"><a href="#7、标记清除算法实现原理" class="headerlink" title="7、标记清除算法实现原理"></a>7、标记清除算法实现原理</h4><h4 id="8、标记清除算法优缺点"><a href="#8、标记清除算法优缺点" class="headerlink" title="8、标记清除算法优缺点"></a>8、标记清除算法优缺点</h4><h4 id="9、标记整理算法实现原理"><a href="#9、标记整理算法实现原理" class="headerlink" title="9、标记整理算法实现原理"></a>9、标记整理算法实现原理</h4><h4 id="10、常见GC算法总结"><a href="#10、常见GC算法总结" class="headerlink" title="10、常见GC算法总结"></a>10、常见GC算法总结</h4><h4 id="11、认识V8"><a href="#11、认识V8" class="headerlink" title="11、认识V8"></a>11、认识V8</h4><h4 id="12、V8垃圾回收策略"><a href="#12、V8垃圾回收策略" class="headerlink" title="12、V8垃圾回收策略"></a>12、V8垃圾回收策略</h4><h4 id="13、V8如何回收新生代对象"><a href="#13、V8如何回收新生代对象" class="headerlink" title="13、V8如何回收新生代对象"></a>13、V8如何回收新生代对象</h4><h4 id="14、V8如何回收老生代对象"><a href="#14、V8如何回收老生代对象" class="headerlink" title="14、V8如何回收老生代对象"></a>14、V8如何回收老生代对象</h4><p>老生代对象就是指存活时间较长的对象（全局对象或闭包中的一些数据等），存放在右侧的老生代区，在64位操作系统中大小约为1.4G，32位操作系统中约为700M。</p>
+<p>老生代对象的回收主要采用标记清除、标记整理、增量标记算法，在触发GC时首先使用标记清除完成垃圾空间的回收，若在新生代晋升时老生代空间不足，则采用标记整理进行空间优化。除此外还采用增量标记进行优化。</p>
+<p>为什么不沿用新生代的算法呢，因为与新生代区垃圾回收算法对比，新生代空间较小，可以使用复制算法来进行空间换时间，但老生代空间较大，已经不适合复制算法了。</p>
+<p>另外，老生代还使用了增量标记的方法来进行优化：</p>
+<p><img src="/JSPerformanceOpt/image-20220227155839775.png" alt="增量标记"></p>
+<p>在上图中，上面部分是程序的执行，下面部分是垃圾的回收，垃圾回收与程序的执行是互相阻塞的，而从图中可以看出，程序执行与垃圾回收都不是一次性连续完成的，而是间断地渐进式完成的。这是因为老生代空间较大，若一次性连续完成则可能会发生较长停顿，影响用户体验，而采用这种增量标记的方式可以提升程序执行的连贯性（不会长时间阻塞），保持良好的用户体验。就像DMA与CPU交替访问内存一样，可以在完成各自的功能下不会太过影响体验。</p>
+<h4 id="15、V8垃圾回收总结"><a href="#15、V8垃圾回收总结" class="headerlink" title="15、V8垃圾回收总结"></a>15、V8垃圾回收总结</h4><ul>
+<li>V8是一款主流的JavaScript执行引擎</li>
+<li>V8内存设置上限（64位：1.5G，32位：800M。原因：浏览器足够使用，垃圾回收机制所花时间不能太长。）</li>
+<li>V8内存分为新生代和老生代，用基于分代回收思想实现垃圾回收</li>
+<li>新生代使用复制、标记整理算法。老生代使用标记清除、标记整理、增量标记算法</li>
+</ul>
+<h4 id="16、Performance工具介绍"><a href="#16、Performance工具介绍" class="headerlink" title="16、Performance工具介绍"></a>16、Performance工具介绍</h4><p>GC的目的就是为了实现内存空间的良性循环，而良性循环的基石就是合理使用，Performance就提供了多种监控方式，让我们对内存的变化有实时的监控。</p>
+<p>使用Performance也很简单，只需要打开浏览器并输入目标网址，再进入开发人员工具面板（浏览器下按F12），选择性能（Performance）进入Performance工具。然后开启录制（Record）功能，再访问具体的页面并执行用户行为，一段时间后停止（Stop）录制，就可以得到一份报告，最后再来分析报告界面中记录的相关内存信息（记得需要勾选上内存（Memory）选项才能看到内存相关信息）。</p>
+<h4 id="17、内存问题的体现"><a href="#17、内存问题的体现" class="headerlink" title="17、内存问题的体现"></a>17、内存问题的体现</h4><ul>
+<li>页面出现延迟加载或经常性暂停（GC频繁进行垃圾回收）</li>
+<li>页面持续性出现糟糕的性能（存在内存膨胀，即申请的内存空间超过了设备本身能提供的大小）</li>
+<li>页面的性能随时间延长越来越差（存在内存泄漏）</li>
+</ul>
+<h4 id="18、监控内存的几种方式"><a href="#18、监控内存的几种方式" class="headerlink" title="18、监控内存的几种方式"></a>18、监控内存的几种方式</h4><p><strong>界定内存问题的标准：</strong></p>
+<ul>
+<li>内存泄漏：内存使用持续升高，没有下降趋势</li>
+<li>内存膨胀：当前应用程序为了达到最优的效果，可能需要很大内存空间而设备不能提供。若在多数设备上运行时都存在糟糕的性能体验，则说明程序本身是有问题的。</li>
+<li>频繁垃圾回收：通过内存变化图进行分析</li>
+</ul>
+<p><strong>监控内存的几种方式：</strong></p>
+<ul>
+<li>浏览器任务管理器</li>
+<li>Timeline时序图记录</li>
+<li>堆快照查找分离DOM，分离DOM的存在也就是一种内存上的泄漏</li>
+<li>判断是否存在频繁的垃圾回收</li>
+</ul>
+<h4 id="19、任务管理器监控内存"><a href="#19、任务管理器监控内存" class="headerlink" title="19、任务管理器监控内存"></a>19、任务管理器监控内存</h4><p>首先，进入浏览器后通过Shift+Esc来打开任务管理器（也可在浏览器右上角下拉选项中找到更多工具，从其中找到任务管理器）：</p>
+<p><img src="/JSPerformanceOpt/image-20220227171843809.png" alt="浏览器任务管理器界面"></p>
+<p>打开任务管理器后找到具体的web页面，先来关注<strong>“内存占用空间”列，此列表示的是原生内存，即DOM节点所占的内存</strong>，一般此列都是不变的，若发生频繁变化，说明当前页面存在频繁的DOM操作。之后查看“JavaScript使用的内存”列（若没有相关列，在任务管理器界面右键，点击“JavaScript使用的内存”打开相关列即可），<strong>该列表示JS中的堆，而其中小括号中的数值表示的是所有可达对象正在使用的内存大小</strong>，若小括号中的数值增大则表示在该页面中正在创建新对象或已有对象在不断增长。该列中我们需要关注小括号里的数值，若小括号里的数值一直增加，而没有变小的趋势，就意味着内存是一直增大而没有GC消耗。</p>
+<h4 id="20、Timeline记录内存"><a href="#20、Timeline记录内存" class="headerlink" title="20、Timeline记录内存"></a>20、Timeline记录内存</h4><p>之前我们介绍了任务管理器，他可以监控当前脚本中内存的变化，但更多的只是判断当前脚本中的内存是否存在问题，而不能定位到具体产生问题的地方。而Timeline则可以记录内存的变化，从而更加精确定位到当前内存中的问题与代码中哪里有关。</p>
+<p>首先，先按照之前<strong>”16、Performance工具介绍“</strong>里描述的打开Performance工具，并点击进行录制，再触发想要测试的相关代码，之后停止录制，查看分析报告，勾选“内存”查看内存信息，选中”JS堆“查看相关堆内的使用情况，拉动对应的Timeline到出现问题的位置，从而定位内存出现问题时所运行的代码。</p>
+<h4 id="21、堆快照查找分离DOM"><a href="#21、堆快照查找分离DOM" class="headerlink" title="21、堆快照查找分离DOM"></a>21、堆快照查找分离DOM</h4><p>堆快照的工作原理就是找到当前的JS堆，然后对他进行快照留存，有了照片后就可以看到里面的所有信息。</p>
+<p><strong>什么是分离DOM（Detached DOM）</strong></p>
+<p>界面元素都是一个个DOM节点，本应该存活在DOM树上，不过对于DOM节点，会有两种特殊形态：垃圾DOM以及分离DOM。当一个节点从DOM树上脱离，并且在JS代码中也没有引用就成为了垃圾DOM。而如果当前的DOM节点只是从当前的DOM树上脱离，但在JS代码中还有引用，就称为分离DOM。这种分离DOM在界面上是看不见的，但在内存里却是占据着空间，所以在这种情况下就是一种内存泄漏，而我们则可以通过堆快照的功能，去把他们都找出来，之后就可以在代码里针对他们进行清除，让内存得以释放，让脚本执行更加迅速。</p>
+<p><strong>如何使用堆快照检查分离DOM</strong></p>
+<p>打开浏览器，打开调试工具，选择“内存（Memory）”选项，选择“堆快照（Heap SnapShot）”后点击“获取快照（Take Snapshot）”即可得到当前堆的快照，过一会儿就可以看到当前活动对象的具体展示了。之后可以在上方看到一个类筛选器（Class filter）输入框，可以输入“detached”（分离）筛选分离DOM，但此时一般是没有的。然后我们就可以执行可能会产生分离DOM的代码，再执行上面的操作获取堆快照，并进行相关筛选，最后即可得到代码中产生的相关分离DOM。而对于这些分离DOM，我们如果确认在后期不会使用他们，就可以把相关代码中将这些DOM置空即可。</p>
+<h4 id="22、判断是否存在频繁GC"><a href="#22、判断是否存在频繁GC" class="headerlink" title="22、判断是否存在频繁GC"></a>22、判断是否存在频繁GC</h4><p>因为GC工作时应用程序是停止的，所以频繁且过长的GC会导致应用假死而用户则会在使用过程中感知到应用的卡顿。</p>
+<p><strong>确定频繁的垃圾回收</strong></p>
+<ul>
+<li>可以通过Timeline中有无出现频繁的上升下降判断是否有频繁的GC，之后我们就可以定位到相应的时间节点，查看是什么操作导致这种现象产生，接着在代码中进行相关处理来解决问题。</li>
+<li>当任务管理器中数据出现频繁的增加减小时则有可能出现频繁的GC，一般情况，当我们的界面渲染完成之后，如果没有其他额外的操作，无论是DOM节点内存，还是JS内存来讲都是基本不变化的数值，但如果出现频繁的GC时，则有可能会出现瞬间增大，瞬间又减小的情况。</li>
+</ul>
+<p>频繁的垃圾回收给外部带来的明显现象就是页面出现“卡顿”，而对于内部来说则有可能是当前代码中存在对内存操作不当的行为，让GC不断工作去回收相应空间。</p>
+<h4 id="23、Performance总结"><a href="#23、Performance总结" class="headerlink" title="23、Performance总结"></a>23、Performance总结</h4><ul>
+<li>Performance是谷歌浏览器所内置的一个工具。通过Performance工具的使用，我们可以对内存做一个适当的监控。</li>
+<li>而对于内存问题，又可以分为“内存泄漏”、“内存膨胀”、“频繁的GC操作”等。</li>
+<li>对于这些问题我们则可以使用Performance中的时序图来监控内存变化从而定位到有问题的时间节点所做的操作，再定位到代码当中的内容。</li>
+<li>除此之外，我们还可用任务管理器来监控内存变化，对于任务管理器，主要功能还是监控DOM节点所占内存以及JS堆所占内存的变化，若这些数值持续增加，我们就需要考虑在代码中是否存在不妥的地方。</li>
+<li>之后，还有堆快照可以帮我们查找分离DOM，分离DOM必然存在内存泄漏的现象，如果这样的代码越来越多，我们的程序就会随着使用时间的增长而表现出糟糕的情况。</li>
+</ul>
+<h4 id="24、V8引擎执行流程"><a href="#24、V8引擎执行流程" class="headerlink" title="24、V8引擎执行流程"></a>24、V8引擎执行流程</h4><p>V8引擎本身也是一个应用程序，本质上就是JS的执行环境。只考虑浏览器平台，不考虑NodeJS平台下，V8引擎可以看做是浏览器的组成部分，用来解析及编译所书写的JS代码，在其内部，同样也存在着很多子模块。</p>
+<p><img src="/JSPerformanceOpt/image-20220302203625389.png" alt="浏览器渲染引擎V8部分"></p>
+<p>V8引擎其实只是浏览器渲染引擎里JS执行代码的组成部分。</p>
+<p>Scanner是一个扫描器，对纯文本的JS代码进行词法分析来把代码分析成一个个token（在语法上不能再分割的最小单位），有可能是单个字符，也有可能是一段字符串或数字等。</p>
+<p>Parser是一个解析器，解析的过程就是一个语法分析的过程，他会去把词法分析结果中的token转换为抽象语法数AST（Abstract Syntax Tree），同时，也会在语法分析的过程中进行语法校验。</p>
+<p>Parser的解析有两种，一种就是一般的全量解析Parser，此外，还有预解析PreParser。预解析可以跳过未被使用的代码，创建无变量引用和声明的scopes（注意预解析就确定scope作用域及作用域链）但不生成AST，并能依据规范抛出特定错误且有比全量解析更快的速度。</p>
+<p>而对于全量解析，他会解析被使用的代码并生成AST，构建具体scopes信息，变量引用、声明等（对应执行上下文的创建）且会抛出所有的语法错误。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 声明时未调用，因此会被认为是不被执行的代码，进行预解析</span>
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 声明时未调用，因此会被认为是不被执行的代码，进行预解析</span>
+<span class="token keyword">function</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">// 函数立即执行，只进行一次全量解析</span>
+<span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 执行foo,还需要重新对foo函数进行全量解析，此时foo函数被解析了两次</span>
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意嵌套层级太深时就会导致多次的解析操作，因此<strong>书写代码时要去减少不必要的函数嵌套。</strong></p>
+<p>Igition是V8提供的一个解释器，他可以把之前生成的AST转为字节码basecode，同时还会去收集下一个编译阶段所需要的信息（也可以把这个过程看做预编译的过程）。注意，基于性能的考虑，不会把预编译和编译区分得很明显，因为有些代码可以在预编译阶段就直接执行。</p>
+<p>TurboFan是V8引擎提供的编译器模块，他会利用上一个阶段所收集到的信息，再把字节码转换为具体的汇编代码，之后就开始执行代码了，也即后续要讲到的堆栈执行过程。</p>
+<h4 id="25、堆栈处理"><a href="#25、堆栈处理" class="headerlink" title="25、堆栈处理"></a>25、堆栈处理</h4><p>堆栈处理，即浏览器在内存层面所做的一些处理。了解堆栈处理可以让我们从本质上分析一段代码的执行过程，或者分析代码执行时的性能问题。</p>
+<p>JS代码在执行时需要有一个执行环境比如常见的V8，而代码最终会被转为可以被识别的机器码在执行环境栈（ECStack，execution context stack）中执行。浏览器在渲染界面时，会在计算机的内存中开辟一片内存空间用来执行JS代码，其中栈内存指的就是执行环境栈。不同的代码间又需要保持相互的独立，于是有了不同的执行上下文，每个执行上下文中的代码在需要的时候进栈操作即可。但无论如何操作，全局的执行上下文一定是存在的，即在栈底永远会有一个全局执行上下文EC(G)。另外全局所有的变量声明都会存放在EC(G)对应的全局变量对象VO(G)中（在代码执行前EC(G)中变量声明就会放在VO(G)中，变量提升）。总而言之，代码的执行步骤，针对全局来说，就需要编译（包含词法分析，语法分析等过程）以及代码执行，另外为了便于分析，我们在中间人为加一个变量提升过程。</p>
+<p>（注意为了更好演示执行机制，声明变量时会刻意使用var关键字。）</p>
+<p>先来看一段代码：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> y <span class="token operator">=</span> x<span class="token punctuation">;</span>
+y <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这段代码会在全局的执行上下文EC(G)中并进执行环境栈ECStack执行。</p>
+<p>在运行var x = 100时，会先创建一个值100，由于100是一个基本数据类型，所以会直接存放在栈区。之后会声明一个变量x存放在EC(G)的VO(G)中（注意变量提升），最后再建立变量与值之间的联系。</p>
+<p>第二行中会再在VO(G)中创建一个变量y并与之前的100之间建立联系。</p>
+<p>然后第三行中会再创建一个200，并与之前的y建立联系（基本数据类型按值访问），注意这里并没有影响x。</p>
+<p>在讲第4行之前还需要了解一个叫全局对象GO的对象，他并不是VO(G)，但他是一个对象，因此也会有一个内存的空间地址以及对应的内存空间，又因为有地址故可以对其进行访问。JS会在VO(G)中准备一个变量“window”，该变量中就存放GO对象的地址（使用时window可以省略），通过该变量就可以找到GO对象以及里面的类似console.log，setTimeOut等函数。</p>
+<p>而第四行就是调用了GO对象中的console.log函数对x值进行输出，注意用window.console.log(x)也可，只不过一般都会省略window。</p>
+<p>总结：1、基本数据类型是按值进行操作的。2、基本数据类型存放在栈区。3、无论是栈内存还是后续讲到的堆内存都属于计算机内存。4、全局对象GO，他是JS或说浏览器底层为我们准备好的，我们可以直接调用里面的内容。</p>
+<p>推荐参考链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903873992196110">「前端进阶」JS中的栈内存堆内存 - 掘金 (juejin.cn)</a></p>
+<h4 id="26、引用类型堆栈处理"><a href="#26、引用类型堆栈处理" class="headerlink" title="26、引用类型堆栈处理"></a>26、引用类型堆栈处理</h4><p>先来看一段代码：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">100</span> <span class="token punctuation">}</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> obj1<span class="token punctuation">;</span>
+obj2<span class="token punctuation">[</span><span class="token string">'x'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 200</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先，和之前提到的一样，会有一个执行环境栈ECStack，然后这部分代码会在全局执行上下文EC(G)中并进ECStack中执行。</p>
+<p>而在EC(G)中会有对应的VO(G)，里面会存放对应的变量：obj1与obj2（注意变量提升）。</p>
+<p>之后因{ x: 100 }是一个对象，所以会先在堆内存中开辟一片空间，并把他存放在该堆内存空间中，并把其对应的内存地址与obj1建立联系。</p>
+<p>代码第二行会把obj1中的内存地址再与obj2建立联系</p>
+<p>代码第三行中会通过对象属性访问的方式通过内存地址找到堆内存空间中对应对象的属性x的值并把他修改为200。</p>
+<p>最后一行会先找到obj1中保存的内存地址对应的内存空间并获取该内存空间中对应对象的x属性值再用GO中的console.log函数对他进行输出。</p>
+<p>若我们对上面的代码进行一些修改：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">100</span> <span class="token punctuation">}</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> obj1<span class="token punctuation">;</span>
+obj2 <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'george'</span> <span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 100</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行后我们会发现obj1.x的值并不会发生改变。这里需要注意的就是在代码第三行中，会重新在堆内存中开辟一片空间，并把对象{ name: ‘george’ }中的内容放进去，最后再把新开辟的地址空间重新与obj2建立联系，所以obj1中保存的地址及其空间中的对应内容并没有发生改变。</p>
+<p>最后再来看：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">100</span> <span class="token punctuation">}</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> obj1<span class="token punctuation">;</span>
+obj1<span class="token punctuation">.</span>y <span class="token operator">=</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">200</span> <span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// undefined</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj2<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// {x: 100, y: {x: 200}}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// {x: 200}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面代码与之前代码的最主要区别还是在第三行。讲解之前，我们还必须先来介绍一下有关的运算符优先级，注意在obj1.y = obj1中，对象的“.”操作优先级是大于“=”的，所以会先执行“obj1.y”，之后再执行“= obj1”。之前我们讲过，obj1与obj2中保存的堆内存地址是一致的，所以在第三行中执行obj1.y与obj2.y的效果是一样的，都会找到对应地址的内存空间，并找到对应的y属性（此时y的值为undefined）。然后y与obj1建立联系（即y的值即为obj1中的值，都为相同的堆内存地址），之后还会新开辟一块堆内存空间，存放{ x: 200 }内容，并把对应的地址再与y属性（obj1）建立联系。注意此时y中的值即为obj1对应的值，且之后obj1中保存的地址变为了新开辟的内存空间的地址。所以最后的obj1中保存内存地址对应的内容为{x: 200}，且obj2中保存内存地址对应的内容为{x: 100, y: {x: 200}}。</p>
+<p><img src="/JSPerformanceOpt/image-20220305115551965.png" alt="代码执行时内存图解"></p>
+<h4 id="27、函数堆栈处理"><a href="#27、函数堆栈处理" class="headerlink" title="27、函数堆栈处理"></a>27、函数堆栈处理</h4><p>看一段代码：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'czs'</span><span class="token punctuation">,</span> <span class="token string">'george'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    obj<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'hello'</span><span class="token punctuation">;</span>
+    obj <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'world'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    obj<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'javascript'</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">foo</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// ['world', 'javascript']</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// ['hello', 'george']</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意，创建函数与创建引用类型的变量类似，函数名此时就可以看做是一个变量名保存在VO中。并且与创建对象一样会单独开辟一片堆内存用于存放函数体（字符串形式代码），而当前内存地址也会有一个16进制数值地址指向函数体，创建该函数之后就会将其函数体的内存地址存放在栈区与对应的函数名进行关联。且创建函数的时候，他的作用域[[scope]]（创建函数时所在的执行上下文，如上面的foo函数就是EC(G)）就已经确定了。</p>
+<p>首先，会有一个执行环境栈ECS，栈底会有一个全局执行上下文EC(G)，里面会有一个全局变量对象VO(G)，保存arr与foo，注意此时函数体已在堆内存中，且其所在的内存空间地址已经与foo进行关联了（在变量提升阶段完成）。</p>
+<p>在变量提升都完成之后，就开始进入代码执行阶段。在第一行代码中，因数组也是一个对象，所以同样需要新开辟一片堆内存空间存放[‘czs’, ‘george’]，并将该内存空间的地址放在栈中并与VO(G)中的arr建立联系。</p>
+<p>之后就是foo函数的声明了，而这些内容在变量的提升阶段已经基本上分析完了，可以直接看下面的函数执行。函数执行的目的就是为了将函数所对应的堆内存里的字符串形式代码进行执行。代码在执行时就需要一个环境，所以函数在执行时就会生成一个新的执行上下文来管理函数体中的代码，在此即为EC(FOO)，也即foo函数的私有上下文。之后EC(FOO)进栈，注意在函数私有执行上下文进栈后，存放当前执行上下文变量的对象不是VO而是叫AO（因为变量对象VO在执行上下文进入执行栈时，就变成了活动对象AO，可以将AO看做是VO在函数私有执行上下文的不同表示）。</p>
+<p>函数在执行时所做的事大概为：1、确定作用域链（当前执行上下文，上级执行上下文）。2、确定this（在此为window）。3、初始化arguments对象（这里没有）。4、形参赋值（在上面代码中foo函数执行时传入实参arr，故在EC(FOO)的AO中会有一个形参变量obj与arr保存的地址建立联系。）。5、变量提升（foo函数中无函数声明与var声明，故没有）。6、开始执行代码。</p>
+<p>接下来我们看函数执行的代码，第一句中，找到obj对应的堆内存空间并将0号元素’czs’改为’hello’，注意obj为形参，在传进实参arr时obj与arr对应的堆内存空间是同一片（引用传递），故执行后obj与arr对应内存空间由[‘czs’, ‘george’]变为了[‘hello’, ‘george’]。之后第二句，又新开辟了一片堆内存空间存放[‘world’]，并把其空间地址与obj建立联系。之后第三句中，找到obj对应的内存空间中1号元素并赋值为’javascript’，注意在第二步中obj已和堆内存中内容为[‘world’]的内存空间建立联系，故之后该内存空间保存了[‘world’, ‘javascript’]。最后第四句中将obj中保存的地址对应的内存空间[‘world’, ‘javascript’]内容进行输出。</p>
+<p>在函数完成执行后，会将EC(FOO)进行出栈，然后进入EC(G)中继续执行最后一行代码，输出arr中对应地址的内存空间内容[‘hello’, ‘george’]完成代码的执行。</p>
+<p>总结：</p>
+<p>函数在创建时，可以将函数名看作是变量，存放在VO当中，同时他的值就是当前函数对应的内存地址。注意函数本身也是一个对象，创建时也会有一个内存地址，该空间内存放的就是字符串形式的函数体代码。函数在执行时会形成一个全新的私有上下文，里面有一个AO用于管理这个上下文中的变量（相当于函数私有上下文中的VO）。</p>
+<p>函数执行的步骤：1、确定作用域链（当前与上级作用域所在的执行上下文）。2、确定this。3、初始化arguments（对象）。4、形参赋值（相当于变量声明，将其放与AO再赋值）。5、变量提升。6、代码执行。注意函数执行完后就会对当前函数的EC进行出栈。</p>
+<h4 id="28、闭包堆栈处理"><a href="#28、闭包堆栈处理" class="headerlink" title="28、闭包堆栈处理"></a>28、闭包堆栈处理</h4><p>先来看一段代码：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>c <span class="token operator">+</span> b<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> f <span class="token operator">=</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先，经过之前的介绍，我们知道在代码执行时会先有一个执行环境栈ECStack，底层会有一个全局执行上下文EC(G)，里面有一个全局变量对象VO(G)。然后经过变量提升会先把a，foo，f放进VO(G)中，且还会开辟一片堆内存空间存放foo的函数体并将该内存空间地址保存在栈空间中与foo建立联系（注意此时函数当前所在的作用域[[scope]]在此处即EC(G)已经确定）。之后进入代码的执行阶段，在代码第一句中会创建1并放在栈中，与VO(G)中的a建立联系。之后是函数的声明，基本上已经在变量提升阶段完成。再接着是foo函数的执行，并将返回值与f建立联系。</p>
+<p>之后因为需要调用foo函数，所以会有一个函数的私有执行上下文EC(FOO)并进执行栈，在EC(FOO)中会有一个AO(FOO)保存当前函数私有执行上下文的相关变量。接着就是函数的执行阶段，首先是确定作用域链，也即确定当前的执行上下文EC(FOO)与EC(G)，确定this，确定arguments，形参的赋值，变量提升（把b放在AO中，注意定义函数会存在函数体的提升，定义匿名函数时也会将匿名函数定义变量提升，但赋值部分不会提升。故在经过变量提升后会先在堆内存中开辟一片空间存放匿名函数的函数体，并在栈中保存对应的地址，但没有与其他变量建立联系（赋值）），之后进行代码执行。执行时先在栈中创建2并与b建立联系，之后就将栈中的匿名函数对应地址返回，与EC(G)中VO的f建立联系。</p>
+<p>此处再加入一个知识点：被捕获变量，简言之就是出现在函数声明但在函数返回后依旧有被未执行完成的作用域（函数或类）引用的变量。被捕获变量在函数执行完成后并不会进行释放，而是会在堆中，用一个特殊的对象（Scoop）保存（注意返回的函数地址也相当于被引用，保存在堆中）：</p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362219811">传送门</a></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">testCatch1</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> catch1 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> catch2 <span class="token operator">=</span> <span class="token string">'str'</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> catch3 <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> catch4 <span class="token operator">=</span> <span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>catch1<span class="token punctuation">,</span> catch2<span class="token punctuation">,</span> catch3<span class="token punctuation">,</span> catch4<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token function">testCatch1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/JSPerformanceOpt/image-20220312143115008.png" alt="被捕获变量存储在Scope对象中"></p>
+<p>在foo函数执行完成后本应该将EC(FOO)出栈并将其的内容进行释放，但因EC(FOO)执行上下文当中引用的一个堆内存空间（foo函数返回的函数地址对应的空间，其中还包括被捕获变量b）还被EC(G)中的变量f所引用，故foo()调用时所创建的执行上下文还不能立即被释放，这也就形成了所谓的闭包现象。在此给出一个闭包的简单定义：闭包是一种通过私有上下文来保护其中变量的机制。也可以认为当我们创建的某一个执行上下文不被释放的时候就行成了闭包。而闭包的作用就是为了保护、保存数据。</p>
+<p>之后继续执行f(5)，因为这里调用了函数，也即f中保存的foo返回的函数，所以还会先确定作用域链（当前作用域EC(F)以及上一层作用域EC(FOO)），确定this，确定arguments，形参赋值（在新的函数EC的AO中有形参c，对应值为传进来的5），变量提升，在进行执行。又因执行时在当前的作用域没有找到b所以到上一级执行上下文，也即EC(FOO)中找，找到后继续执行代码，最后输出7，并将b的值加1。</p>
+<p>然后因f(5)对应的EC中内容没有被其他的EC引用，所以此处需要出栈并回收对应的内存。最后执行f(10)的过程与f(5)类似（注意f(10)对应的EC与f(5)不同），最后输出13。</p>
+<p>总结：</p>
+<p>闭包是一种机制，能保护当前上下文中的变量与其他的上下文中变量互不干扰，若当前上下文中的数据被当前上下文以外的上下文中的变量所引用（被捕获变量），这个数据就会被保存下来。函数调用形成了一个全新的私有上下文，在函数调用之后当前上下文不被释放就是闭包（临时不被释放）。</p>
+<p>我对闭包的理解：创建一个<strong>新的执行上下文（保护）</strong>并把其中被全局变量，函数，类（不同上下文）中引用的变量<strong>存进堆空间中（保存）</strong>。</p>
+<h4 id="29、闭包与垃圾回收"><a href="#29、闭包与垃圾回收" class="headerlink" title="29、闭包与垃圾回收"></a>29、闭包与垃圾回收</h4><p>老规矩，先来看一段代码：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token parameter">a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token operator">++</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> fn <span class="token operator">=</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fn</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//16</span>
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//14</span>
+<span class="token function">fn</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//32</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//10</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先就是EC(G)进栈执行，经变量提升后VO(G)中有a，foo以及fn，且foo与堆内存中的相关函数体关联（对应的作用域[[scope]]为EC(G)）。之后代码执行，先在栈中创建一个常量10并与VO(G)中的a关联，之后是函数的声明，这在变量提升时已经基本完成，再然后就是foo函数的执行了。</p>
+<p>foo函数的执行代表会有新的EC入栈，并且还与之前讲步骤的一样，要经过确定作用域链（这里是EC(FOO)与EC(G)），确定this，确定arguments，形参赋值(AO中会有变量a与栈中的10建立联系)，变量提升（代码中有匿名函数，会和上一节讲的一样，在变量提升时就会开辟一片堆内存空间并将该内存空间的地址存与栈中），最后执行代码。执行时会将保存在栈中的匿名函数的地址返回，并与EC(G)中VO(G)的fn建立联系。其中要被返回的匿名函数地址与被匿名函数捕获的变量a都会存在堆内存中。</p>
+<p>之后第9行中执行fn(5)，函数执行，新的EC入栈，确定作用域链(EC(FN)与EC(FOO))，确定this，确定arguments，形参赋值（对应的AO中有变量b，值为5），变量提升，最后进行代码执行。代码执行时注意在当前的EC(FN)中是没有变量a的，所以要沿着作用域链找到上一层的EC(FOO)最后找到被存在堆中的变量a（值为在代码8行中传入的10），将a自增1，与AO中的b相加再输出对应的值，即5+10+1=16。注意执行结束后因其EC中的变量都没被引用所以在EC出栈后其对应的内存空间就会被释放。</p>
+<p>第10行中的操作是8行与9行代码的整合，只不过没有和代码8行中的一样在VO(G)中创建变量fn引用foo返回的匿名函数，故在执行完成之后就会被出栈释放，其执行过程和第8行9行代码执行时的过程是类似的，不再赘述。</p>
+<p>到了第11行，第11行与第9行的区别就只有传进来的实参不一样而已，不过要注意一个小细节就是在第9行代码执行后，EC(FOO)里保存在AO中的a已经自增为11了，故在第11行会输出32，即20+11+1（a还需要自增1）。这里需要注意，虽然第11行与第9行代码的形式是一样的，但其创建的EC是不一样的。</p>
+<p>最后一行中，输出a的值，需要注意的就是这里的a是在EC(G)中的a而不是EC(FOO)中的a，所以是10而不是12。</p>
+<p>注意：浏览器都有垃圾回收（GC）机制。在堆中若当前堆内存被引用，就不能被释放，不过如果我们确认后续不再使用这个内存里的数据，也可以主动置空，然后浏览器就会对其进行回收。在栈中若当前上下文中有内容被其他上下文变量所占用就无法被释放（闭包）。</p>
+<h4 id="30、循环添加事件的实现"><a href="#30、循环添加事件的实现" class="headerlink" title="30、循环添加事件的实现"></a>30、循环添加事件的实现</h4><p>在工作中，我们可能会出现一种需求，就是给多个控件去循环添加事件：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 若在页面中有多个button，可以通过querySelectAll去获取所有button</span>
+<span class="token comment">// 注意获取到的NodeList只是一个伪数组，不能用数组的一些方法</span>
+<span class="token keyword">var</span> buttons <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 先来一段有问题的代码</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> buttons<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    buttons<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">当前索引值：</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 这时若回到页面中去点击任意按钮，都会显示：当前索引值：Buttons.length + 1</span>
+<span class="token comment">// 此时我们应该都可以分析清楚原因了，不就是因为这里的i都是在EC(G)中的i吗</span>
+
+<span class="token comment">// 清楚了原因后自然可以想到用立即执行函数去构造闭包来创建新的EC去保存不同的i</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> buttons<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    buttons<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">i</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">当前索引值：</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 还有用IIFE立即执行函数构造闭包的不同方式</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> buttons<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">i</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        buttons<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">当前索引值：</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 而在ES2015中还提供了let关键字，可用块级作用域来产生独立的上下文，也类似闭包的思想</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> buttons<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    buttons<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">当前索引值：</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 还可以用添加自定义属性的方式来实现要求</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> buttons<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    buttons<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>myIndex <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    buttons<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">当前索引值：</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>myIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>需要注意的是，因为在闭包中（使用let的情况也相同），立即执行函数IIFE（在let中是块级作用域）的EC中因其中的变量i被其中的匿名函数引用，而匿名函数又因被设置为按钮点击事件监听函数（即在存储按钮对象对应的堆空间中被引用）其对应堆空间也不能被释放。所以IIFE（块级作用域）中的EC相关被引用的内容会保存在堆内存空间得不到释放，这就相当于造成了一定的空间浪费，也即内存泄漏。所以若我们之后不再需要用相关的按钮监听事件时，注意把用querySelectAll获取的各个button都置为null。</p>
+<p>并且在最后一种方法中，我们仅仅只是在按钮对象所在的堆空间中多开辟了一点空间存储了一个变量（属性），所以在空间的利用率上还会比用闭包更好一些。</p>
+<p>虽然在内存的使用上可能会不友好一些，但闭包还是一种在JS中非常优秀的机制，非常便于我们去实现一些高阶的应用。不过如果有其他替代方案，我们也可用非闭包方式来实现某些需求。</p>
+<h4 id="31、事件委托实现"><a href="#31、事件委托实现" class="headerlink" title="31、事件委托实现"></a>31、事件委托实现</h4><p>先来看具体代码实现：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>事件委托实现<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>button1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>button2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>button3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+        document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">var</span> target <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">,</span>
+            targetDom <span class="token operator">=</span> target<span class="token punctuation">.</span>tagName
+            <span class="token keyword">if</span><span class="token punctuation">(</span>targetDom <span class="token operator">===</span> <span class="token string">'BUTTON'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">var</span> index <span class="token operator">=</span> target<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'index'</span><span class="token punctuation">)</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">当前点击的是第</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>index<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">个</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到采用事件委托的形式来实现循环添加事件相同效果时，根本都不需要保存在上一节中用querySelectAll来获取的对应元素节点，所以可以节省大量堆内存空间。并且只需要保存一份匿名函数对应的堆内存空间，且其中的操作也不过是对象数据的存取以及访问的操作，无非是作用域查找的深还是浅的关系。所以用事件委托的形式来实现循环添加事件的效果会比闭包或自定义属性在内存空间的使用上更好一些。</p>
+<h4 id="32、JSBench使用"><a href="#32、JSBench使用" class="headerlink" title="32、JSBench使用"></a>32、JSBench使用</h4><p>JSbench是一个在线测试JS代码执行效率的一个网站。我们可以在浏览器中访问jsbench.me来打开相关页面：</p>
+<p><img src="/JSPerformanceOpt/image-20220315214742463.png" alt="jsbench界面"></p>
+<p>如果在测试时需要操作DOM，就可以在Setup HTML中放入DOM元素。如果测试代码有需要执行的前置操作，可以都放进Setup JS中。如果想要新增测试用例的话，可以点击Test Case进行添加，一般我们在使用时都是有两个Case用来比对两段代码的执行效率。每个case中可以添加case name来为测试的代码段起名，而case的右边则是用来输入需要测试的代码段的。teardown JS与setup JS相对，setup是做初始化的，而teardown则是做收尾的工作。而Output dom目前暂时不需要使用，就不做介绍了。</p>
+<h4 id="33、变量局部化"><a href="#33、变量局部化" class="headerlink" title="33、变量局部化"></a>33、变量局部化</h4><p>所谓的变量局部化，就是把变量尽量放在局部作用域而非全局作用域，这样可以减少数据访问时需要查找的路径从而提高代码的执行效率。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 假设我们需要拼接多个Dom元素</span>
+<span class="token comment">// 第一种情况。我们采用全局变量来保存保存相关数据</span>
+<span class="token keyword">var</span> i<span class="token punctuation">,</span> str <span class="token operator">=</span> <span class="token string">""</span>
+<span class="token keyword">function</span> <span class="token function">packageDomGlobal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        str <span class="token operator">+=</span> i
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 第二种情况。我们采用局部变量来保存保存相关数据</span>
+<span class="token keyword">function</span> <span class="token function">packageDomLocal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        str <span class="token operator">+=</span> i
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后在上节的jsbench.me中我们运行函数并测试相关代码的执行效率：</p>
+<p><img src="/JSPerformanceOpt/image-20220315221011179.png" alt="用jsbench测试代码执行效率"></p>
+<p>可以看到，我们采用第二种情况，即用局部变量来保存相关数据会使我们的代码执行效率更高。接下来我们来具体分析一下原因。</p>
+<p>首先，第一种情况下，在EC(G)的VO(G)中有i,str以及packageDomGlobal，packageDomGlobal关联了对应的函数体所在堆内存地址。当packageDomGlobal开始执行，即相关EC进入执行栈后，在EC(packageDomGlobal)里，其对应的AO中找不到对应的循环变量i以及需要操作的变量str，所以需要沿着作用域链找到上层的EC(G)才能找到相关的变量，而这寻找的操作就会降低运行效率。</p>
+<p>再看第二种情况，我们会发现EC(G)的VO(G)中只有packageDomLocal。当packageDomLocal开始执行，则会发现在EC(packageDomLocal)的AO中已经存在对应的循环变量i以及需要操作的变量str，所以可以直接使用，而不需要再去寻找从而节省时间提高效率。</p>
+<p>总之，若我们的代码中有变量既可以放在全局作用域中，又可以放在函数私有作用域中，则尽量放在函数私用作用域里，且多层级时执行上下文离得越近则寻找的时间越少。不过一切还是需要结合实际情况来看，若有些变量实在需要共用，则放在全局下也是可以的。</p>
+<h4 id="34、通过缓存数据来提高代码的执行速度"><a href="#34、通过缓存数据来提高代码的执行速度" class="headerlink" title="34、通过缓存数据来提高代码的执行速度"></a>34、通过缓存数据来提高代码的执行速度</h4><p>在代码的编写过程中，有些数据可能会在不同的地方进行多次重复使用，这样的数据就可以提前缓存起来，后续就可以直接在缓存中获取使用，从而减少获取数据消耗的时间。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 假设在当前页面中存在id与class均为skip的DOM元素</span>
+<span class="token keyword">var</span> oBox <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'skip'</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 第一种情况，没有在函数体（上下文）中缓存数据</span>
+<span class="token keyword">function</span> <span class="token function">hasClassNameNoCached</span><span class="token punctuation">(</span><span class="token parameter">ele<span class="token punctuation">,</span> cls</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ele<span class="token punctuation">.</span>className<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> ele<span class="token punctuation">.</span>className <span class="token operator">==</span> cls
+<span class="token punctuation">}</span>
+<span class="token comment">// 调用函数</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">hasClassNameNoCached</span><span class="token punctuation">(</span>oBox<span class="token punctuation">,</span> <span class="token string">'skip'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 第二种情况，在函数体（上下文）中缓存数据</span>
+<span class="token keyword">function</span> <span class="token function">hasClassNameCached</span><span class="token punctuation">(</span><span class="token parameter">ele<span class="token punctuation">,</span> cls</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> clsName <span class="token operator">=</span> ele<span class="token punctuation">.</span>className
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>clsName<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> clsName <span class="token operator">==</span> cls
+<span class="token punctuation">}</span>
+<span class="token comment">// 调用函数</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">hasClassNameNoCached</span><span class="token punctuation">(</span>oBox<span class="token punctuation">,</span> <span class="token string">'skip'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>同样，我们用jsbench.me来进行测试，不过因这里有DOM元素以及统一的获取DOM元素的JS代码，所以可以写在Setup HTML和Setup JavaScript里。</p>
+<p><img src="/JSPerformanceOpt/image-20220316211425354.png" alt="jsbench测试结果"></p>
+<p>可以看到，缓存了数据的函数会运行得更快一些，原因和上一节中的变量局部化类似，因为缓存了数据之后，查找数据就不需要沿着作用域链去寻找数据，所以会让查找的时间减少从而提高代码执行效率。</p>
+<p>而且如果我们删除了console.log部分之后，还会发现没有缓存的函数会执行得更快一些，这又是什么原因呢？这是因为我们之前提到JS代码在执行前还需要进行词法、语法分析，而缓存数据需要多声明变量，所以会在词法和语法分析上多花费一点时间。故我们也可以减少没有必要的声明和语句数来提升JS的执行效率。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">智升</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://dipcheese.com/2022/02/28/jsperformanceopt/">https://dipcheese.com/2022/02/28/jsperformanceopt/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">智升</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'd5bf45b19fa279c7e54c',
+        clientSecret: 'f6a4f9f107cd87350ea6ab378fb4721bdcd43879',
+        repo: 'georgesmith215.github.io',
+        owner: 'GeorgeSmith215',
+        admin: ["GeorgeSmith215"],
+        id: '2022-02-28T20-06-34',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/02/28/howtowork/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="干法笔记">
+                        
+                        <span class="card-title">干法笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/26/typescript/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="TypeScript语言">
+                        
+                        <span class="card-title">TypeScript语言</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6800773181"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy; 
+            
+                <span id="year">2021-2022</span>
+            
+            dipcheese. 版权所有
+            <!-- <span id="year">2021</span> -->
+            <a href="/about" target="_blank">智升</a>
+            <!-- |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a> -->
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "7";
+                        var startDate = "1";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/georgesmith215" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2089281458@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://www.facebook.com/profile.php?id=100023997492884" class="tooltipped" target="_blank" data-tooltip="关注我的Facebook: https://www.facebook.com/profile.php?id=100023997492884" data-position="top" data-delay="50">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+
+
+    <a href="https://twitter.com/GeorgeSmith215" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/GeorgeSmith215" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2089281458" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2089281458" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/5766671582" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/u/5766671582" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://www.zhihu.com/people/chen-zhi-sheng-63" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/chen-zhi-sheng-63" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?17136257";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+        <script src="//code.tidio.co/arjcrzt8ibgtjdhobc9yxyekjvtvc6jl.js"></script>
+        <script>
+            $(document).ready(function () {
+                setInterval(change_Tidio, 50);
+                function change_Tidio() {
+                    var tidio=$("#tidio-chat iframe");
+                    if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                        document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"85px":"20px";
+                        document.getElementById("tidio-chat-iframe").style.right="-15px";
+                        document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                        document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                    }
+                    else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                        document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;
+                        document.getElementById("tidio-chat-iframe").style.right="-15px";
+                        document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                    }
+                    else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                        document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;
+                        document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                    }
+                    if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                        document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                    }
+                }
+            });
+        </script>
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+        <div style="position:fixed;bottom:125px;right:16px;cursor: pointer;">
+            <a title="兔小巢" target="_blank" rel="noopener" href="https://support.qq.com/products/347029"><i class="fa fa-comments fa-3x"  aria-hidden="true"></i></a>
+        </div>
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300,"hOffset":-15,"vOffset":-15},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+
+</html>
