@@ -477,21 +477,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-03-17
+                    2022-03-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.7k
+                    13.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    38 分
+                    49 分
                 </div>
                 
 
@@ -514,11 +514,64 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="JavaScript性能优化"><a href="#JavaScript性能优化" class="headerlink" title="JavaScript性能优化"></a>JavaScript性能优化</h1><h4 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h4><h4 id="2、内存管理"><a href="#2、内存管理" class="headerlink" title="2、内存管理"></a>2、内存管理</h4><h4 id="3、JavaScript中的垃圾回收"><a href="#3、JavaScript中的垃圾回收" class="headerlink" title="3、JavaScript中的垃圾回收"></a>3、JavaScript中的垃圾回收</h4><h4 id="4、GC算法介绍"><a href="#4、GC算法介绍" class="headerlink" title="4、GC算法介绍"></a>4、GC算法介绍</h4><h4 id="5、引用计数算法实现原理"><a href="#5、引用计数算法实现原理" class="headerlink" title="5、引用计数算法实现原理"></a>5、引用计数算法实现原理</h4><h4 id="6、引用计数算法优缺点"><a href="#6、引用计数算法优缺点" class="headerlink" title="6、引用计数算法优缺点"></a>6、引用计数算法优缺点</h4><h4 id="7、标记清除算法实现原理"><a href="#7、标记清除算法实现原理" class="headerlink" title="7、标记清除算法实现原理"></a>7、标记清除算法实现原理</h4><h4 id="8、标记清除算法优缺点"><a href="#8、标记清除算法优缺点" class="headerlink" title="8、标记清除算法优缺点"></a>8、标记清除算法优缺点</h4><h4 id="9、标记整理算法实现原理"><a href="#9、标记整理算法实现原理" class="headerlink" title="9、标记整理算法实现原理"></a>9、标记整理算法实现原理</h4><h4 id="10、常见GC算法总结"><a href="#10、常见GC算法总结" class="headerlink" title="10、常见GC算法总结"></a>10、常见GC算法总结</h4><h4 id="11、认识V8"><a href="#11、认识V8" class="headerlink" title="11、认识V8"></a>11、认识V8</h4><h4 id="12、V8垃圾回收策略"><a href="#12、V8垃圾回收策略" class="headerlink" title="12、V8垃圾回收策略"></a>12、V8垃圾回收策略</h4><h4 id="13、V8如何回收新生代对象"><a href="#13、V8如何回收新生代对象" class="headerlink" title="13、V8如何回收新生代对象"></a>13、V8如何回收新生代对象</h4><h4 id="14、V8如何回收老生代对象"><a href="#14、V8如何回收老生代对象" class="headerlink" title="14、V8如何回收老生代对象"></a>14、V8如何回收老生代对象</h4><p>老生代对象就是指存活时间较长的对象（全局对象或闭包中的一些数据等），存放在右侧的老生代区，在64位操作系统中大小约为1.4G，32位操作系统中约为700M。</p>
+                <h1 id="JavaScript性能优化"><a href="#JavaScript性能优化" class="headerlink" title="JavaScript性能优化"></a>JavaScript性能优化</h1><h4 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h4><ul>
+<li>内存管理</li>
+<li>垃圾回收与常见GC算法</li>
+<li>V8引擎的垃圾回收</li>
+<li>Performance工具</li>
+<li>代码优化实例</li>
+</ul>
+<h4 id="2、内存管理"><a href="#2、内存管理" class="headerlink" title="2、内存管理"></a>2、内存管理</h4><ul>
+<li>内存：由可读写单元组成，表示一片可操作空间。</li>
+<li>管理：人为的去操作一片空间的申请、使用和释放。</li>
+<li>内存管理：开发者主动申请空间、使用空间、释放空间。</li>
+<li>管理流程：申请-使用-释放</li>
+</ul>
+<p>申请内存：<code>let obj = {}</code></p>
+<p>使用内存：<code>obj.name = 'xxx'</code></p>
+<p>释放内存：<code>obj = null</code></p>
+<h4 id="3、JavaScript中的垃圾回收"><a href="#3、JavaScript中的垃圾回收" class="headerlink" title="3、JavaScript中的垃圾回收"></a>3、JavaScript中的垃圾回收</h4><p>JS引擎自动进行内存管理（垃圾回收）。</p>
+<p>垃圾：不再被引用，不能从根上访问。</p>
+<p>可达对象：引用，作用域链。</p>
+<p>可达标准：能否找到。</p>
+<p>JS中根：全局变量对象。</p>
+<p>以图来说，垃圾即为入度为0的点。</p>
+<h4 id="4、GC算法介绍"><a href="#4、GC算法介绍" class="headerlink" title="4、GC算法介绍"></a>4、GC算法介绍</h4><p>垃圾：1、不再需要。2、不能访问。</p>
+<p>常见GC算法：1、引用计数。2、标记清除。3、标记整理。4、分代回收</p>
+<h4 id="5、引用计数算法实现原理"><a href="#5、引用计数算法实现原理" class="headerlink" title="5、引用计数算法实现原理"></a>5、引用计数算法实现原理</h4><p>设置引用计数器。引用关系改变则修改引用计数器。引用为0时则回收。</p>
+<h4 id="6、引用计数算法优缺点"><a href="#6、引用计数算法优缺点" class="headerlink" title="6、引用计数算法优缺点"></a>6、引用计数算法优缺点</h4><p>优点：发现垃圾立即回收。最大限度减少程序暂停（时刻监控、引用改变则修改）。</p>
+<p>缺点：无法回收循环引用对象。时间开销大。</p>
+<h4 id="7、标记清除算法实现原理"><a href="#7、标记清除算法实现原理" class="headerlink" title="7、标记清除算法实现原理"></a>7、标记清除算法实现原理</h4><p>标记阶段：遍历所有对象标记对象（从global递归查找）。</p>
+<p>清除阶段：遍历所有对象清除没有标记的对象，回收相应空间。将回收空间直接放在当前空闲链表上，后面程序可以直接在此申请空间使用。</p>
+<h4 id="8、标记清除算法优缺点"><a href="#8、标记清除算法优缺点" class="headerlink" title="8、标记清除算法优缺点"></a>8、标记清除算法优缺点</h4><p>优点：只要在根（global）下不可达，就不需标记（函数局部空间变量与与global失去联系）。而在清除阶段就可回收。而引用计数是哪怕在根下不可达，但若在函数内有引用（循环引用）则不可回收。</p>
+<p>缺点：空间碎片化（空闲链表中的空间不连续，所需大小不符会有碎片产生）。也不会立即回收垃圾。</p>
+<h4 id="9、标记整理算法实现原理"><a href="#9、标记整理算法实现原理" class="headerlink" title="9、标记整理算法实现原理"></a>9、标记整理算法实现原理</h4><p>标记清除的增强，标记阶段与标记清除一致，清除阶段会先执行整理。移动对象位置，再批量回收（碎片少）。但和标记清除一样不会立即回收垃圾对象。</p>
+<h4 id="10、常见GC算法总结"><a href="#10、常见GC算法总结" class="headerlink" title="10、常见GC算法总结"></a>10、常见GC算法总结</h4><ul>
+<li><p>引用计数：通过引用计数器来维护每个对象的引用数值，通过数值是否为0来判断对象是否为垃圾对象。</p>
+<p>优点：可以即时回收垃圾对象，减少程序卡顿时间。</p>
+<p>缺点：无法回收循环引用对象，资源消耗较大。</p>
+</li>
+<li><p>标记清除：分为两个阶段，第一阶段先遍历所有对象并给活动对象进行标记，第二阶段会清除所有未标记对象。</p>
+<p>优点：可以回收循环引用的对象。</p>
+<p>缺点：容易产生碎片化空间，浪费空间。不会立即回收垃圾对象。</p>
+</li>
+<li><p>标记整理：在标记阶段和标记清除一样，但在清除前会先进行空间的整理。</p>
+<p>优点：在标记清除的基础上减少了碎片化空间。</p>
+<p>缺点：不会立即回收垃圾对象。</p>
+</li>
+</ul>
+<h4 id="11、认识V8"><a href="#11、认识V8" class="headerlink" title="11、认识V8"></a>11、认识V8</h4><p>V8是一款主流的JS执行引擎，采用即时编译（JIT），速度快。内存设限（64位1.5G，32位800M）。</p>
+<h4 id="12、V8垃圾回收策略"><a href="#12、V8垃圾回收策略" class="headerlink" title="12、V8垃圾回收策略"></a>12、V8垃圾回收策略</h4><p>采用分代回收思想（将内存分为新生代、老生代），针对不同对象采用不同算法。</p>
+<p>V8常用GC算法：1、分代回收。2、空间复制。3、标记清除。4、标记整理。5、标记增量。</p>
+<h4 id="13、V8如何回收新生代对象"><a href="#13、V8如何回收新生代对象" class="headerlink" title="13、V8如何回收新生代对象"></a>13、V8如何回收新生代对象</h4><p>V8中内存空间一分为二。小空间用于存储存活时间较短的新生代对象（32位中约为32M，64位中约为64M），如局部变量等。</p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220326111055862.png" alt="V8内存空间"></p>
+<p>新生代回收实现（回收过程采用空间复制+标记整理算法）：新生代内存区分为两个等大小空间。活动对象存储于“From空间”。当From空间大小超过一定限制时触发GC，进行标记整理后拷贝到“To空间”。当From与To交换空间完成后释放（使用空间为From，空闲空间为To并在标记整理后交换空间及状态）。</p>
+<p>回收细节：拷贝过程中可能出现晋升。即，将新生代对象移动到老生代中。一轮GC后还存活的新生代需要晋升。To空间使用率超25%需要晋升。</p>
+<h4 id="14、V8如何回收老生代对象"><a href="#14、V8如何回收老生代对象" class="headerlink" title="14、V8如何回收老生代对象"></a>14、V8如何回收老生代对象</h4><p>老生代对象就是指存活时间较长的对象（全局对象或闭包中的一些数据等），存放在V8内存空间图示右侧的老生代区，在64位操作系统中大小约为1.4G，32位操作系统中约为700M。</p>
 <p>老生代对象的回收主要采用标记清除、标记整理、增量标记算法，在触发GC时首先使用标记清除完成垃圾空间的回收，若在新生代晋升时老生代空间不足，则采用标记整理进行空间优化。除此外还采用增量标记进行优化。</p>
 <p>为什么不沿用新生代的算法呢，因为与新生代区垃圾回收算法对比，新生代空间较小，可以使用复制算法来进行空间换时间，但老生代空间较大，已经不适合复制算法了。</p>
 <p>另外，老生代还使用了增量标记的方法来进行优化：</p>
-<p><img src="/JSPerformanceOpt/image-20220227155839775.png" alt="增量标记"></p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220227155839775.png" alt="增量标记"></p>
 <p>在上图中，上面部分是程序的执行，下面部分是垃圾的回收，垃圾回收与程序的执行是互相阻塞的，而从图中可以看出，程序执行与垃圾回收都不是一次性连续完成的，而是间断地渐进式完成的。这是因为老生代空间较大，若一次性连续完成则可能会发生较长停顿，影响用户体验，而采用这种增量标记的方式可以提升程序执行的连贯性（不会长时间阻塞），保持良好的用户体验。就像DMA与CPU交替访问内存一样，可以在完成各自的功能下不会太过影响体验。</p>
 <h4 id="15、V8垃圾回收总结"><a href="#15、V8垃圾回收总结" class="headerlink" title="15、V8垃圾回收总结"></a>15、V8垃圾回收总结</h4><ul>
 <li>V8是一款主流的JavaScript执行引擎</li>
@@ -547,7 +600,7 @@
 <li>判断是否存在频繁的垃圾回收</li>
 </ul>
 <h4 id="19、任务管理器监控内存"><a href="#19、任务管理器监控内存" class="headerlink" title="19、任务管理器监控内存"></a>19、任务管理器监控内存</h4><p>首先，进入浏览器后通过Shift+Esc来打开任务管理器（也可在浏览器右上角下拉选项中找到更多工具，从其中找到任务管理器）：</p>
-<p><img src="/JSPerformanceOpt/image-20220227171843809.png" alt="浏览器任务管理器界面"></p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220227171843809.png" alt="浏览器任务管理器界面"></p>
 <p>打开任务管理器后找到具体的web页面，先来关注<strong>“内存占用空间”列，此列表示的是原生内存，即DOM节点所占的内存</strong>，一般此列都是不变的，若发生频繁变化，说明当前页面存在频繁的DOM操作。之后查看“JavaScript使用的内存”列（若没有相关列，在任务管理器界面右键，点击“JavaScript使用的内存”打开相关列即可），<strong>该列表示JS中的堆，而其中小括号中的数值表示的是所有可达对象正在使用的内存大小</strong>，若小括号中的数值增大则表示在该页面中正在创建新对象或已有对象在不断增长。该列中我们需要关注小括号里的数值，若小括号里的数值一直增加，而没有变小的趋势，就意味着内存是一直增大而没有GC消耗。</p>
 <h4 id="20、Timeline记录内存"><a href="#20、Timeline记录内存" class="headerlink" title="20、Timeline记录内存"></a>20、Timeline记录内存</h4><p>之前我们介绍了任务管理器，他可以监控当前脚本中内存的变化，但更多的只是判断当前脚本中的内存是否存在问题，而不能定位到具体产生问题的地方。而Timeline则可以记录内存的变化，从而更加精确定位到当前内存中的问题与代码中哪里有关。</p>
 <p>首先，先按照之前<strong>”16、Performance工具介绍“</strong>里描述的打开Performance工具，并点击进行录制，再触发想要测试的相关代码，之后停止录制，查看分析报告，勾选“内存”查看内存信息，选中”JS堆“查看相关堆内的使用情况，拉动对应的Timeline到出现问题的位置，从而定位内存出现问题时所运行的代码。</p>
@@ -571,7 +624,7 @@
 <li>之后，还有堆快照可以帮我们查找分离DOM，分离DOM必然存在内存泄漏的现象，如果这样的代码越来越多，我们的程序就会随着使用时间的增长而表现出糟糕的情况。</li>
 </ul>
 <h4 id="24、V8引擎执行流程"><a href="#24、V8引擎执行流程" class="headerlink" title="24、V8引擎执行流程"></a>24、V8引擎执行流程</h4><p>V8引擎本身也是一个应用程序，本质上就是JS的执行环境。只考虑浏览器平台，不考虑NodeJS平台下，V8引擎可以看做是浏览器的组成部分，用来解析及编译所书写的JS代码，在其内部，同样也存在着很多子模块。</p>
-<p><img src="/JSPerformanceOpt/image-20220302203625389.png" alt="浏览器渲染引擎V8部分"></p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220302203625389.png" alt="浏览器渲染引擎V8部分"></p>
 <p>V8引擎其实只是浏览器渲染引擎里JS执行代码的组成部分。</p>
 <p>Scanner是一个扫描器，对纯文本的JS代码进行词法分析来把代码分析成一个个token（在语法上不能再分割的最小单位），有可能是单个字符，也有可能是一段字符串或数字等。</p>
 <p>Parser是一个解析器，解析的过程就是一个语法分析的过程，他会去把词法分析结果中的token转换为抽象语法数AST（Abstract Syntax Tree），同时，也会在语法分析的过程中进行语法校验。</p>
@@ -639,7 +692,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// {x: 200}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>上面代码与之前代码的最主要区别还是在第三行。讲解之前，我们还必须先来介绍一下有关的运算符优先级，注意在obj1.y = obj1中，对象的“.”操作优先级是大于“=”的，所以会先执行“obj1.y”，之后再执行“= obj1”。之前我们讲过，obj1与obj2中保存的堆内存地址是一致的，所以在第三行中执行obj1.y与obj2.y的效果是一样的，都会找到对应地址的内存空间，并找到对应的y属性（此时y的值为undefined）。然后y与obj1建立联系（即y的值即为obj1中的值，都为相同的堆内存地址），之后还会新开辟一块堆内存空间，存放{ x: 200 }内容，并把对应的地址再与y属性（obj1）建立联系。注意此时y中的值即为obj1对应的值，且之后obj1中保存的地址变为了新开辟的内存空间的地址。所以最后的obj1中保存内存地址对应的内容为{x: 200}，且obj2中保存内存地址对应的内容为{x: 100, y: {x: 200}}。</p>
-<p><img src="/JSPerformanceOpt/image-20220305115551965.png" alt="代码执行时内存图解"></p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220305115551965.png" alt="代码执行时内存图解"></p>
 <h4 id="27、函数堆栈处理"><a href="#27、函数堆栈处理" class="headerlink" title="27、函数堆栈处理"></a>27、函数堆栈处理</h4><p>看一段代码：</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'czs'</span><span class="token punctuation">,</span> <span class="token string">'george'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -689,7 +742,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token punctuation">}</span>
 console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token function">testCatch1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/JSPerformanceOpt/image-20220312143115008.png" alt="被捕获变量存储在Scope对象中"></p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220312143115008.png" alt="被捕获变量存储在Scope对象中"></p>
 <p>在foo函数执行完成后本应该将EC(FOO)出栈并将其的内容进行释放，但因EC(FOO)执行上下文当中引用的一个堆内存空间（foo函数返回的函数地址对应的空间，其中还包括被捕获变量b）还被EC(G)中的变量f所引用，故foo()调用时所创建的执行上下文还不能立即被释放，这也就形成了所谓的闭包现象。在此给出一个闭包的简单定义：闭包是一种通过私有上下文来保护其中变量的机制。也可以认为当我们创建的某一个执行上下文不被释放的时候就行成了闭包。而闭包的作用就是为了保护、保存数据。</p>
 <p>之后继续执行f(5)，因为这里调用了函数，也即f中保存的foo返回的函数，所以还会先确定作用域链（当前作用域EC(F)以及上一层作用域EC(FOO)），确定this，确定arguments，形参赋值（在新的函数EC的AO中有形参c，对应值为传进来的5），变量提升，在进行执行。又因执行时在当前的作用域没有找到b所以到上一级执行上下文，也即EC(FOO)中找，找到后继续执行代码，最后输出7，并将b的值加1。</p>
 <p>然后因f(5)对应的EC中内容没有被其他的EC引用，所以此处需要出栈并回收对应的内存。最后执行f(10)的过程与f(5)类似（注意f(10)对应的EC与f(5)不同），最后输出13。</p>
@@ -792,8 +845,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 <p>可以看到采用事件委托的形式来实现循环添加事件相同效果时，根本都不需要保存在上一节中用querySelectAll来获取的对应元素节点，所以可以节省大量堆内存空间。并且只需要保存一份匿名函数对应的堆内存空间，且其中的操作也不过是对象数据的存取以及访问的操作，无非是作用域查找的深还是浅的关系。所以用事件委托的形式来实现循环添加事件的效果会比闭包或自定义属性在内存空间的使用上更好一些。</p>
 <h4 id="32、JSBench使用"><a href="#32、JSBench使用" class="headerlink" title="32、JSBench使用"></a>32、JSBench使用</h4><p>JSbench是一个在线测试JS代码执行效率的一个网站。我们可以在浏览器中访问jsbench.me来打开相关页面：</p>
-<p><img src="/JSPerformanceOpt/image-20220315214742463.png" alt="jsbench界面"></p>
-<p>如果在测试时需要操作DOM，就可以在Setup HTML中放入DOM元素。如果测试代码有需要执行的前置操作，可以都放进Setup JS中。如果想要新增测试用例的话，可以点击Test Case进行添加，一般我们在使用时都是有两个Case用来比对两段代码的执行效率。每个case中可以添加case name来为测试的代码段起名，而case的右边则是用来输入需要测试的代码段的。teardown JS与setup JS相对，setup是做初始化的，而teardown则是做收尾的工作。而Output dom目前暂时不需要使用，就不做介绍了。</p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220315214742463.png" alt="jsbench界面"></p>
+<p>如果在测试时需要操作DOM，就可以在Setup HTML中放入DOM元素。如果测试代码有需要执行的前置操作，可以都放进Setup JS中。如果想要新增测试用例的话，可以点击Test Case进行添加，一般我们在使用时都是有两个Case用来比对两段代码的执行效率。每个case中可以添加case name来为测试的代码段起名，而case的右边则是用来输入需要测试的代码段的。其中还需要注意在case中最外层的变量名需要用var声明，否则将会找不到对应的变量。teardown JS与setup JS相对，setup是做初始化的，而teardown则是做收尾的工作。而Output dom目前暂时不需要使用，就不做介绍了。</p>
 <h4 id="33、变量局部化"><a href="#33、变量局部化" class="headerlink" title="33、变量局部化"></a>33、变量局部化</h4><p>所谓的变量局部化，就是把变量尽量放在局部作用域而非全局作用域，这样可以减少数据访问时需要查找的路径从而提高代码的执行效率。</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 假设我们需要拼接多个Dom元素</span>
 <span class="token comment">// 第一种情况。我们采用全局变量来保存保存相关数据</span>
@@ -813,7 +866,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>然后在上节的jsbench.me中我们运行函数并测试相关代码的执行效率：</p>
-<p><img src="/JSPerformanceOpt/image-20220315221011179.png" alt="用jsbench测试代码执行效率"></p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220315221011179.png" alt="用jsbench测试代码执行效率"></p>
 <p>可以看到，我们采用第二种情况，即用局部变量来保存相关数据会使我们的代码执行效率更高。接下来我们来具体分析一下原因。</p>
 <p>首先，第一种情况下，在EC(G)的VO(G)中有i,str以及packageDomGlobal，packageDomGlobal关联了对应的函数体所在堆内存地址。当packageDomGlobal开始执行，即相关EC进入执行栈后，在EC(packageDomGlobal)里，其对应的AO中找不到对应的循环变量i以及需要操作的变量str，所以需要沿着作用域链找到上层的EC(G)才能找到相关的变量，而这寻找的操作就会降低运行效率。</p>
 <p>再看第二种情况，我们会发现EC(G)的VO(G)中只有packageDomLocal。当packageDomLocal开始执行，则会发现在EC(packageDomLocal)的AO中已经存在对应的循环变量i以及需要操作的变量str，所以可以直接使用，而不需要再去寻找从而节省时间提高效率。</p>
@@ -840,9 +893,198 @@ console<span class="token punctuation">.</span><span class="token function">log<
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">hasClassNameNoCached</span><span class="token punctuation">(</span>oBox<span class="token punctuation">,</span> <span class="token string">'skip'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>同样，我们用jsbench.me来进行测试，不过因这里有DOM元素以及统一的获取DOM元素的JS代码，所以可以写在Setup HTML和Setup JavaScript里。</p>
-<p><img src="/JSPerformanceOpt/image-20220316211425354.png" alt="jsbench测试结果"></p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220316211425354.png" alt="jsbench测试结果"></p>
 <p>可以看到，缓存了数据的函数会运行得更快一些，原因和上一节中的变量局部化类似，因为缓存了数据之后，查找数据就不需要沿着作用域链去寻找数据，所以会让查找的时间减少从而提高代码执行效率。</p>
 <p>而且如果我们删除了console.log部分之后，还会发现没有缓存的函数会执行得更快一些，这又是什么原因呢？这是因为我们之前提到JS代码在执行前还需要进行词法、语法分析，而缓存数据需要多声明变量，所以会在词法和语法分析上多花费一点时间。故我们也可以减少没有必要的声明和语句数来提升JS的执行效率。</p>
+<h4 id="35、减少访问层级"><a href="#35、减少访问层级" class="headerlink" title="35、减少访问层级"></a>35、减少访问层级</h4><p>当我们用到某一个属性值时，可以通过减少访问层级来提高执行效率。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 第一种情况，直接访问属性值</span>
+<span class="token keyword">function</span> <span class="token function">Person1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'czs'</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">25</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> p1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>p1<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 第二种情况，通过函数调用来获取对应属性值</span>
+<span class="token keyword">function</span> <span class="token function">Person2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'czs'</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">25</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">getAge</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>age<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> p2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person2</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>p2<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来再通过jsbench查看他们的执行速度：</p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220317205145240.png" alt="通过jsbench查看执行速度"></p>
+<p>很显然，直接访问属性值比通过函数去访问属性值快很多。我们也很容易可以分析出原因，毕竟函数里就是一个独立的作用域，在其中找不到对应的变量才会沿着作用域链找，访问的层级比直接访问属性值更深一些。</p>
+<h4 id="36、防抖与节流"><a href="#36、防抖与节流" class="headerlink" title="36、防抖与节流"></a>36、防抖与节流</h4><p>在滚动、输入的模糊匹配、点击等场景中，浏览器默认情况下都会有自己的监听事件间隔(4~6ms)，如果检测到多次事件的监听执行，就会造成不必要的资源浪费。所以在一些高频率事件触发的场景下，当我们不希望对应的事件处理函数多次执行时，可以使用防抖或节流。</p>
+<p>防抖：对于一个高频的操作而言，我们只希望识别一次，可以是第一次或最后一次（常见于输入的模糊匹配）。</p>
+<p>节流：对于一个高频操作，我们可以自己来设置频率，让本来会执行很多次的事件触发，按我们定义的频率来执行，从而减少触发的次数（常见于点击场景）。</p>
+<h4 id="37、防抖函数实现"><a href="#37、防抖函数实现" class="headerlink" title="37、防抖函数实现"></a>37、防抖函数实现</h4><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">/**
+ * handle 最终需要执行的函数
+ * wait 事件触发之后多久开始执行
+ * immediate 控制执行第一次还是最后一次，false表示执行最后一次
+ */</span>
+<span class="token keyword">function</span> <span class="token function">myDebounce</span><span class="token punctuation">(</span><span class="token parameter">handle<span class="token punctuation">,</span> wait<span class="token punctuation">,</span> immediate</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> handle <span class="token operator">!==</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'handle must be an function'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> wait <span class="token operator">===</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> wait <span class="token operator">=</span> <span class="token number">300</span><span class="token punctuation">;</span> <span class="token comment">//默认wait设置为300ms</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> wait <span class="token operator">===</span> <span class="token string">'boolean'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        immediate <span class="token operator">=</span> wait<span class="token punctuation">;</span>
+        wait <span class="token operator">=</span> <span class="token number">300</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> immediate <span class="token operator">!==</span> <span class="token string">'boolean'</span><span class="token punctuation">)</span> immediate <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  <span class="token comment">//默认immediate为false</span>
+    
+    <span class="token keyword">let</span> timer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token function">proxy</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> self <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token comment">// 当immediate为true且timer为null时init才为true，</span>
+        <span class="token comment">// 即若函数立即执行后，则需等待定时器把timer置空才可进行下一次</span>
+        <span class="token keyword">let</span> init <span class="token operator">=</span> immediate <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>timer<span class="token punctuation">;</span>
+        <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 注意clearTimeout只是将系统中的定时器清除，但timer中值还在。</span>
+        timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            timer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+            <span class="token comment">// 当immediate为false时，只有事件不再触发wait时间后才能执行handle函数</span>
+            <span class="token operator">!</span>immediate <span class="token operator">?</span> <span class="token function">handle</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> wait<span class="token punctuation">)</span>
+        <span class="token comment">// 当init为true时立即执行handle函数</span>
+        init <span class="token operator">?</span> <span class="token function">handle</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="38、节流函数实现"><a href="#38、节流函数实现" class="headerlink" title="38、节流函数实现"></a>38、节流函数实现</h4><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">myThrottle</span><span class="token punctuation">(</span><span class="token parameter">handle<span class="token punctuation">,</span> wait</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> handle <span class="token operator">!==</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'handle must be an function'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> wait <span class="token operator">===</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> wait <span class="token operator">=</span> <span class="token number">400</span><span class="token punctuation">;</span>  <span class="token comment">// wait默认为400ms</span>
+    <span class="token keyword">let</span> previous <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment">// 用previous来保存上一次执行时的时间</span>
+    <span class="token keyword">let</span> timer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>  <span class="token comment">// timer来保存定时器</span>
+    
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token function">proxy</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> now <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> self <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token comment">// 时间间隔interval为等待时间wait减去已经过去的时间</span>
+        <span class="token keyword">let</span> interval <span class="token operator">=</span> wait <span class="token operator">-</span> <span class="token punctuation">(</span>now <span class="token operator">-</span> previous<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 当时间间隔已经小于0，代表已经经过至少wait的时间了，可以执行handle。</span>
+        <span class="token comment">// 注意这里还需要清空timer防止if和else if条件同时满足时设置了定时器却进入if，没办法清空。</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>interval <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            timer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+            <span class="token function">handle</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            previous <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>timer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 无定时器时设置定时器使handle在interval后执行。</span>
+            timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                timer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+                <span class="token function">handle</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                previous <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> interval<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="39、减少判断层级"><a href="#39、减少判断层级" class="headerlink" title="39、减少判断层级"></a>39、减少判断层级</h4><p>减少判断层级，就是把一些无效的条件提前return。减少判断层级嵌套可以使代码的逻辑更易理解，而且也能略微提高代码的执行效率。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 第一种情况，判断层级深</span>
+<span class="token keyword">function</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token parameter">part<span class="token punctuation">,</span> chapter</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">const</span> parts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'ES2016'</span><span class="token punctuation">,</span> <span class="token string">'Vue'</span><span class="token punctuation">,</span> <span class="token string">'React'</span><span class="token punctuation">,</span> <span class="token string">'Node'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>part<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>parts<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>part<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'包含内容'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>chapter <span class="token operator">&gt;</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'这部分属于VIP内容'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'请确认模块内容'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 第二种情况，把无效条件提前return，减少函数嵌套</span>
+<span class="token keyword">function</span> <span class="token function">doSomething2</span><span class="token punctuation">(</span><span class="token parameter">part<span class="token punctuation">,</span> chapter</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">const</span> parts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'ES2016'</span><span class="token punctuation">,</span> <span class="token string">'Vue'</span><span class="token punctuation">,</span> <span class="token string">'React'</span><span class="token punctuation">,</span> <span class="token string">'Node'</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>part<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'请确认模块内容'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>parts<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>part<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'包含内容'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>chapter <span class="token operator">&gt;</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'这部分属于VIP内容'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>再通过jsbench查看他们的执行效率：</p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220321220144115.png" alt="减少判断层级提高代码效率测试"></p>
+<p>从上面可以看出第二种减少判断层级的效率会比第一种高些。因为更深的块级作用域嵌套就代表更深的作用域链，查找也需要更长时间，因此减少判断层级也可以提高代码的执行效率。</p>
+<h4 id="40、减少循环体活动"><a href="#40、减少循环体活动" class="headerlink" title="40、减少循环体活动"></a>40、减少循环体活动</h4><p>放在循环体里的内容往往都是我们想要重复去执行的事，当循环次数一定时，循环体里做的事情越多就意味着执行效率越慢。所以我们可以把每次循环都要用到但值不变的数据都抽离到循环体外缓存来提高代码的执行效率。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 第一种情况，循环体中没有抽离出值不变的数据</span>
+<span class="token keyword">var</span> <span class="token function-variable function">test</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'czs'</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token string">'I love FrontEnd'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 第二种情况，循环体中抽离出值不变的数据</span>
+<span class="token keyword">var</span> <span class="token function-variable function">test</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'czs'</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token string">'I love FrontEnd'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> length <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来再看看他们在jsbench中测试时的效率：</p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220322205855728.png" alt="jsbench测试效率"></p>
+<p>注意到虽然执行速度差不多，但减少循环体活动的方法还是略胜一筹的。</p>
+<p>除此之外，我们还可以针对循环方式（由前到后变为由后到前循环）进行优化：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> <span class="token function-variable function">test</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'czs'</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token string">'I love FrontEnd'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> length <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>length<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>length<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>再通过jsbench与之前的代码进行测试：</p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220322210906169.png" alt="jsbench测试代码效率"></p>
+<p>显然，通过改变了循环方式，我们让循环变得更有效率了。</p>
+<h4 id="41、字面量与构造式"><a href="#41、字面量与构造式" class="headerlink" title="41、字面量与构造式"></a>41、字面量与构造式</h4><p>不同的数据声明方式也会影响性能。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 第一种方式，通过构造式声明</span>
+<span class="token keyword">var</span> <span class="token function-variable function">test</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    obj<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'czs'</span><span class="token punctuation">;</span>
+    obj<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">25</span><span class="token punctuation">;</span>
+    obj<span class="token punctuation">.</span>slogan <span class="token operator">=</span> <span class="token string">'I Love FrontEnd'</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 第二种方式，通过字面量声明</span>
+<span class="token keyword">var</span> <span class="token function-variable function">test</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token string">'czs'</span><span class="token punctuation">,</span>
+    	age<span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
+    	slogan<span class="token operator">:</span> <span class="token string">'I Love FrontEnd'</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>再来看看他们的执行效率：</p>
+<p><img src="/2022/02/28/jsperformanceopt/image-20220322212013764.png" alt="查看执行效率"></p>
+<p>显然，通过字面量声明的方式性能更加优秀。原因也很简单，因为通过构造式声明时还会涉及到构造函数的调用，所以时间消耗也会更多些。</p>
+<p>前面用的是引用类型，现在让我们再来看看使用基本数据类型时的情况。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token string">'I Love FrontEnd'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> str1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">'I Love FrontEnd'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<p><img src="/2022/02/28/jsperformanceopt/image-20220322212727238.png" alt="测试执行效率"></p>
+<p>可以看出，相较于引用类型，基本数据类型的字面量创建效率远远高于构造式创建。</p>
 
                 
             </div>
