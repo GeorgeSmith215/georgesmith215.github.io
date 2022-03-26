@@ -514,7 +514,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="JavaScript性能优化"><a href="#JavaScript性能优化" class="headerlink" title="JavaScript性能优化"></a>JavaScript性能优化</h1><h4 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h4><ul>
+                <h1 id="JavaScript性能优化"><a href="#JavaScript性能优化" class="headerlink" title="JavaScript性能优化"></a>JavaScript性能优化</h1><h3 id="PART-1"><a href="#PART-1" class="headerlink" title="PART 1"></a>PART 1</h3><h4 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h4><ul>
 <li>内存管理</li>
 <li>垃圾回收与常见GC算法</li>
 <li>V8引擎的垃圾回收</li>
@@ -560,7 +560,7 @@
 <p>缺点：不会立即回收垃圾对象。</p>
 </li>
 </ul>
-<h4 id="11、认识V8"><a href="#11、认识V8" class="headerlink" title="11、认识V8"></a>11、认识V8</h4><p>V8是一款主流的JS执行引擎，采用即时编译（JIT），速度快。内存设限（64位1.5G，32位800M）。</p>
+<h3 id="PART-2"><a href="#PART-2" class="headerlink" title="PART 2"></a>PART 2</h3><h4 id="11、认识V8"><a href="#11、认识V8" class="headerlink" title="11、认识V8"></a>11、认识V8</h4><p>V8是一款主流的JS执行引擎，采用即时编译（JIT），速度快。内存设限（64位1.5G，32位800M）。</p>
 <h4 id="12、V8垃圾回收策略"><a href="#12、V8垃圾回收策略" class="headerlink" title="12、V8垃圾回收策略"></a>12、V8垃圾回收策略</h4><p>采用分代回收思想（将内存分为新生代、老生代），针对不同对象采用不同算法。</p>
 <p>V8常用GC算法：1、分代回收。2、空间复制。3、标记清除。4、标记整理。5、标记增量。</p>
 <h4 id="13、V8如何回收新生代对象"><a href="#13、V8如何回收新生代对象" class="headerlink" title="13、V8如何回收新生代对象"></a>13、V8如何回收新生代对象</h4><p>V8中内存空间一分为二。小空间用于存储存活时间较短的新生代对象（32位中约为32M，64位中约为64M），如局部变量等。</p>
@@ -647,7 +647,7 @@
 <p>注意嵌套层级太深时就会导致多次的解析操作，因此<strong>书写代码时要去减少不必要的函数嵌套。</strong></p>
 <p>Igition是V8提供的一个解释器，他可以把之前生成的AST转为字节码basecode，同时还会去收集下一个编译阶段所需要的信息（也可以把这个过程看做预编译的过程）。注意，基于性能的考虑，不会把预编译和编译区分得很明显，因为有些代码可以在预编译阶段就直接执行。</p>
 <p>TurboFan是V8引擎提供的编译器模块，他会利用上一个阶段所收集到的信息，再把字节码转换为具体的汇编代码，之后就开始执行代码了，也即后续要讲到的堆栈执行过程。</p>
-<h4 id="25、堆栈处理"><a href="#25、堆栈处理" class="headerlink" title="25、堆栈处理"></a>25、堆栈处理</h4><p>堆栈处理，即浏览器在内存层面所做的一些处理。了解堆栈处理可以让我们从本质上分析一段代码的执行过程，或者分析代码执行时的性能问题。</p>
+<h3 id="PART-3"><a href="#PART-3" class="headerlink" title="PART 3"></a>PART 3</h3><h4 id="25、堆栈处理"><a href="#25、堆栈处理" class="headerlink" title="25、堆栈处理"></a>25、堆栈处理</h4><p>堆栈处理，即浏览器在内存层面所做的一些处理。了解堆栈处理可以让我们从本质上分析一段代码的执行过程，或者分析代码执行时的性能问题。</p>
 <p>JS代码在执行时需要有一个执行环境比如常见的V8，而代码最终会被转为可以被识别的机器码在执行环境栈（ECStack，execution context stack）中执行。浏览器在渲染界面时，会在计算机的内存中开辟一片内存空间用来执行JS代码，其中栈内存指的就是执行环境栈。不同的代码间又需要保持相互的独立，于是有了不同的执行上下文，每个执行上下文中的代码在需要的时候进栈操作即可。但无论如何操作，全局的执行上下文一定是存在的，即在栈底永远会有一个全局执行上下文EC(G)。另外全局所有的变量声明都会存放在EC(G)对应的全局变量对象VO(G)中（在代码执行前EC(G)中变量声明就会放在VO(G)中，变量提升）。总而言之，代码的执行步骤，针对全局来说，就需要编译（包含词法分析，语法分析等过程）以及代码执行，另外为了便于分析，我们在中间人为加一个变量提升过程。</p>
 <p>（注意为了更好演示执行机制，声明变量时会刻意使用var关键字。）</p>
 <p>先来看一段代码：</p>
@@ -844,7 +844,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>可以看到采用事件委托的形式来实现循环添加事件相同效果时，根本都不需要保存在上一节中用querySelectAll来获取的对应元素节点，所以可以节省大量堆内存空间。并且只需要保存一份匿名函数对应的堆内存空间，且其中的操作也不过是对象数据的存取以及访问的操作，无非是作用域查找的深还是浅的关系。所以用事件委托的形式来实现循环添加事件的效果会比闭包或自定义属性在内存空间的使用上更好一些。</p>
-<h4 id="32、JSBench使用"><a href="#32、JSBench使用" class="headerlink" title="32、JSBench使用"></a>32、JSBench使用</h4><p>JSbench是一个在线测试JS代码执行效率的一个网站。我们可以在浏览器中访问jsbench.me来打开相关页面：</p>
+<h3 id="PART-4"><a href="#PART-4" class="headerlink" title="PART 4"></a>PART 4</h3><h4 id="32、JSBench使用"><a href="#32、JSBench使用" class="headerlink" title="32、JSBench使用"></a>32、JSBench使用</h4><p>JSbench是一个在线测试JS代码执行效率的一个网站。我们可以在浏览器中访问jsbench.me来打开相关页面：</p>
 <p><img src="/2022/02/28/jsperformanceopt/image-20220315214742463.png" alt="jsbench界面"></p>
 <p>如果在测试时需要操作DOM，就可以在Setup HTML中放入DOM元素。如果测试代码有需要执行的前置操作，可以都放进Setup JS中。如果想要新增测试用例的话，可以点击Test Case进行添加，一般我们在使用时都是有两个Case用来比对两段代码的执行效率。每个case中可以添加case name来为测试的代码段起名，而case的右边则是用来输入需要测试的代码段的。其中还需要注意在case中最外层的变量名需要用var声明，否则将会找不到对应的变量。teardown JS与setup JS相对，setup是做初始化的，而teardown则是做收尾的工作。而Output dom目前暂时不需要使用，就不做介绍了。</p>
 <h4 id="33、变量局部化"><a href="#33、变量局部化" class="headerlink" title="33、变量局部化"></a>33、变量局部化</h4><p>所谓的变量局部化，就是把变量尽量放在局部作用域而非全局作用域，这样可以减少数据访问时需要查找的路径从而提高代码的执行效率。</p>
