@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Win上使用yarn link的那些坑</title>
+      <link href="/2022/04/10/yarn-link/"/>
+      <url>/2022/04/10/yarn-link/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Win上使用yarn-link的那些坑"><a href="#Win上使用yarn-link的那些坑" class="headerlink" title="Win上使用yarn link的那些坑"></a>Win上使用yarn link的那些坑</h3><p><strong>先上坑位</strong>：在使用<code>yarn link</code>时会在<code>C:\Users\&lt;你的用户名&gt;\AppData\Local\Yarn\Data\link</code>中创建链接文件，而若我们的yarn的全局bin是安装在其他位置时（即link生成的文件路径与yarn的全局bin安装路径中基本没有重合，不能用简单的相对路径找到）则会<strong>生成绝对路径</strong>并使用<code>%~dp0</code>标识符，从而直接导致运行对应的模块时找不到命令指向的模块，具体错误如下图：</p><p><img src="/2022/04/10/yarn-link/image-20220410181215834.png" alt="yarn link后运行对应模块时产生的错误"></p><p>生成的对应cmd文件如下所示：</p><p><img src="/2022/04/10/yarn-link/image-20220410190752238.png" alt="yarn link后生成的对应cmd文件"></p><p>当然我们可以手动删除<code>%~dp0\</code>去解决这个问题，但治标不治本。最好还是能配置一下相关的yarn的路径去彻底解决这个问题。</p><p>另外，若我们的yarn是用<code>npm -g install yarn</code>来安装的话，还必须要修改npm包的全局安装路径到C盘中。</p><p>所以，如果想要愉快地使用yarn link的话还请务必<strong>设置好yarn以及npm包的相关安装路径</strong>（并将所有相关文件移动到对应路径中），<strong>并配置好相关的环境变量</strong>（不然会找不到相关的命令）：</p><h4 id="NPM相关"><a href="#NPM相关" class="headerlink" title="NPM相关"></a>NPM相关</h4><p><strong>查看各种路径命令</strong></p><ul><li><strong>查看当前 npm 包的全局安装路径：</strong><code>npm prefix -g</code></li><li><strong>查看配置列表：</strong><code>npm config ls</code></li></ul><p><strong>修改路径命令</strong></p><ul><li><strong>修改 npm 的包的全局安装路径：</strong><code>npm config set prefix "C:\packageManager\npm"</code></li><li><strong>修改 npm 的包的全局 cache 位置：</strong><code>npm config set cache "C:\packageManager\npm_cache" </code></li></ul><p><strong>配置环境变量</strong></p><p>将全局路径配置在环境变量中</p><p>此电脑点右键 -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量 -&gt; 系统变量 -&gt; Path双击 -&gt; 新建 -&gt;添加：<code>C:\packageManager\npm</code>（自己的相关路径可以根据 <code>npm prefix -g</code> 查看）</p><h4 id="Yarn相关"><a href="#Yarn相关" class="headerlink" title="Yarn相关"></a>Yarn相关</h4><p><strong>查看各种路径命令</strong></p><ul><li><strong>查看 yarn 全局 bin 位置：</strong><code>yarn global bin</code></li><li><strong>查看 yarn 全局安装位置：</strong><code>yarn global dir</code></li><li><strong>查看 yarn 全局 cache 位置：</strong><code>yarn cache dir</code></li></ul><p><strong>修改路径命令</strong></p><ul><li><strong>改变 yarn 全局 bin 位置(注意为bin所在文件夹)：</strong><code>yarn config set prefix "C:\Users\\&lt;你的用户名&gt;\AppData\Local\Yarn\Data"</code></li><li><strong>改变 yarn 全局安装位置：</strong><code>yarn config  set global-folder "C:\Users\\&lt;你的用户名&gt;\AppData\Local\Yarn\Data\global"</code></li><li><strong>改变 yarn 全局 cache 位置：</strong><code>yarn config set cache-folder "C:\Users\\&lt;你的用户名&gt;\AppData\Local\Yarn\Cache"</code></li><li><strong>改变 yarn 非全局 link(非yarn link) 位置：</strong><code>yarn config set link-folder "C:\Users\\&lt;你的用户名&gt;\AppData\Local\Yarn\Data\link"</code></li></ul><p><strong>配置环境变量</strong></p><p>此电脑点右键 -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量 -&gt; 系统变量 -&gt; Path双击 -&gt; 新建 -&gt;添加：<code>C:\Users\\&lt;你的用户名&gt;\AppData\Local\Yarn\Data\bin</code>（自己的相关路径可以根据 <code>yarn global bin</code> 查看）</p><h4 id="大功告成"><a href="#大功告成" class="headerlink" title="大功告成"></a>大功告成</h4><p>之后再去<code>yarn link</code>后就可以直接运行相关的命令了，对应生成的cmd文件如下：</p><p><img src="/2022/04/10/yarn-link/image-20220410200333833.png" alt="配置路径之后生成的对应cmd文件"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日常问题记录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> daily log </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>干法笔记</title>
       <link href="/2022/02/28/howtowork/"/>
       <url>/2022/02/28/howtowork/</url>
