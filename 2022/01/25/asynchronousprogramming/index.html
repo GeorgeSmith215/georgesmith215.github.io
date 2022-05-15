@@ -477,7 +477,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-09
+                    2022-05-15
                 </div>
                 
 
@@ -514,8 +514,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="JavaScript异步编程"><a href="#JavaScript异步编程" class="headerlink" title="JavaScript异步编程"></a>JavaScript异步编程</h1><p>[TOC]</p>
-<h2 id="采用单线程模式工作的原因"><a href="#采用单线程模式工作的原因" class="headerlink" title="采用单线程模式工作的原因"></a>采用单线程模式工作的原因</h2><p>最早js语言就是运行在浏览器端的语言，目的是为了实现页面上的动态交互。实现页面交互的核心就是DOM操作，这就决定了它必须使用单线程模型，否则就会出现很复杂的线程同步问题。<br>假设在js中有多个线程一起工作，其中一个线程修改了这个DOM元素，同时另一个线程又删除了这个元素，此时浏览器就无法明确该以哪个工作线程为准。所以为了避免线程同步的问题，从一开始，js就设计成了单线程的工作模式。</p>
+                <h1 id="JavaScript异步编程"><a href="#JavaScript异步编程" class="headerlink" title="JavaScript异步编程"></a>JavaScript异步编程</h1><h2 id="采用单线程模式工作的原因"><a href="#采用单线程模式工作的原因" class="headerlink" title="采用单线程模式工作的原因"></a>采用单线程模式工作的原因</h2><p>最早js语言就是运行在浏览器端的语言，目的是为了实现页面上的动态交互。实现页面交互的核心就是DOM操作，这就决定了它必须使用单线程模型，否则就会出现很复杂的线程同步问题。<br>假设在js中有多个线程一起工作，其中一个线程修改了这个DOM元素，同时另一个线程又删除了这个元素，此时浏览器就无法明确该以哪个工作线程为准。所以为了避免线程同步的问题，从一开始，js就设计成了单线程的工作模式。</p>
 <p>所以，js执行环境中负责执行代码的线程只有一个。</p>
 <blockquote>
 <p>一个人执行一个任务，如果有多个任务，那任务需要排队，让这个人一个一个去执行。</p>
