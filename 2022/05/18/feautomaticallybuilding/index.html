@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="前端工程化之自动化构建, 智升的博客">
+    <meta name="keywords" content="前端工程化之自动化构建--Grunt与Gulp的使用, 智升的博客">
     <meta name="description" content="高山仰止，景行行止。虽不能至，然心向往之。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>前端工程化之自动化构建 | 智升的博客</title>
+    <title>前端工程化之自动化构建--Grunt与Gulp的使用 | 智升的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">前端工程化之自动化构建</h1>
+                    <h1 class="description center-align post-title">前端工程化之自动化构建--Grunt与Gulp的使用</h1>
                 </div>
             </div>
         </div>
@@ -514,7 +514,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="前端工程化之自动化构建"><a href="#前端工程化之自动化构建" class="headerlink" title="前端工程化之自动化构建"></a>前端工程化之自动化构建</h1><h4 id="1、自动化构建简介"><a href="#1、自动化构建简介" class="headerlink" title="1、自动化构建简介"></a>1、自动化构建简介</h4><p>自动化构建是前端工程化中一个非常重要的组成部分。自动化实际上指的是通过机器代替手工完成一些工作。而构建可以理解为转换，就是把一个东西转换为另外的一些东西。总的来说，自动化构建就是把开发阶段写出来的源代码自动化地去转换成生产环境中可以运行的代码或程序。一般我们会把这样的一个转换过程称之为自动化构建工作流，他的作用就是让我们尽可能去脱离运行环境兼容带来的问题而在开发阶段使用一些提高效率的语法、规范以及标准。</p>
+                <h1 id="前端工程化之自动化构建–Grunt与Gulp的使用"><a href="#前端工程化之自动化构建–Grunt与Gulp的使用" class="headerlink" title="前端工程化之自动化构建–Grunt与Gulp的使用"></a>前端工程化之自动化构建–Grunt与Gulp的使用</h1><h4 id="1、自动化构建简介"><a href="#1、自动化构建简介" class="headerlink" title="1、自动化构建简介"></a>1、自动化构建简介</h4><p>自动化构建是前端工程化中一个非常重要的组成部分。自动化实际上指的是通过机器代替手工完成一些工作。而构建可以理解为转换，就是把一个东西转换为另外的一些东西。总的来说，自动化构建就是把开发阶段写出来的源代码自动化地去转换成生产环境中可以运行的代码或程序。一般我们会把这样的一个转换过程称之为自动化构建工作流，他的作用就是让我们尽可能去脱离运行环境兼容带来的问题而在开发阶段使用一些提高效率的语法、规范以及标准。</p>
 <p>最典型的应用场景就是我们在开发网页应用时可以使用ECMAScript的最新标准来提高编码效率以及质量，利用Sass去增强CSS的可编程性，利用模板引擎去抽象页面中重复的HTML。这些用法在浏览器中是没有办法直接被支持的，在这种情况下自动化构建工具就可以派上用场了。我们通过自动化构建的方式将这些不被支持的代码特性转换为能够直接运行的代码，这样我们就可以尽情在开发中通过这些方式去提高编码效率了。</p>
 <h4 id="2、自动化构建初体验"><a href="#2、自动化构建初体验" class="headerlink" title="2、自动化构建初体验"></a>2、自动化构建初体验</h4><p>接下来我们通过一个案例来体会一下自动化构建的便捷之处。我们在编写CSS时若想使用Sass来增强CSS的编程性，就需要在开发时添加一个构建的环节，这样我们在开发的环节就可以通过sass编写样式，再通过工具将Sass构建为css。另外，注意Sass最早的扩展名是sass，不过因语法规范难以接受，后来就新出了一个语法规范，用scss作为扩展名了（注意下文可能会出现sass和scss混合使用的情况，大家知道都是在讲sass文件就行）。</p>
 <p>相对于CSS，Sass的编程能力显然更强一些，但Sass并不能在浏览器环境中直接去使用，所以我们要在开发阶段通过一个工具去把Sass转换为CSS。这里我们可以使用Sass官方提供的一个sass模块，进入命令行，通过执行<code>yarn add sass --dev</code>我们可以把该模块作为一个开发依赖来安装。安装完成后，在node_modules文件夹下会有.bin目录。在该目录下就会有Sass的命令文件，我们在命令行中就可以执行<code>.\node_modules\.bin\sass</code>通过路径找到该命令并可以查看该命令的一些用法。接着我们就可以执行<code>.\node_modules\.bin\sass &lt;输入的scss文件所在路径&gt; &lt;输出的css文件所在路径&gt;</code>，执行完成后sass模块就可以自动帮我们把scss文件转换为css文件了，并且还会帮我们添加Source map文件，让我们在调试阶段可以定位到源代码所在的位置。但这样也是比较麻烦的，我们每次都需要重复地输入复杂的命令，而且在别人接收我们的项目之后也不知道要如何运行构建的任务。所以说我们还要做一些额外的事情去解决这些在项目开发阶段重复执行的命令。</p>
