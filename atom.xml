@@ -6,7 +6,7 @@
   <link href="https://dipcheese.com/atom.xml" rel="self"/>
   
   <link href="https://dipcheese.com/"/>
-  <updated>2022-04-10T12:50:06.004Z</updated>
+  <updated>2022-06-12T07:54:58.898Z</updated>
   <id>https://dipcheese.com/</id>
   
   <author>
@@ -15,6 +15,81 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端工程化之自动化构建</title>
+    <link href="https://dipcheese.com/2022/06/12/feautomaticallybuilding2/"/>
+    <id>https://dipcheese.com/2022/06/12/feautomaticallybuilding2/</id>
+    <published>2022-06-12T07:54:55.000Z</published>
+    <updated>2022-06-12T07:54:58.898Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前端工程化之自动化构建–Gulp案例与封装、FIS使用&quot;&gt;&lt;a href=&quot;#前端工程化之自动化构建–Gulp案例与封装、FIS使用&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端工程化之自动化构建</title>
+    <link href="https://dipcheese.com/2022/05/18/feautomaticallybuilding/"/>
+    <id>https://dipcheese.com/2022/05/18/feautomaticallybuilding/</id>
+    <published>2022-05-18T12:21:01.000Z</published>
+    <updated>2022-06-12T07:53:20.846Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前端工程化之自动化构建&quot;&gt;&lt;a href=&quot;#前端工程化之自动化构建&quot; class=&quot;headerlink&quot; title=&quot;前端工程化之自动化构建&quot;&gt;&lt;/a&gt;前端工程化之自动化构建&lt;/h1&gt;&lt;h4 id=&quot;1、自动化构建简介&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端工程化</title>
+    <link href="https://dipcheese.com/2022/04/24/frontendengineering/"/>
+    <id>https://dipcheese.com/2022/04/24/frontendengineering/</id>
+    <published>2022-04-24T11:55:24.000Z</published>
+    <updated>2022-06-12T07:54:10.459Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前端工程化&quot;&gt;&lt;a href=&quot;#前端工程化&quot; class=&quot;headerlink&quot; title=&quot;前端工程化&quot;&gt;&lt;/a&gt;前端工程化&lt;/h1&gt;&lt;h2 id=&quot;Part-1-工程化概述&quot;&gt;&lt;a href=&quot;#Part-1-工程化概述&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
+    
+  </entry>
   
   <entry>
     <title>Win上使用yarn link的那些坑</title>
@@ -376,7 +451,7 @@
     <link href="https://dipcheese.com/2022/01/15/fp/"/>
     <id>https://dipcheese.com/2022/01/15/fp/</id>
     <published>2022-01-15T12:47:25.000Z</published>
-    <updated>2022-05-15T13:10:19.399Z</updated>
+    <updated>2022-05-15T13:20:48.326Z</updated>
     
     
       
@@ -434,81 +509,6 @@
         
         
     <summary type="html">&lt;h4 id=&quot;Promise类核心逻辑实现&quot;&gt;&lt;a href=&quot;#Promise类核心逻辑实现&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>函数同步与异步模式</title>
-    <link href="https://dipcheese.com/2022/01/09/220109/"/>
-    <id>https://dipcheese.com/2022/01/09/220109/</id>
-    <published>2022-01-09T13:03:56.000Z</published>
-    <updated>2022-01-22T01:45:08.106Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;函数同步模式&quot;&gt;&lt;a href=&quot;#函数同步模式&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>函数式编程-函数组合</title>
-    <link href="https://dipcheese.com/2022/01/08/220108/"/>
-    <id>https://dipcheese.com/2022/01/08/220108/</id>
-    <published>2022-01-08T11:47:28.000Z</published>
-    <updated>2022-01-20T11:39:36.294Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;函数组合&quot;&gt;&lt;a href=&quot;#函数组合&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://dipcheese.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="study" scheme="https://dipcheese.com/tags/study/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git的简单使用,纯函数</title>
-    <link href="https://dipcheese.com/2022/01/07/220107/"/>
-    <id>https://dipcheese.com/2022/01/07/220107/</id>
-    <published>2022-01-07T02:56:43.000Z</published>
-    <updated>2022-01-22T02:37:54.693Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;markdown文件编辑器Typora的图像相关配置（图片保存到指定文件）：&quot;&gt;&lt;a href=&quot;#markdown文件编辑器Typora的图像相关配置（图片保存到指定文件）：&quot; class=&quot;headerlink&quot;</summary>
         
       
     
