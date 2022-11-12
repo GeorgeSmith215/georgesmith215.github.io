@@ -695,7 +695,7 @@ export default {
 
 
 <h3 id="4、嵌套路由"><a href="#4、嵌套路由" class="headerlink" title="4、嵌套路由"></a>4、嵌套路由</h3><p>当多个路由组件都有相同内容时，我们可以把这些相同的内容提取到一个公共的组件中。</p>
-<p><img src="/vue-router-implement/image-20220814181636513.png" alt="嵌套路由"></p>
+<p><img src="/2022/08/26/vue-router-implement/image-20220814181636513.png" alt="嵌套路由"></p>
 <p>在上图中，首页和详情页都有相同的头和尾，所以我们可以提取一个新组件layout，然后把头和尾放到layout中。而对于变化的位置，我们放一个router-view去占位，将来若我们去访问首页的地址的时候，他会把我们layout组件和首页的组件合并输出。</p>
 <p>首页代码：<code>views/Index.vue</code></p>
 <pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
@@ -1178,7 +1178,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>从上面的分析我们可以抽象出VueRouter的类图：</p>
-<p><img src="/vue-router-implement/image-20220828171241327.png" alt="VueRouter的类图"></p>
+<p><img src="/2022/08/26/vue-router-implement/image-20220828171241327.png" alt="VueRouter的类图"></p>
 <p>类图是用来描述这个类中所有成员的，有了类图，我们剩下的工作就比较简单了，就是实现这个类中的属性和方法。</p>
 <p>这个类图中有三部分，最上面是类的名字，中间部分是类的属性，最后是类中的方法。</p>
 <ul>
