@@ -1,0 +1,2422 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="30分钟带你从Vue-Router的基本应用到模拟实现, 智升的博客">
+    <meta name="description" content="高山仰止，景行行止。虽不能至，然心向往之。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="baidu-site-verification" content="code-5sdZg2tqoq" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=283945685"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '283945685');
+</script>
+
+
+    <title>30分钟带你从Vue-Router的基本应用到模拟实现 | 智升的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="智升的博客" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">智升的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">智升的博客</div>
+        <div class="logo-desc">
+            
+            高山仰止，景行行止。虽不能至，然心向往之。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/georgesmith215" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/georgesmith215" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">30分钟带你从Vue-Router的基本应用到模拟实现</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-08-26
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-11-12
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    9.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    38 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Vue-Router原理实现"><a href="#Vue-Router原理实现" class="headerlink" title="Vue-Router原理实现"></a>Vue-Router原理实现</h1><h3 id="1、内容提要"><a href="#1、内容提要" class="headerlink" title="1、内容提要"></a>1、内容提要</h3><ul>
+<li>Vue Router基础回顾（通过Vue Router的基本使用方式来分析他的实现）</li>
+<li>Hash 模式和 History 模式（History模式要结合服务器一起使用）</li>
+<li>模拟实现自己的 Vue Router</li>
+</ul>
+<h3 id="2、Vue-Router-基础回顾"><a href="#2、Vue-Router-基础回顾" class="headerlink" title="2、Vue Router 基础回顾"></a>2、Vue Router 基础回顾</h3><p><code>router/index.js</code></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+<span class="token keyword">import</span> Index <span class="token keyword">from</span> <span class="token string">'../views/Index.vue'</span>
+<span class="token comment">// 1. 注册路由插件</span>
+<span class="token comment">// Vue.use 用来注册插件，他里面需要接收一个参数，</span>
+<span class="token comment">// 如果这个参数是函数的话，Vue.use内部会直接调用这个函数来注册组件，</span>
+<span class="token comment">// 如果传入对象的话，Vue.use会调用传入对象的install方法来注册插件</span>
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>
+
+<span class="token comment">// 路由规则</span>
+<span class="token keyword">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Index'</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Index
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/blog'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Blog'</span><span class="token punctuation">,</span>
+    <span class="token comment">// route level code-splitting</span>
+    <span class="token comment">// this generates a separate chunk (about.[hash].js) for this route</span>
+    <span class="token comment">// which is lazy-loaded when the route is visited.</span>
+    <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment">/* webpackChunkName: "blog" */</span> <span class="token string">'../views/Blog.vue'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/photo'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Photo'</span><span class="token punctuation">,</span>
+    <span class="token comment">// route level code-splitting</span>
+    <span class="token comment">// this generates a separate chunk (about.[hash].js) for this route</span>
+    <span class="token comment">// which is lazy-loaded when the route is visited.</span>
+    <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment">/* webpackChunkName: "photo" */</span> <span class="token string">'../views/Photo.vue'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+<span class="token comment">// 2. 创建 router 对象</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> router<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><code>main.js</code></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App.vue'</span>
+<span class="token keyword">import</span> router <span class="token keyword">from</span> <span class="token string">'./router'</span>
+
+Vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>productionTip <span class="token operator">=</span> <span class="token boolean">false</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// 3. 注册 router 对象，在创建vue实例的时候，如果配置了router选项，</span>
+  <span class="token comment">// 他会给vue实例注入两个属性，一个是$route，路由规则以及$router路由对象，</span>
+  <span class="token comment">// 我们通过路由对象可以调用一些相应的方法，比如push，back，go，等</span>
+  router<span class="token punctuation">,</span>
+  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token parameter">h</span> <span class="token operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><code>App.vue</code></p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div id="app"&gt;
+    &lt;div&gt;
+      &lt;img src="@/assets/logo.png" alt=""&gt;
+    &lt;/div&gt;
+    &lt;div id="nav"&gt;
+      &lt;!-- 5. 创建链接 --&gt;
+      &lt;router-link to="/"&gt;Index&lt;/router-link&gt; |
+      &lt;router-link to="/blog"&gt;Blog&lt;/router-link&gt; |
+      &lt;router-link to="/photo"&gt;Photo&lt;/router-link&gt;
+    &lt;/div&gt;
+    &lt;!-- 4. 创建路由组件的占位，当路径匹配到一个组件后，
+	会把这个组件加载进来，并最终会替换掉 router-view 所处位置 --&gt;
+    &lt;router-view/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style&gt;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+&lt;/style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>总结：</p>
+<ul>
+<li>首先要去创建一些和路由相关的组件，也就是我们的视图。</li>
+<li>注册路由插件，调用Vue.use去注册vue-router。</li>
+<li>创建一个router对象，在创建路由对象的时候，我们要去配置一些路由规则。</li>
+<li>注册router对象，也就是我们在创建vue实例的时候要在选项里配置我们创建好的router对象。</li>
+<li>通过router-view来设置占位，当我们路径匹配成功之后，会把匹配到的组件替换掉router-view的位置。</li>
+<li> 最后，我们通过router-link来创建一些链接。</li>
+</ul>
+<h3 id="3、动态路由"><a href="#3、动态路由" class="headerlink" title="3、动态路由"></a>3、动态路由</h3><p>动态路由传参的两种方式：</p>
+<p><code>router/index.js</code></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+<span class="token keyword">import</span> Index <span class="token keyword">from</span> <span class="token string">'../views/Index.vue'</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Index'</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Index
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">// 路径中携带参数，:id相当于占位符，将来真正在使用时会传入对应id</span>
+    path<span class="token operator">:</span> <span class="token string">'/detail/:id'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Detail'</span><span class="token punctuation">,</span>
+    <span class="token comment">// 开启 props，会把 URL 中的参数传递给组件</span>
+    <span class="token comment">// 在组件中通过 props 来接收 URL 参数</span>
+    props<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token comment">// route level code-splitting</span>
+    <span class="token comment">// this generates a separate chunk (about.[hash].js) for this route</span>
+    <span class="token comment">// which is lazy-loaded when the route is visited.</span>
+    <span class="token comment">// 路由懒加载，当用户访问时才会去加载对应组件</span>
+    <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment">/* webpackChunkName: "detail" */</span> <span class="token string">'../views/Detail.vue'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> router
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>views/Detail.vue</code></p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 动态路由传参方式1：通过当前路由规则，获取数据，但这种方式不太好，
+	会让当前组件强依赖与路由，即在使用该组件时必须有路由传递相应参数。 --&gt;
+    通过当前路由规则获取：{{ $route.params.id }}
+
+    &lt;br&gt;
+    &lt;!-- 动态路由传参方式2：路由规则中开启 props 传参，与父子组件传值的方式一样，
+	不依赖与路由规则，所以该组件可以使用在任何地方，只需要传递一个id参数即可。推荐使用 --&gt;
+    通过开启 props 获取：{{ id }}
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'Detail',
+  props: ['id']
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+
+&lt;/style&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="4、嵌套路由"><a href="#4、嵌套路由" class="headerlink" title="4、嵌套路由"></a>4、嵌套路由</h3><p>当多个路由组件都有相同内容时，我们可以把这些相同的内容提取到一个公共的组件中。</p>
+<p><img src="/vue-router-implement/image-20220814181636513.png" alt="嵌套路由"></p>
+<p>在上图中，首页和详情页都有相同的头和尾，所以我们可以提取一个新组件layout，然后把头和尾放到layout中。而对于变化的位置，我们放一个router-view去占位，将来若我们去访问首页的地址的时候，他会把我们layout组件和首页的组件合并输出。</p>
+<p>首页代码：<code>views/Index.vue</code></p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    这里是首页 &lt;br&gt;
+    &lt;router-link to="login"&gt;登录&lt;/router-link&gt; |
+
+    &lt;router-link to="detail/5"&gt;详情&lt;/router-link&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'Index'
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+&lt;/style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>详情页代码：<code>views/Detail.vue</code></p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 方式1： 通过当前路由规则，获取数据 --&gt;
+    通过当前路由规则获取：{{ $route.params.id }}
+
+    &lt;br&gt;
+    &lt;!-- 方式2：路由规则中开启 props 传参 --&gt;
+    通过开启 props 获取：{{ id }}
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'Detail',
+  props: ['id']
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+&lt;/style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>登录页代码：<code>Login.vue</code></p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    这是登录页面
+    &lt;br&gt;
+    &lt;router-link to="/"&gt;首页&lt;/router-link&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'Login'
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+&lt;/style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Layout代码：<code>components/Layout.vue</code></p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;div&gt;
+      &lt;img width="25%" src="@/assets/logo.png"&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;router-view&gt;&lt;/router-view&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      Footer
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'layout'
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+&lt;/style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面的首页和详情页与之前的代码是一样的，但现在还有一个要求就是首页和详情页都需要有相同的头和尾。所以我们把相同的头和尾提取到了components/Layout.vue中，在Layout.vue中用一张图片作为头，用内容为Footer的div标签来作为尾。除了这些相同的部分之外，我们的首页和详情页也有自己独特的内容，这些都用router-view去占位，将来运行的时候，首先会去加载Layout组件然后再去加载首页或详情页，把我们首页或详情页对应的组件替换掉router-view的位置。而Login.vue组件是不需要有相同的头和尾，所以不需要使用嵌套路由。</p>
+<p>接下来再看看路由是如何配置的：</p>
+<p><code>router/index.js</code></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+<span class="token comment">// 加载组件</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">'@/components/Layout.vue'</span>
+<span class="token keyword">import</span> Index <span class="token keyword">from</span> <span class="token string">'@/views/Index.vue'</span>
+<span class="token keyword">import</span> Login <span class="token keyword">from</span> <span class="token string">'@/views/Login.vue'</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'login'</span><span class="token punctuation">,</span>
+    path<span class="token operator">:</span> <span class="token string">'/login'</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Login
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 嵌套路由</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Layout<span class="token punctuation">,</span>
+    <span class="token comment">// 嵌套路由在使用的时候，会把我们外部路径和我们children里配置的路由规则中的路径进行合并，</span>
+    <span class="token comment">// 然后再分别去加载我们的Layout组件，然后再加载我们对应的组件。</span>
+    children<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token string">'index'</span><span class="token punctuation">,</span>
+        <span class="token comment">// children里面的path在配置的时候可以是相对路径也可以是绝对路径，像这里的空字符串就是相对路径</span>
+        <span class="token comment">// 这里用绝对路径可以是'/'</span>
+        path<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> Index
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token string">'detail'</span><span class="token punctuation">,</span>
+        <span class="token comment">// 这里用绝对路径可以是'/detail/:id'</span>
+        path<span class="token operator">:</span> <span class="token string">'detail/:id'</span><span class="token punctuation">,</span>
+        props<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/Detail.vue'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> router
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在router/index.js中，代码和之前都基本一样，我们主要来看一下路由规则是如何配置的。</p>
+<p>在路由规则里我们首先配置的是登录页面，当访问登录页面的时候，直接去加载我们对应的Login.vue组件。</p>
+<p>接下来是加载首页和详情页，因为我们的首页和详情页都有相同的头和尾，而我们的头和尾都提取到了Layout.vue组件中来，即我们使用了嵌套路由。</p>
+<p>而嵌套路由在使用的时候，会把我们外部路径和我们children里配置的路由规则中的路径进行合并，然后再分别去加载我们的Layout组件，然后再加载我们对应的组件，把他们合并到一起。当我们外层的path是根路径的话，children里面首页的path可以写成空字符串，另外，children里面的path在配置的时候可以是相对路径也可以是绝对路径，像首页里的空字符串就是相对路径。使用相对路径时，当我们访问根的时候，会先加载layout，再去加载index，然后合并到一起，渲染出来。接下来再看详情页的配置，我们外面的path是斜杆，detail里配置的是相对路径，我们详情页的路径其实就是外部path拼接里面的path。</p>
+<h3 id="5、编程式导航"><a href="#5、编程式导航" class="headerlink" title="5、编程式导航"></a>5、编程式导航</h3><p>我们在页面跳转的时候，使用的是router-link超链接，但我们做登录页面的时候，需要点击按钮跳转到首页，这时候就需要使用编程式导航，调用$router.push方法。下面我们一起回顾一下编程式导航常用的一些方法。</p>
+<p><code>views/Login.vue</code></p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    用户名：&lt;input type="text" /&gt;&lt;br /&gt;
+    密&amp;nbsp;&amp;nbsp;码：&lt;input type="password" /&gt;&lt;br /&gt;
+
+    &lt;button @click="push"&gt; push &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'Login',
+  methods: {
+    push () {
+      // 调用$router.push的时候，参数可以接收两种方式，
+      // 第一种方式是字符串，即我们需要跳转的路由地址
+      this.$router.push('/')
+      // 第二种方式是传对象，需要设置路由的name，
+      // name是由router/index.js中的name定义的，称为命名式导航
+      // this.$router.push({ name: 'Home' })
+    }
+  }
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+
+&lt;/style&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>router/index.js</code></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+<span class="token keyword">import</span> Index <span class="token keyword">from</span> <span class="token string">'../views/Index.vue'</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">// 在router/index.js的路由选项中，除了设置path以外，还起了一个name，称为命名式导航</span>
+    path<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Index'</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Index
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/login'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Login'</span><span class="token punctuation">,</span>
+    <span class="token comment">// route level code-splitting</span>
+    <span class="token comment">// this generates a separate chunk (about.[hash].js) for this route</span>
+    <span class="token comment">// which is lazy-loaded when the route is visited.</span>
+    <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment">/* webpackChunkName: "about" */</span> <span class="token string">'../views/Login.vue'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/detail/:id'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Detail'</span><span class="token punctuation">,</span>
+    props<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment">/* webpackChunkName: "detail" */</span> <span class="token string">'../views/Detail.vue'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> router
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>views/Index.vue</code></p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div class="home"&gt;
+    &lt;div id="nav"&gt;
+      &lt;router-link to="/"&gt;Index&lt;/router-link&gt;
+    &lt;/div&gt;
+    &lt;button @click="replace"&gt; replace &lt;/button&gt;
+
+    &lt;button @click="goDetail"&gt; Detail &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'Index',
+  methods: {
+    replace () {
+      // replace方法和push方法有些类似，都可以跳转到我们指定的路径，参数形式也是一样的
+      // 不过replace方法不会记录本次历史，而会把我们当前的历史改变成/login
+      this.$router.replace('/login')
+    },
+    goDetail () {
+      // 在push中通过params来指定路由参数
+      this.$router.push({ name: 'Detail', params: { id: 1 } })
+    }
+  }
+}
+&lt;/script&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>views/Detail.vue</code></p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    路由参数：{{ id }}
+
+    &lt;button @click="go"&gt; go(-2) &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'Detail',
+  props: ['id'],
+  methods: {
+    go () {
+      // go是跳转到历史中的某一次，可以是负数，即后退，如果是-1的话，和$router.back的效果是一样的
+      this.$router.go(-2)
+    }
+  }
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+
+&lt;/style&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="6、Hash-模式和-History-模式的区别"><a href="#6、Hash-模式和-History-模式的区别" class="headerlink" title="6、Hash 模式和 History 模式的区别"></a>6、Hash 模式和 History 模式的区别</h3><p>首先，我们要强调不管是Hash模式还是History模式，都是客户端路由的实现方式，也即当路由发生变化时，不会向服务器发送请求，而是用JS接收路径的变化，然后根据不同的地址，渲染不同的内容。如果需要服务器端内容的话，会发送AJAX请求来获取。</p>
+<p><strong>表现形式的区别</strong></p>
+<ul>
+<li>Hash模式：<a target="_blank" rel="noopener" href="https://music.163.com/#/playlist?id=3102961863">https://music.163.com/#/playlist?id=3102961863</a></li>
+<li>History模式：<a target="_blank" rel="noopener" href="https://music.163.com/playlist/3102961863">https://music.163.com/playlist/3102961863</a></li>
+</ul>
+<p>注意用History模式还需服务端配置。</p>
+<p><strong>原理的区别</strong></p>
+<ul>
+<li>Hash模式是基于锚点，以及onhashchange事件，通过锚点的值作为路由地址，当地址变化后触发onhashchange事件，然后根据路径决定页面呈现的内容。</li>
+<li>History模式是基于HTML5的History API<ul>
+<li>history.pushState()    IE 10以后才支持（与history.push的区别是push会改变路径并向服务器发送请求，而pushState只改变路径并记录到历史记录中，并不会发送请求「所有事情都在客户端完成」）</li>
+<li>history.replaceState</li>
+</ul>
+</li>
+</ul>
+<p><strong>开启History模式</strong></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token comment">// mode: 'hash',</span>
+    mode<span class="token operator">:</span> <span class="token string">'history'</span><span class="token punctuation">,</span>
+    routes
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="7、History模式"><a href="#7、History模式" class="headerlink" title="7、History模式"></a>7、History模式</h3><ul>
+<li>History模式需要服务器的支持</li>
+<li>在单页应用中，服务端不存在 <a target="_blank" rel="noopener" href="http://www.testurl.com/login">http://www.testurl.com/login</a> 这样的地址，会返回找不到该页面。</li>
+<li>在服务器端应该除了静态资源外都返回单页应用的 index.html</li>
+</ul>
+<p>先来看以下代码：</p>
+<p>views/404.vue，当用户访问不存在的路由地址的时候，就会输出该组件的内容。</p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    您要查看的页面不存在
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+
+&lt;/style&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>App.vue，在App.vue中放了三个链接，前两个路由地址是存在的，当访问/video地址时，因没有配置该路由地址，所以会输出views/404.vue组件中的内容。</p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div id="app"&gt;
+    &lt;div id="nav"&gt;
+      &lt;router-link to="/"&gt;Home&lt;/router-link&gt; |
+      &lt;router-link to="/about"&gt;About&lt;/router-link&gt; |
+      &lt;router-link to="/video"&gt;Video&lt;/router-link&gt;
+    &lt;/div&gt;
+    &lt;router-view/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style&gt;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+&lt;/style&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>router/index.js，路由的配置和之前大致是一样的，首先配置了首页的路由，然后又配置了/about页面的路由，但没有/video的路由地址，如果我们请求的路径不匹配这两个路由地址的话，那此时就会输出404页面。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+<span class="token keyword">import</span> Home <span class="token keyword">from</span> <span class="token string">'../views/Home.vue'</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Home'</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Home
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/about'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'About'</span><span class="token punctuation">,</span>
+    <span class="token comment">// route level code-splitting</span>
+    <span class="token comment">// this generates a separate chunk (about.[hash].js) for this route</span>
+    <span class="token comment">// which is lazy-loaded when the route is visited.</span>
+    <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment">/* webpackChunkName: "about" */</span> <span class="token string">'../views/About.vue'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'*'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'404'</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment">/* webpackChunkName: "404" */</span> <span class="token string">'../views/404.vue'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// 当创建VueRouter的时候，配置了mode选项，把他的值设置为history。</span>
+  <span class="token comment">// 因为默认情况下，他是hash模式，我们想要演示history模式就需要将mode改为'history'</span>
+  mode<span class="token operator">:</span> <span class="token string">'history'</span><span class="token punctuation">,</span>
+  routes
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> router<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意Vue-cli自带的web服务器已经配置好了对history模式的支持，所以我们使用vue-cli自带的web服务器时不会出现因服务器没配置history模式兼容而导致找不到文件的问题。所以我们还需要对项目进行打包到Node服务器或Nginx服务器上来。</p>
+<h3 id="8、History-模式-Node-js"><a href="#8、History-模式-Node-js" class="headerlink" title="8、History 模式 - Node.js"></a>8、History 模式 - Node.js</h3><p><code>node代码</code></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+<span class="token comment">// 导入处理 history 模式的模块</span>
+<span class="token keyword">const</span> history <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'connect-history-api-fallback'</span><span class="token punctuation">)</span>
+<span class="token comment">// 导入 express</span>
+<span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// 注册处理 history 模式的中间件</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">history</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// 处理静态资源的中间件，网站根目录 ../web</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">static</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'../web'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 开启服务器，端口是 3000</span>
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'服务器开启，端口：3000'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>将网站源代码打包后放在node代码文件所在文件夹上一层的web文件夹下，然后运行node文件。</p>
+<p>在上面的代码中<code>app.use(history())</code>这行代码就是注册处理 history 模式的中间件，让服务端开启history模式。当我们去掉这一行并重新开启node服务器时，每次刷新页面，都会向服务端发起对应的请求，若服务端中没有相应的页面则会出错。而当我们开启服务端history模式支持的时候，我们每次刷新浏览器向服务器发送请求时，因我们开启了history模式的支持，服务器便会判断当前请求的页面服务器上有没有，如果没有，则会将我们单页应用默认的首页index.html返回给浏览器。浏览器接收到页面后会再去判断路由地址，加载对应组件内容并渲染到页面中。</p>
+<h3 id="9、History-模式-nginx"><a href="#9、History-模式-nginx" class="headerlink" title="9、History 模式 - nginx"></a>9、History 模式 - nginx</h3><p><strong>Nginx服务器配置history模式步骤：</strong></p>
+<ul>
+<li><p>从官网下载 <a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">Nginx</a> 的压缩包</p>
+</li>
+<li><p>把压缩包解压到 c 盘根目录，c:\nginx-1.23.1 文件夹</p>
+</li>
+<li><p>修改nginx文件夹下的 conf\nginx.conf 文件：</p>
+</li>
+</ul>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">location / {
+	#指定当前网站所在根目录
+    root html;
+    #指定当前网站默认的首页
+    index index.html index.htm;
+    #新添加内容
+    #尝试读取$uri(当前请求的路径)，如果读取不到读取$uri/这个文件夹下的首页
+    #如果都获取不到返回根目录中的 index.html
+    try_files $uri $uri/ /index.html;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>将打包好的前端项目拷贝到nginx文件夹下的html文件夹中（直接替换index.html）</li>
+<li>打开命令行，切换到 c:\nginx-1.23.1 文件夹。输入<code>start nginx</code>启动Nginx。注意Nginx会在后台启动，不会阻塞命令行运行。</li>
+<li>补充命令：<code>nginx -s reload</code>：重启Nginx（当修改了配置文件，则需要重启Nginx。）。<code>nginx -s stop</code>：停止Nginx</li>
+</ul>
+<h3 id="10、VueRouter-实现原理"><a href="#10、VueRouter-实现原理" class="headerlink" title="10、VueRouter 实现原理"></a>10、VueRouter 实现原理</h3><p>复习完 Vue-Router 的基本使用后，接下来我们自己模拟一个 Vue Router，通过模拟 Vue Router 了解它的实现原理。（模拟中使用history模式）</p>
+<p><strong>Vue 前置知识：</strong></p>
+<ul>
+<li>插件</li>
+<li>混入</li>
+<li>Vue.observable()</li>
+<li>插槽</li>
+<li>render 函数</li>
+<li>运行时和完整版的 Vue</li>
+</ul>
+<p><strong>回顾Vue-router的实现原理：</strong>Vue-router是前端路由，当路径切换的时候，在浏览器端判断当前路径，并加载当前路径对应的组件。</p>
+<p><strong>回顾 Hash 模式：</strong></p>
+<ul>
+<li>把URL中 # 后面的内容作为路径地址，可以直接通过location.url来切换浏览器中的地址，如果只改变了#后的内容，浏览器不会向服务器请求这个地址，但会记录到浏览器的访问历史中。</li>
+<li>监听 hashchange 事件，当hash发生改变后，会触发hashchange事件，在hashchange事件中，我们记录当前路由地址，并找到该路径对应的组件重新渲染。</li>
+</ul>
+<p><strong>回顾 History 模式：</strong></p>
+<ul>
+<li>History模式的路径就是一个普通的URL，我们通过history.pushState()方法改变地址栏，并把当前地址记录到浏览器的访问历史中，不会真正跳转到指定路径（浏览器不会向服务器发送请求）。</li>
+<li>通过监听 popstate 事件，可以监听到浏览器历史操作的变化，在popstate的事件处理函数中可以记录改变后的地址。需要注意的是，当调用pushState或replaceState的时候，并不会触发popstate事件。当点击浏览器的前进，后退按钮或调用history的back或forward方法的时候该事件才会被触发。</li>
+<li>当地址改变后，要根据当前的地址，找到对应的组件进行重新渲染。</li>
+</ul>
+<h3 id="11、VueRouter-模拟实现-分析"><a href="#11、VueRouter-模拟实现-分析" class="headerlink" title="11、VueRouter 模拟实现-分析"></a>11、VueRouter 模拟实现-分析</h3><p>首先，我们来分析一下如何实现一个自己的VueRouter。我们先来回顾一下VueRouter是如何使用的，通过VueRouter的使用我们可以快速分析出如何去实现。</p>
+<p>下面是VueRouter在使用时的核心代码：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// router/index.js</span>
+<span class="token comment">// 调用Vue.use()去注册插件，Vue功能的强大主要就在于他的插件机制，VueRouter、VueX等组件都是通过插件去实现的</span>
+<span class="token comment">// Vue.use方法可以传入函数或对象，如果传入函数的话，Vue.use内部会直接调用这个函数,</span>
+<span class="token comment">// 如果传入对象的话，Vue.use内部会调用传入对象的 install 方法，</span>
+<span class="token comment">// 在这里传入的是一个对象，所以后续我们要去实现一个install方法。</span>
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>
+<span class="token comment">// 创建路由对象，可以看出VueRouter是一个构造函数或一个类，我们可以用类去实现，</span>
+<span class="token comment">// 并且这个类也应该有一个静态的install方法，因为上面我们直接把VueRouter传给了Vue.use，类也是对象</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token comment">// 创建路由对象</span>
+    <span class="token comment">// VueRouter的构造函数需要接收一个参数，里面是对象的形式，有路由规则，用来记录路由名称，地址和组件等信息</span>
+    routes<span class="token operator">:</span> <span class="token punctuation">[</span>
+    	<span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'home'</span><span class="token punctuation">,</span> path<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span> component<span class="token operator">:</span> homeComponent <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// main.js</span>
+<span class="token comment">// 创建 Vue 实例，注册 router 对象</span>
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    router<span class="token punctuation">,</span>
+    <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token parameter">h</span> <span class="token operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从上面的分析我们可以抽象出VueRouter的类图：</p>
+<p><img src="/vue-router-implement/image-20220828171241327.png" alt="VueRouter的类图"></p>
+<p>类图是用来描述这个类中所有成员的，有了类图，我们剩下的工作就比较简单了，就是实现这个类中的属性和方法。</p>
+<p>这个类图中有三部分，最上面是类的名字，中间部分是类的属性，最后是类中的方法。</p>
+<ul>
+<li><p>其中options属性的作用是记录构造函数中传入的对象。</p>
+</li>
+<li><p>routeMap是一个对象，用来记录我们路由地址和组件的对应关系，将来我们会把路由规则解析到routeMap中来。</p>
+</li>
+<li><p>data是一个对象，里面有一个属性current用来记录当前路由地址，此处设置data对象的目的是，我们需要一个响应式的对象，即data要是一个响应式的对象，因为路由地址发生变化后，对应的组件需要自动更新。我们可以调用Vue.observable方法把data对象设置成响应式对象。</p>
+</li>
+<li><p>再往下是我们VueRouter中的方法，“+”代表这是对外公开的方法，“_”代表这是静态的方法。可以看到install就是一个静态的方法，它用来实现Vue的插件机制，我们会首先来实现这个方法。</p>
+</li>
+<li><p>之后是构造函数Constructor，构造函数中帮我们初始化刚刚我们说过的属性，然后是几个初始化的方法。</p>
+</li>
+<li><p>init方法是用来调用下面的三个方法，这里是把不同的代码分割到不同的方法中去实现。</p>
+</li>
+<li><p>initEvent方法是用来注册popState事件，用来监听浏览器历史的变化。</p>
+</li>
+<li><p>CreateRouteMap方法是用来初始化routeMap属性的，它把构造函数中传入的路由规则转换成键值对的形式存储到routeMap中来。routeMap对象的键是路由的地址，值就是对应的组件，我们在router-view组件中会使用到routeMap。</p>
+</li>
+<li><p>最后是initComponents方法，他用来创建router-link和route-view这两个组件。</p>
+</li>
+</ul>
+<h3 id="12、VueRouter-install"><a href="#12、VueRouter-install" class="headerlink" title="12、VueRouter-install"></a>12、VueRouter-install</h3><p>下面就让我们开始自己来实现一个简单的VueRouter吧！（注意我们实现的VueRouter只需要接收routes路由地址。）</p>
+<p>首先我们创建VueRouter中的静态方法install，当使用Vue.use注册插件的时候会调用install。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 先声明一个全局变量_Vue，将来保存Vue构造函数</span>
+<span class="token keyword">let</span> _Vue <span class="token operator">=</span> <span class="token keyword">null</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">VueRouter</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Vue.use中调用install方法的时候会传递两个参数，一个是Vue的构造函数，第二个是可选的选项对象</span>
+    <span class="token keyword">static</span> <span class="token function">install</span> <span class="token punctuation">(</span><span class="token parameter">Vue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 1、如果插件已经安装直接返回</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>VueRouter<span class="token punctuation">.</span>install<span class="token punctuation">.</span>installed <span class="token operator">&amp;&amp;</span> _Vue <span class="token operator">===</span> Vue<span class="token punctuation">)</span> <span class="token keyword">return</span>
+    VueRouter<span class="token punctuation">.</span>install<span class="token punctuation">.</span>installed <span class="token operator">=</span> <span class="token boolean">true</span>
+    <span class="token comment">// 2、把Vue构造函数记录到全局变量中来，因为将来我们在VueRouter实例方法中还要使用该构造函数，</span>
+    <span class="token comment">// 如我们在创建router-view，router-link这两个组件的时候就要调用Vue.component去创建</span>
+    _Vue <span class="token operator">=</span> Vue
+    <span class="token comment">// 全局注册混入对象，并设置一个beforeCreate。</span>
+    <span class="token comment">// 在beforeCreate这个钩子函数中就可以获取到Vue实例，并给其原型上注入$router属性</span>
+    _Vue<span class="token punctuation">.</span><span class="token function">mixin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token function">beforeCreate</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 注意当前混入的对象在所有Vue实例中都会有，即组件中也会存在beforeCreate，</span>
+            <span class="token comment">// 将来执行时beforeCreate就会执行很多次，而我们给Vue原型上挂载$router只希望执行一次</span>
+            <span class="token comment">// 所以我们还需要判断如果是组件的话就不执行，如果是Vue实例才执行。</span>
+            <span class="token comment">// 只需要判断当前实例的$options是否有router即可，因为只有Vue的$options选项中才有router属性，组件中是没有的。</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$options<span class="token punctuation">.</span>router<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 3、把 router 对象注入到所有 Vue 实例上（并且所有组件也都是Vue实例）</span>
+                <span class="token class-name">_Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$router <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$options<span class="token punctuation">.</span>router
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="13、VueRouter-构造函数"><a href="#13、VueRouter-构造函数" class="headerlink" title="13、VueRouter-构造函数"></a>13、VueRouter-构造函数</h3><p>在完成install后，我们再来实现VueRouter构造函数。通过之前的类图分析我们可以知道构造函数需要接收一个参数，options选项，并返回VueRouter对象。在构造函数中我们需要初始化3个属性：options、data以及routeMap，其中data是一个响应式的对象，因为data中需要存储当前的路由地址，当路由变化的时候要自动加载组件，所以data需要设置成响应式的对象。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 构造函数需要接收一个options参数</span>
+<span class="token function">constructor</span> <span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 初始化options，记录传入的选项</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>options <span class="token operator">=</span> options
+    <span class="token comment">// routeMap对象用来存储options中的routes路由规则，其中键是路由地址，值为路由组件。</span>
+    <span class="token comment">// 将来在router-view组件里会根据当前的路由地址在routeMap里找到对应组件并渲染到浏览器中来</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>routeMap <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token comment">// data应该是一个响应式的对象，其中有一个current属性用来记录当前我们的路由地址。</span>
+    <span class="token comment">// 可以使用Vue中提供的observable方法去创建一个响应式的对象，并可以直接用在渲染函数或计算属性里。</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> _Vue<span class="token punctuation">.</span><span class="token function">observable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token comment">// 当前的默认路径</span>
+        current<span class="token operator">:</span><span class="token string">"/"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="14、VueRouter-createRouteMap"><a href="#14、VueRouter-createRouteMap" class="headerlink" title="14、VueRouter-createRouteMap"></a>14、VueRouter-createRouteMap</h3><p>接下来，让我们再去实现一下createRouteMap方法。实现这个方法之前先回顾一下类图中提到的内容，createRouteMap方法的作用是把我们构造函数中传过来的选项中的routes路由规则转换为键值对的形式存储到routeMap里。routeMap中的键存储的是路由地址，值就是该路由地址对应的组件，将来在路由地址发生变化的时候，我们可以很容易地根据这个地址来routeMap这个对象里找到对应组件并渲染到视图中来。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">createRouteMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//遍历所有的路由规则，并把路由规则解析成键值对的形式存储到routeMap中</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>routes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">route</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>routeMap<span class="token punctuation">[</span>route<span class="token punctuation">.</span>path<span class="token punctuation">]</span> <span class="token operator">=</span> route<span class="token punctuation">.</span>component
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="15、VueRouter-router-link"><a href="#15、VueRouter-router-link" class="headerlink" title="15、VueRouter-router-link"></a>15、VueRouter-router-link</h3><p>本节，我们将会去实现initComponent方法，这个方法中，我们要创建两个组件，分别是router-link和router-view，我们先来实现router-link组件、</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// initComponent方法接收一个参数，Vue的构造函数，通过参数传递而非直接使用之前保存的_Vue是为了减少这个方法和外部的依赖</span>
+<span class="token function">initComponent</span><span class="token punctuation">(</span><span class="token parameter">Vue</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// router-link组件需要接收一个字符串类型的参数to，即超链接的地址。</span>
+    <span class="token comment">// 而最终渲染的内容在router-link标签之间。即将来我们要把router-link这个标签的内容渲染到a标签中去。</span>
+    <span class="token comment">// 使用Vue.component去创建组件，第一个参数是组件的名称，第二个参数是组件的选项</span>
+    Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">"router-link"</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+        props<span class="token operator">:</span><span class="token punctuation">{</span>
+            to<span class="token operator">:</span>String
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        template<span class="token operator">:</span> <span class="token string">'&lt;a :href="to"&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/a&gt;'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在创建完router-link组件后，我们可以测试一下，在测试时我们需要先执行createRouteMap以及initComponents这两个初始化方法。但直接调用这两个方法会有些不方便，所以我们再创建一个init方法，来帮我们把这两个方法包装起来，让外部使用更方便些。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createRouteMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">// 传入Vue构造函数，即全局变量_Vue</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initComponent</span><span class="token punctuation">(</span>_Vue<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>之后我们可以回到install方法中，调用init方法：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">static</span> <span class="token function">install</span><span class="token punctuation">(</span><span class="token parameter">Vue</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">.</span>install<span class="token punctuation">.</span>installed<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    VueRouter<span class="token punctuation">.</span>install<span class="token punctuation">.</span>installed <span class="token operator">=</span> <span class="token boolean">true</span>
+    _Vue <span class="token operator">=</span> Vue
+    _Vue<span class="token punctuation">.</span><span class="token function">mixin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token function">beforeCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$options<span class="token punctuation">.</span>router<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token class-name">_Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$router <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$options<span class="token punctuation">.</span>router
+                <span class="token comment">// 调用init方法</span>
+				<span class="token keyword">this</span><span class="token punctuation">.</span>$options<span class="token punctuation">.</span>router<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>之后在初始化vue项目的<code>./src/router/index.js</code>中导入我们自己的vuerouter</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token comment">// 导入我们自己的vuerouter</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'../vuerouter'</span>
+<span class="token keyword">import</span> Home <span class="token keyword">from</span> <span class="token string">'../views/Home.vue'</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Home'</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Home
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/about'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'About'</span><span class="token punctuation">,</span>
+    <span class="token comment">// route level code-splitting</span>
+    <span class="token comment">// this generates a separate chunk (about.[hash].js) for this route</span>
+    <span class="token comment">// which is lazy-loaded when the route is visited.</span>
+    <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment">/* webpackChunkName: "about" */</span> <span class="token string">'../views/About.vue'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  mode<span class="token operator">:</span> <span class="token string">'history'</span><span class="token punctuation">,</span>
+  routes
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> router
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>之后打开终端，输入<code>npm run serve</code>启动服务器并打开相关地址，之后我们发现会报一个“模板编译器不可用”的错误。这是因为Vue的版本包括运行时版和完整版，运行时版本不支持template模板，需要打包的时候提前编译，把template编译成render函数。完整版包含运行时和编译器，但体积会比运行时版大10K左右，程序运行时会把模板转换成render函数，性能不如运行时版本。vue-cli创建的项目默认使用的是运行时版本的Vue，所以会出现之前的错误。下面我们会尝试使用两种方法去解决这个问题。</p>
+<h3 id="16、VueRouter-完整版的Vue"><a href="#16、VueRouter-完整版的Vue" class="headerlink" title="16、VueRouter-完整版的Vue"></a>16、VueRouter-完整版的Vue</h3><p>本节中通过使用完整版本的Vue去解决之前的问题。解决方法很简单，参考官方网站：<a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/config/#runtimecompiler">配置参考 | Vue CLI (vuejs.org)</a>，即我们需要在项目根目录创建 vue.config.js 文件，并添加 runtimeCompiler属性：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 项目根目录/vue.config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+	runtimeCompiler<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>之后关闭服务器并重新输入<code>npm run serve</code>启动服务器后就能正常显示内容了，并且我们也可以看到router-link组件经过渲染后也都变成了a标签了。</p>
+<h3 id="17、VueRouter-render"><a href="#17、VueRouter-render" class="headerlink" title="17、VueRouter-render"></a>17、VueRouter-render</h3><p>在使用完整版的Vue解决问题之后，让我们再来用另一种方式，解决之前的问题。我们知道运行时版本的Vue不带编译器，也即不支持组件中的template选项，但我们可以直接手写render函数来在运行时版本的Vue中运行。另外注意<strong>我们在使用单文件组件时，可以直接写template模板而正常工作的原因是在打包的过程中，会先经过预编译将单文件组件的template编译成render函数</strong>。</p>
+<p>下面我们来使用render函数去解决之前的问题（记得删除之前的 vue.config.js 并重启服务器）</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">initComponent</span><span class="token punctuation">(</span><span class="token parameter">Vue</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">"router-link"</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+        props<span class="token operator">:</span><span class="token punctuation">{</span>
+            to<span class="token operator">:</span>String
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">// render函数是渲染函数，这个函数有一个参数，一般命名为h，这个h函数的作用是帮我们创建虚拟DOM，</span>
+        <span class="token comment">// render函数中调用这个h函数并把它的结果返回，这个h函数是Vue传给我们的</span>
+        <span class="token function">render</span><span class="token punctuation">(</span><span class="token parameter">h</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">// h函数的使用方法有很多，这里我们只演示其中一种，h函数可以接收三个参数，</span>
+            <span class="token comment">// 第一个参数是我们要创建的元素对应的选择器，可以直接使用标签选择器。</span>
+            <span class="token comment">// 第二个参数可以给标签设置一些属性，设置属性的时候，DOM对象的属性用attrs</span>
+            <span class="token comment">// 第三个参数可以设置生成的元素中的子元素，所以是数组的形式</span>
+            <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+                attrs<span class="token operator">:</span><span class="token punctuation">{</span>
+                    <span class="token comment">// 这里因为我们实现的是history模式，所以不需要拼‘#’号</span>
+                    href<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>to
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token comment">// 这里通过代码方式获取默认slot内容并放进数组中来(这里是a标签中的内容)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>$slots<span class="token punctuation">.</span>default<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>之后我们打开浏览器，可以发现结果和之前是一样的。</p>
+<h3 id="18、VueRouter-router-view"><a href="#18、VueRouter-router-view" class="headerlink" title="18、VueRouter-router-view"></a>18、VueRouter-router-view</h3><p>接下来，我们再创建router-view组件。router-view组件相当于一个占位符，在router-view组件内部我们要根据当前路由地址获取到对应的路由组件并渲染到router-view中的位置中来。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">initComponent</span><span class="token punctuation">(</span><span class="token parameter">Vue</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token comment">// ......router-link......</span>
+
+    <span class="token comment">// 用self去保存this来供后面获取当前路由地址使用</span>
+    <span class="token keyword">const</span> self <span class="token operator">=</span> <span class="token keyword">this</span>
+    <span class="token comment">// 我们还是调用Vue.component去创建组件</span>
+    <span class="token comment">// 在router-view组件中，我们要获取到当前路由地址对应的组件，我们可以直接在render函数中完成</span>
+    Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">"router-view"</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+        <span class="token function">render</span><span class="token punctuation">(</span><span class="token parameter">h</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">// 在render函数内部，我们先要找到当前路由的地址，</span>
+            <span class="token comment">// 再根据当前路由的地址去routeMap对象中找我们路由地址中对应的组件，</span>
+            <span class="token comment">// 之后再调用h函数，帮我们把找到的组件转换成虚拟DOM直接返回。</span>
+            <span class="token comment">// 这里h函数还可以直接把一个组件转成虚拟DOM。</span>
+            <span class="token comment">// 注意这里的this是在render函数中，所以之前需要先用self保存能获取当前路由地址的this</span>
+            <span class="token keyword">const</span> cm <span class="token operator">=</span> self<span class="token punctuation">.</span>routeMap<span class="token punctuation">[</span>self<span class="token punctuation">.</span>data<span class="token punctuation">.</span>current<span class="token punctuation">]</span>
+            <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span>cm<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们打开浏览器测试一下效果，会发现每次点击超链接时浏览器都会直接向服务器发送请求，而在现在的单页应用中我们是不希望浏览器向服务器发请求的，我们想在客户端去处理路径变化的操作。router-view虽然写完了，但想要的效果还没达到，这里明显是缺一件事情，我们可以先分析一下。</p>
+<p>因我们每次点击超链接的时候，浏览器都会向服务器发送请求，而在单页应用中，我们不希望浏览器发送请求，所以我们需要给超链接注册一个点击事件，取消超链接后续内容的执行，不让其跳转，并且同时我们还要将地址栏中的内容改成href中的值。</p>
+<p>我们要改地址栏中的地址，又不让浏览器去请求服务器，这时我们应当能想到一个方法，history的pushstate方法。history的pushstate方法会改变地址栏中的路径，但不会向服务器发送请求，还会把这次路径记录到历史中来，另外pushState仅仅只是帮我们把浏览器中的地址改变了，对于显示的内容还需要我们去处理。即我们还需要把当前地址记录到我们的this.data.current中来，因current属性的作用就是记录当前地址的，且this.data是响应式的数据，也即当其发生变化时，会去自动更新视图。我们通过observable创建的响应式对象，可以用在我们组件的渲染函数，也就是render函数中。</p>
+<p>接下来，根据之前的分析，我们要去处理一下超链接，给它注册一个点击事件，阻止它默认行为的执行。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">initComponent</span><span class="token punctuation">(</span><span class="token parameter">Vue</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">"router-link"</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+        props<span class="token operator">:</span><span class="token punctuation">{</span>
+            to<span class="token operator">:</span>String
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function">render</span><span class="token punctuation">(</span><span class="token parameter">h</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">// 之前我们提到，h函数的第二个参数是给对应的DOM对象注册属性的，</span>
+            <span class="token comment">// 其实，我们也可以给DOM对象来注册事件</span>
+            <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+                attrs<span class="token operator">:</span><span class="token punctuation">{</span>
+                    href<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>to
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token comment">// 用on属性给对应DOM对象注册事件，click表示点击事件，clickhander在methods中定义</span>
+                on<span class="token operator">:</span><span class="token punctuation">{</span>
+                    click<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>clickhander
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>$slots<span class="token punctuation">.</span>default<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        methods<span class="token operator">:</span><span class="token punctuation">{</span>
+            <span class="token function">clickhander</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token comment">// 先调用pushState方法来改变浏览器的地址栏（不会向服务器发送请求）。</span>
+                <span class="token comment">// pushState方法有三个参数，第一个参数data对象是将来去触发popState时传给popState事件对象的参数，</span>
+                <span class="token comment">// 第二个title表示网页标题，第三个url表示当前超链接要跳转的地址</span>
+                history<span class="token punctuation">.</span><span class="token function">pushState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>to<span class="token punctuation">)</span>
+                <span class="token comment">// 把当前路径记录到data.current中，注意我们之前注册插件的时候把$router属性挂载到了原型属性上，</span>
+                <span class="token comment">// 所以所有的Vue实例都可以访问到$router对象。</span>
+                <span class="token comment">// 又因为data是响应式的对象，所以当其改变后会重新加载对应组件。</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span>data<span class="token punctuation">.</span>current <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>to
+                <span class="token comment">// 用preventDefault方法来阻止事件的默认行为</span>
+                e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    
+    <span class="token comment">// ......router-view......</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>到此，我们router-view组件就实现完毕了，看上去我们的功能都已经实现，但其实这里还有部分问题，就是当我们点击浏览器中的后退与前进按钮时，浏览器中的内容并没有发生改变，而对于该问题的解决方法我们将在下一节中填坑。</p>
+<h3 id="19、VueRouter-initEvent"><a href="#19、VueRouter-initEvent" class="headerlink" title="19、VueRouter-initEvent"></a>19、VueRouter-initEvent</h3><p>最后，我们再来填上上一节中埋下的坑，即如何处理当点击浏览器中的后退与前进按钮时，浏览器中的内容并没有发生改变的问题。也即实现类图中的最后一个方法initEvent，在这个方法中我们要来注册一个事件popState，当地址栏改变时，改变data.current使浏览器加载对应的组件并渲染出来。popState事件是当历史发生变化的时候会被触发的，我们调用pushState或replaceState方法时是不会触发该事件的。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">initEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// 在事件处理函数中，我们要做的是将当前地址栏中的路径部分取出来并存储到this.data.current中，</span>
+    <span class="token comment">// 注意这里的this就是VueRouter对象，因为这里写的是箭头函数，不绑定this，this还是上一层的this</span>
+    window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"popstate"</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>current <span class="token operator">=</span> window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>pathname
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>到此，initEvent方法我们就已经完成了，但别忘记了还要调用该方法。这也是需要初始化的方法，所以我们在init里调用：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createRouteMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initComponent</span><span class="token punctuation">(</span>_Vue<span class="token punctuation">)</span>
+    <span class="token comment">// 在init中调用initEvent方法</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>之后我们打开浏览器进行测试，此时点击浏览器的前进后退就会显示正常的内容了。到此，我们才算是真正完成了一个简易版本的VueRouter。</p>
+<p>附上全部代码：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> _Vue <span class="token operator">=</span> <span class="token keyword">null</span>
+<span class="token keyword">class</span> <span class="token class-name">VueRouter</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token function">install</span><span class="token punctuation">(</span><span class="token parameter">Vue</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">.</span>install<span class="token punctuation">.</span>installed<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        VueRouter<span class="token punctuation">.</span>install<span class="token punctuation">.</span>installed <span class="token operator">=</span> <span class="token boolean">true</span>
+        _Vue <span class="token operator">=</span> Vue
+        _Vue<span class="token punctuation">.</span><span class="token function">mixin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token function">beforeCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$options<span class="token punctuation">.</span>router<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token class-name">_Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$router <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$options<span class="token punctuation">.</span>router
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>options <span class="token operator">=</span> options
+        <span class="token keyword">this</span><span class="token punctuation">.</span>routeMap <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> _Vue<span class="token punctuation">.</span><span class="token function">observable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            current<span class="token operator">:</span><span class="token string">"/"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token comment">// 这里我们在构造函数中就调用了init方法</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token punctuation">}</span>
+    <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createRouteMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initComponent</span><span class="token punctuation">(</span>_Vue<span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">createRouteMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>routes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">route</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>routeMap<span class="token punctuation">[</span>route<span class="token punctuation">.</span>path<span class="token punctuation">]</span> <span class="token operator">=</span> route<span class="token punctuation">.</span>component
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">initComponent</span><span class="token punctuation">(</span><span class="token parameter">Vue</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">"router-link"</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+            props<span class="token operator">:</span><span class="token punctuation">{</span>
+                to<span class="token operator">:</span>String
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token function">render</span><span class="token punctuation">(</span><span class="token parameter">h</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+                    attrs<span class="token operator">:</span><span class="token punctuation">{</span>
+                        href<span class="token operator">:</span><span class="token keyword">this</span><span class="token punctuation">.</span>to
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    on<span class="token operator">:</span><span class="token punctuation">{</span>
+                        click<span class="token operator">:</span><span class="token keyword">this</span><span class="token punctuation">.</span>clickhander
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>$slots<span class="token punctuation">.</span>default<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            methods<span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token function">clickhander</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    history<span class="token punctuation">.</span><span class="token function">pushState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>to<span class="token punctuation">)</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span>data<span class="token punctuation">.</span>current<span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">.</span>to
+                    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token keyword">const</span> self <span class="token operator">=</span> <span class="token keyword">this</span>
+        Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">"router-view"</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+            <span class="token function">render</span><span class="token punctuation">(</span><span class="token parameter">h</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">const</span> cm<span class="token operator">=</span>self<span class="token punctuation">.</span>routeMap<span class="token punctuation">[</span>self<span class="token punctuation">.</span>data<span class="token punctuation">.</span>current<span class="token punctuation">]</span>
+                <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span>cm<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        
+    <span class="token punctuation">}</span>
+    <span class="token function">initEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"popstate"</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>current <span class="token operator">=</span> window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>pathname
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">智升</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://philojs.com/2022/08/26/vue-router-implement/">https://philojs.com/2022/08/26/vue-router-implement/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">智升</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'd5bf45b19fa279c7e54c',
+        clientSecret: 'f6a4f9f107cd87350ea6ab378fb4721bdcd43879',
+        repo: 'georgesmith215.github.io',
+        owner: 'GeorgeSmith215',
+        admin: ["GeorgeSmith215"],
+        id: '2022-08-26T20-51-20',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/08/26/vue-router-implement/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="30分钟带你从Vue-Router的基本应用到模拟实现">
+                        
+                        <span class="card-title">30分钟带你从Vue-Router的基本应用到模拟实现</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/12/feautomaticallybuilding2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="前端工程化之自动化构建--Gulp案例与封装、FIS使用">
+                        
+                        <span class="card-title">前端工程化之自动化构建--Gulp案例与封装、FIS使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6800773181"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy; 
+            
+                <span id="year">2021-2022</span>
+            
+            dipcheese. 版权所有
+            <!-- <span id="year">2021</span> -->
+            <a href="/about" target="_blank">智升</a>
+            <!-- |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a> -->
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "7";
+                        var startDate = "1";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/georgesmith215" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2089281458@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://www.facebook.com/profile.php?id=100023997492884" class="tooltipped" target="_blank" data-tooltip="关注我的Facebook: https://www.facebook.com/profile.php?id=100023997492884" data-position="top" data-delay="50">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+
+
+    <a href="https://twitter.com/GeorgeSmith215" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/GeorgeSmith215" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2089281458" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2089281458" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/5766671582" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/u/5766671582" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://www.zhihu.com/people/chen-zhi-sheng-63" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/chen-zhi-sheng-63" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script type="text/javascript"> var OriginTitile = document.title, st; document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Σ(っ °Д °;)っ喔哟，崩溃啦！", clearTimeout(st)) : (document.title = "φ(゜▽゜*)♪咦，又好了！", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) }) </script>
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?17136257";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+        <script src="//code.tidio.co/arjcrzt8ibgtjdhobc9yxyekjvtvc6jl.js"></script>
+        <script>
+            $(document).ready(function () {
+                setInterval(change_Tidio, 50);
+                function change_Tidio() {
+                    var tidio=$("#tidio-chat iframe");
+                    if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                        document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"85px":"20px";
+                        document.getElementById("tidio-chat-iframe").style.right="-15px";
+                        document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                        document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                    }
+                    else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                        document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;
+                        document.getElementById("tidio-chat-iframe").style.right="-15px";
+                        document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                    }
+                    else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                        document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;
+                        document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                    }
+                    if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                        document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                    }
+                }
+            });
+        </script>
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+        <div style="position:fixed;bottom:125px;right:16px;cursor: pointer;">
+            <a title="兔小巢" target="_blank" rel="noopener" href="https://support.qq.com/products/347029"><i class="fa fa-comments fa-3x"  aria-hidden="true"></i></a>
+        </div>
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300,"hOffset":-15,"vOffset":-15},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+
+</html>
