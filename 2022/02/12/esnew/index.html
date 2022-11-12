@@ -478,7 +478,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-27
+                    2022-11-12
                 </div>
                 
 
@@ -911,7 +911,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>现在，可以使用ES2015的箭头函数去定义一个完全相同的函数：</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">inc</span> <span class="token operator">=</span> <span class="token parameter">n</span> <span class="token operator">=&gt;</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>此时，我们会发现相比于普通的函数，箭头函数确实大大简化了我们定义函数的代码。另外，还可以安装一个叫Fira Code的字体，他会让代码的显示更加美观，对很多类似的操作符都有更好的展示，具体请看：<a target="_blank" rel="noopener" href="https://dipcheese.com/2022/01/22/fira-code-install/">安装程序员友好的字体——Fira Code</a>。</p>
+<p>此时，我们会发现相比于普通的函数，箭头函数确实大大简化了我们定义函数的代码。另外，还可以安装一个叫Fira Code的字体，他会让代码的显示更加美观，对很多类似的操作符都有更好的展示，具体请看：<a href="https://philojs.com/2022/01/22/fira-code-install/">安装程序员友好的字体——Fira Code</a>。</p>
 <p>再来看箭头函数的相关语法，在”=&gt;”的左边，实际上是参数的列表，如果有多个参数的话，可以用”()”的方式去定义。在箭头的右边是函数体，若函数体中只有一句表达式的话，这条表达式的执行结果就会作为这个函数的返回值返回：</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">inc</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">n<span class="token punctuation">,</span> m</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> n <span class="token operator">+</span> m<span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">inc</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//110</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -1969,7 +1969,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>generator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//333  //{value: 300, done: false}</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>generator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//{value: undefined, done: true}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>通过上面的尝试，我们可以发现其中的一些特点，总结一下就是：生成器函数会自动帮我们返回一个生成器对象，调用这个对象的next方法才会让这个函数的函数体开始执行，在执行过程中一旦遇到了yield关键词，则函数的执行就会被暂停。而且yield后面的值将会作为next的结果返回，如果我们再继续调用这个生成器对象的next，那么函数就会在暂停的位置继续开始执行，周而复始，一直到这个函数完全结束，且next所返回的done的值也就变成了true。这就是生成器函数的基本用法，他最大的特点就是惰性执行，也就是“抽一次，动一次”。另外，生成器函数还有消息传递的作用，具体请看<a target="_blank" rel="noopener" href="https://dipcheese.com/2022/01/18/220118/#toc-heading-17">Generator异步方案-消息传递</a>。</p>
+<p>通过上面的尝试，我们可以发现其中的一些特点，总结一下就是：生成器函数会自动帮我们返回一个生成器对象，调用这个对象的next方法才会让这个函数的函数体开始执行，在执行过程中一旦遇到了yield关键词，则函数的执行就会被暂停。而且yield后面的值将会作为next的结果返回，如果我们再继续调用这个生成器对象的next，那么函数就会在暂停的位置继续开始执行，周而复始，一直到这个函数完全结束，且next所返回的done的值也就变成了true。这就是生成器函数的基本用法，他最大的特点就是惰性执行，也就是“抽一次，动一次”。另外，生成器函数还有消息传递的作用，具体请看<a href="https://philojs.com/2022/01/18/220118/#toc-heading-17">Generator异步方案-消息传递</a>。</p>
 <h4 id="34、ES2015-生成器应用"><a href="#34、ES2015-生成器应用" class="headerlink" title="34、ES2015 生成器应用"></a>34、ES2015 生成器应用</h4><p>了解了生成器函数的基本用法之后，我们先来看一个简单的应用场景，实现一个发号器。我们在实际的业务开发过程中经常需要用到自增的ID，而且我们每次调用ID都需要在原有的基础上加1。这里若我们使用生成器函数来实现这个功能则是最合适的了：</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token operator">*</span> <span class="token function">createIdMaker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">let</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
@@ -2670,7 +2670,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
             
                 <span id="year">2021-2022</span>
             
-            dipcheese. 版权所有
+            philojs. 版权所有
             <!-- <span id="year">2021</span> -->
             <a href="/about" target="_blank">智升</a>
             <!-- |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
